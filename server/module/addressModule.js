@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
-const schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-const addressSchema = new schema({
+const addressSchema = new Schema({
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+    required: true,
+  },
   number: {
     type: String,
     require: [true, "number is empty"],
@@ -14,7 +19,6 @@ const addressSchema = new schema({
     require: [true, "Street is empty"],
   },
   city: {
-    
     type: String,
     require: [true, "city is empty"],
   },

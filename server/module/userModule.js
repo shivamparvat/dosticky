@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    enum: ["Male", "Female", "other","male", "female"],
+    enum: ["Male", "Female", "other", "male", "female"],
   },
   age: {
     type: Number,
@@ -36,6 +36,7 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     defaultValue: "user",
+    enum: ["user", "admin", "editor", "coeditor", "auther"],
   },
   isEmailVerified: {
     type: Boolean,

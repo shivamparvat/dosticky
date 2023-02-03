@@ -1,8 +1,8 @@
 const { CatchAsyncError } = require("../middleware/catchasyncerror");
 const productModule = require("../module/productModule");
 const Crud = require("../utils/crud");
-const ErrorHandler = require("../../../utils/ErrorHeandler");
-const { isUnique } = require("../../../utils/validation");
+const ErrorHandler = require("../utils/errorHeandler");
+// const { isUnique } = require("../utils/validation");
 
 // #####################################
 // product creation
@@ -29,6 +29,20 @@ exports.updateProduct = CatchAsyncError(
       await new Crud(productModule, req, res, next).update("Product")
     }
 );
+
+
+
+// search only category wish
+// #########################################
+exports.categorySearch = CatchAsyncError(async (req, res, next) => {
+  const bin = req.query.bin || false;
+  const query = req.query;
+  await new Crud(productModule, req, res, next).getAlldata("category", {
+    user_id: req.user.id,
+    isActive: bin,
+    ...query,
+  });
+});
 
 
 // search only category wish

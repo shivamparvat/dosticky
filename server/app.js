@@ -8,10 +8,15 @@ const path = require("path");
 const multer = require("multer");
 const fileUrlTopath = require("url").fileURLToPath;
 const ErrorModdelWare = require("./middleware/error");
-const userRouter = require("./routes/userRouter");
 var cookies = require("cookie-parser");
 
 
+const userRouter = require("./routes/userRouter");
+const productRoute = require("./routes/productRouter");
+const categoryRouter = require("./routes/categoryRoute");
+const addressRoute = require("./routes/addressRoute");
+const couponRoute = require("./routes/couponRoute");
+const discountRoute = require("./routes/discountRoute");
 
 
 // let __filename = fileUrlTopath(import.meta.url);
@@ -48,6 +53,11 @@ const storage = multer.diskStorage({
 // router
 
 app.use("/api/user",userRouter)
+app.use("/api/product",productRoute)
+app.use("/api/category",categoryRouter)
+app.use("/api/address",addressRoute)
+app.use("/api/coupon",couponRoute)
+app.use("/api/discount",discountRoute)
 
 const upload = multer({ storage });
 
