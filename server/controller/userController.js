@@ -8,7 +8,7 @@ const sendMail = require("../utils/sendMail");
 // const sendMail = require("../utils/sendMail");
 
 // user creation
-exports.newUser = CatchAsyncError( (req, res, next) => {
+exports.newUser = CatchAsyncError( async(req, res, next) => {
   // user createtion funcation
   const user = await userModule.create(req.body);
   req.user = user;
