@@ -8,7 +8,7 @@ const sendMail = require("../utils/sendMail");
 // const sendMail = require("../utils/sendMail");
 
 // user creation
-exports.newUser = CatchAsyncError( async(req, res, next) => {
+exports.newUser = CatchAsyncError(async (req, res, next) => {
   // user createtion funcation
   const user = await userModule.create(req.body);
   req.user = user;
@@ -104,6 +104,15 @@ exports.logOut = CatchAsyncError(async (req, res, next) => {
       massage: "logout successfully",
     });
 });
+exports.updateUserRole = CatchAsyncError(async (req, res, next) => {
+  const data = await userModule.findByIdAndUpdate(req.params.id, { role: req.body.role }, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+  if (!data) next(new ErrorHandler(404, "user not found"));
+  res.status(201).json({ massage: "success", data });
+})
 
 exports.forgetPassword = CatchAsyncError(async (req, res, next) => {
   const user = await userModule.findOne({ email: req.body.email });
