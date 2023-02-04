@@ -7,11 +7,11 @@ const {
   categoryByName,
   deleteCategory,
 } = require("../controller/categoryController");
+const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
 
-
-categoryRouter.route("/new").post(newCategory)
+categoryRouter.route("/new").post(isAuthUser,isRoleIsValid("admin"), newCategory)
 categoryRouter.route("/:id").get(getCategory)
-categoryRouter.route("/update/:id").patch(updateCategory)
+categoryRouter.route("/update/:id").patch(isAuthUser,isRoleIsValid("admin"),updateCategory)
 categoryRouter.route("/search/").post(categoryByName)
-categoryRouter.route("/delete/:id").delete(deleteCategory)
+categoryRouter.route("/delete/:id").delete(isAuthUser,isRoleIsValid("admin"),deleteCategory)
 module.exports = categoryRouter;
