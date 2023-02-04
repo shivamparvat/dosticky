@@ -1,0 +1,1 @@
+const DataUri = require("dataurl")
