@@ -53,6 +53,9 @@ const storage = multer.diskStorage({
 // router
 
 app.use("/api/user",userRouter)
+app.use("/",(req,res)=>{
+  res.send("hello")
+})
 app.use("/api/product",productRoute)
 app.use("/api/category",categoryRouter)
 app.use("/api/address",addressRoute)
