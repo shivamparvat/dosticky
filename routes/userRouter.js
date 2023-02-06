@@ -2,8 +2,9 @@ const express = require("express");
 const loginRouter = express.Router();
 const { newUser,login,getUser,updateUser,deleteUser,logOut,forgetPassword,updateUserRole} = require("../controller/userController");
 const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
+const { singleUpload } = require("../middleware/multer");
 
-loginRouter.route("/new").post(newUser);
+loginRouter.route("/new").post(singleUpload,newUser);
 loginRouter.route("/login").post(login);
 loginRouter.route("/:id").get(isAuthUser, getUser);
 loginRouter.route("/update/:id").patch(isAuthUser, updateUser);

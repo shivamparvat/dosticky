@@ -1,16 +1,35 @@
 const { CatchAsyncError } = require("../middleware/catchasyncerror");
 const userModule = require("../module/userModule");
+const cloudinary = require("cloudinary");
 
 const ErrorHandler = require("../utils/ErrorHeandler");
 const responseToken = require("../utils/responseToken");
 const Crud = require("../utils/crud");
 const sendMail = require("../utils/sendMail");
+const getDataUri = require("../utils/dataUri");
 // const sendMail = require("../utils/sendMail");
 
 // user creation
 exports.newUser = CatchAsyncError(async (req, res, next) => {
+  const { name, lname, gender, age, number, email, password } = req.body;
+  // create data uri for file buffer
+  const fileUri = getDataUri(req.file);
+
+   
   // user createtion funcation
-  const user = await userModule.create(req.body);
+  const user = await userModule.create({
+    name,
+    lname,
+    gender,
+    age,
+    number,
+    email,
+    password,
+    images: {
+      image_id: myCloud.public_id,
+      image_url: myCloud.secure_url,
+    },
+  });
   req.user = user;
   // send response
   responseToken(user, 201, res);
@@ -105,14 +124,18 @@ exports.logOut = CatchAsyncError(async (req, res, next) => {
     });
 });
 exports.updateUserRole = CatchAsyncError(async (req, res, next) => {
-  const data = await userModule.findByIdAndUpdate(req.params.id, { role: req.body.role }, {
-    new: true,
-    runValidators: true,
-    useFindAndModify: false,
-  });
+  const data = await userModule.findByIdAndUpdate(
+    req.params.id,
+    { role: req.body.role },
+    {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false,
+    }
+  );
   if (!data) next(new ErrorHandler(404, "user not found"));
   res.status(201).json({ massage: "success", data });
-})
+});
 
 exports.forgetPassword = CatchAsyncError(async (req, res, next) => {
   const user = await userModule.findOne({ email: req.body.email });
@@ -143,3 +166,7 @@ exports.forgetPassword = CatchAsyncError(async (req, res, next) => {
     next(new ErrorHandler(500, e.massage));
   }
 });
+
+
+// upload file update 1234
+// upload file delete 1234

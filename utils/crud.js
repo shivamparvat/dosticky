@@ -31,6 +31,21 @@ class Crud {
     return data;
   }
 
+  async chackUnique(item){
+    const data = await this.module.findOne(item)
+    if(!data){
+      this.res.status(200).json({
+        massage: "success",
+        unique:true
+      });
+    }else{
+      this.res.status(200).json({
+        massage: "this isn't unique",
+        unique:false
+      });
+    }
+  }
+
   async getAlldata(key, query) {
     const apifeatures = new Apifeature(this.module.find(), query)
       .search(key, this.req.query.keyword)

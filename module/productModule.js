@@ -7,6 +7,7 @@ const productSchema = new Schema({
   },
   SKU: {
     type: String,
+    unique:[true,"SKU Number must be unique"],
     required: [true, "Stock keeping unit or SKU is Required"],
   },
   price:{

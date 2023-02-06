@@ -33,9 +33,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Password is Empty"],
   },
+  images: { image_id: String, image_url: String },
   role: {
     type: String,
-    defaultValue: "user",
+    default: "user",
     enum: ["user", "admin", "editor", "coeditor", "auther"],
   },
   isEmailVerified: {
