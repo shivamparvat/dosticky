@@ -12,7 +12,7 @@ const {
 const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
 const { singleUpload, multipleUpload } = require("../middleware/multer");
 
-productRouter.route("/new").post(multipleUpload,isAuthUser,isRoleIsValid("admin"), Product);
+productRouter.route("/new").post( Product);
 productRouter.route("/:id").get(isAuthUser, getProduct);
 productRouter.route("/update/:id").patch(isAuthUser,isRoleIsValid("admin"), updateProduct);
 productRouter.route("/producs").get(isAuthUser, categorySearch);
