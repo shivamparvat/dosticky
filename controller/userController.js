@@ -1,6 +1,6 @@
 const { CatchAsyncError } = require("../middleware/catchasyncerror");
 const userModule = require("../module/userModule");
-const cloudinary = require("cloudinary");
+// const cloudinary = require("cloudinary");
 
 const ErrorHandler = require("../utils/ErrorHeandler");
 const responseToken = require("../utils/responseToken");
@@ -13,7 +13,8 @@ const getDataUri = require("../utils/dataUri");
 exports.newUser = CatchAsyncError(async (req, res, next) => {
   const { name, lname, gender, age, number, email, password } = req.body;
   // create data uri for file buffer
-  const fileUri = getDataUri(req.file);
+  console.log(req.file)
+  // const fileUri = getDataUri(req.file);
 
    
   // user createtion funcation
@@ -25,10 +26,10 @@ exports.newUser = CatchAsyncError(async (req, res, next) => {
     number,
     email,
     password,
-    images: {
-      image_id: myCloud.public_id,
-      image_url: myCloud.secure_url,
-    },
+    // images: {
+    //   image_id: myCloud.public_id,
+    //   image_url: myCloud.secure_url,
+    // },
   });
   req.user = user;
   // send response
