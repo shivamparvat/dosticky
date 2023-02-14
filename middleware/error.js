@@ -10,6 +10,10 @@ module.exports = (err, rep, res, next) => {
         const message = `resouce not found , Invalid ${err.path}`
         err = new ErrorHeandler(400,message);
     }
+    if(err.code == 11000){
+        const message = `duplicate key error ${err.keyValue.number}`
+        err = new ErrorHeandler(400,message);
+    }
     res.status(err.statusCode).json({
         success: false,
         message:err.message,

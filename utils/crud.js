@@ -70,6 +70,7 @@ class Crud {
     if (!data) this.next(new ErrorHandler(404, massage + "not found"));
     this.data = data;
     this.res.status(201).json({ massage: "success", data });
+
     return data;
   }
 

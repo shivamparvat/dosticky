@@ -1,46 +1,44 @@
 const { CatchAsyncError } = require("../middleware/catchasyncerror");
 const userModule = require("../module/userModule");
-// const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary");
 
 const ErrorHandler = require("../utils/ErrorHeandler");
 const responseToken = require("../utils/responseToken");
 const Crud = require("../utils/crud");
 const sendMail = require("../utils/sendMail");
-const getDataUri = require("../utils/dataUri");
+const dataUri = require("../utils/dataUri");
 // const sendMail = require("../utils/sendMail");
 
 // user creation
 exports.newUser = CatchAsyncError(async (req, res, next) => {
-  const { name, lname, gender, age, number, email, password } = req.body;
-  // create data uri for file buffer
-  console.log(req.file)
-  // const fileUri = getDataUri(req.file);
-
-   
-  // user createtion funcation
-  const user = await userModule.create({
-    name,
-    lname,
-    gender,
-    age,
-    number,
-    email,
-    password,
-    // images: {
-    //   image_id: myCloud.public_id,
-    //   image_url: myCloud.secure_url,
-    // },
-  });
+  const user = await userModule.create(req.body);
   req.user = user;
+  let updatedData;
+  if (req.file != undefined) {
+    // create data uri for file buffer
+    const fileUri = dataUri(req.file);
+    // upload file
+    const dataURL = await cloudinary.v2.uploader.upload(fileUri.content);
+    // add url
+    updatedData = await userModule.findByIdAndUpdate(
+      user._id,
+      {
+        images: { image_id: dataURL.asset_id, image_url: dataURL.secure_url },
+      },
+      {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+      }
+    );
+  }
   // send response
-  responseToken(user, 201, res);
+  responseToken(updatedData, 201, res);
 });
 
 // // login
 exports.login = CatchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
-  console.log(email);
-  console.log(password);
   // qurey
   const user = await userModule.findOne({ email }).select("password");
   // if uer not found
@@ -168,6 +166,31 @@ exports.forgetPassword = CatchAsyncError(async (req, res, next) => {
   }
 });
 
-
 // upload file update 1234
+exports.imageUpdate = CatchAsyncError(async (req, res, next) => {
+  const { result } = await cloudinary.v2.uploader.destroy(req.user.images.asset_id);
+  if (result === "not found")
+    throw new BadRequestError("Please provide correct public_id");
+
+
+  if (result !== "ok") throw new Error("Try again later.");
+  if (req.file != undefined) {
+    // create data uri for file buffer
+    const fileUri = dataUri(req.file);
+    // upload file
+    const dataURL = await cloudinary.v2.uploader.upload(fileUri.content);
+    // add url
+    updatedData = await userModule.findByIdAndUpdate(
+      user._id,
+      {
+        images: { image_id: dataURL.asset_id, image_url: dataURL.secure_url },
+      },
+      {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+      }
+    );
+  }
+});
 // upload file delete 1234

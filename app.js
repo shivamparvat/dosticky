@@ -30,7 +30,6 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 // error
-app.use(ErrorModdelWare);
 
 
 
@@ -46,5 +45,6 @@ app.use("/api/address",addressRoute)
 app.use("/api/coupon",couponRoute)
 app.use("/api/discount",discountRoute)
 
+app.use(ErrorModdelWare);
 
 module.exports = app;

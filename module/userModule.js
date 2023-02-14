@@ -21,7 +21,6 @@ const userSchema = new mongoose.Schema({
   },
   number: {
     type: Number,
-    unique: [true, "number must be unique"],
     required: [true, "Number is Empty"],
   },
   email: {
