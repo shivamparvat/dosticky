@@ -7,11 +7,11 @@ const couponSchema = new Schema({
     require: true,
     unique: true,
   },
-  amount: { type: Number, required: true, defaultValue: process.env.COUPON_APPlY_PRICE },
+  amount: { type: Number, required: true, default: process.env.COUPON_APPlY_PRICE },
   expireDate: {
     type: Date,
     require: true,
-    defaultValue: () => Date.now() + 7 * 24 * 60 * 60 * 1000,
+    default: () => Date.now() + 7 * 24 * 60 * 60 * 1000,
   },
   Discount:{
     type:Number,
@@ -21,7 +21,7 @@ const couponSchema = new Schema({
   isActive: {
     type: Boolean,
     require: true,
-    defaultValue: true,
+    default: true,
   },
 });
 module.exports = mongoose.model("coupon", couponSchema);

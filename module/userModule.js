@@ -3,52 +3,51 @@ const bcrypt = require("bcryptjs");
 const Jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Name is Empty"],
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: [true, "Name is Empty"],
+    },
+    lname: {
+      type: String,
+      required: [true, "Lname is Empty"],
+    },
+    gender: {
+      type: String,
+      enum: ["Male", "Female", "other", "male", "female"],
+    },
+    age: {
+      type: Number,
+    },
+    number: {
+      type: Number,
+      required: [true, "Number is Empty"],
+    },
+    email: {
+      type: String,
+      required: [true, "Email is Empty"],
+      unique: [true, "Email must be unique"],
+    },
+    password: {
+      type: String,
+      required: [true, "Password is Empty"],
+    },
+    images: { image_id: String, image_url: String },
+    role: {
+      type: String,
+      default: "user",
+      enum: ["user", "admin", "editor", "coeditor", "auther"],
+    },
+    isEmailVerified: {
+      type: Boolean,
+      default: false,
+    },
+    resetPassTokan: String,
+    resetPassExport: String,
   },
-  lname: {
-    type: String,
-    required: [true, "Lname is Empty"],
-  },
-  gender: {
-    type: String,
-    enum: ["Male", "Female", "other", "male", "female"],
-  },
-  age: {
-    type: Number,
-  },
-  number: {
-    type: Number,
-    required: [true, "Number is Empty"],
-  },
-  email: {
-    type: String,
-    required: [true, "Email is Empty"],
-    unique: [true, "Email must be unique"],
-  },
-  password: {
-    type: String,
-    required: [true, "Password is Empty"],
-  },
-  images: { image_id: String, image_url: String },
-  role: {
-    type: String,
-    default: "user",
-    enum: ["user", "admin", "editor", "coeditor", "auther"],
-  },
-  isEmailVerified: {
-    type: Boolean,
-    default: false,
-  },
-  resetPassTokan: String,
-  resetPassExport: String,
-  created_at: {
-    type: Date,
-    defaultValue: Date.now,
-  },
-});
+  { timestamps: true }
+);
 
 // pass hashing
 userSchema.pre("save", async function (next) {

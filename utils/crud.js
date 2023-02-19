@@ -12,52 +12,54 @@ class Crud {
   async create() {
     const data = await this.module.create(this.req.body);
     this.data = data;
+    console.log(this.data)
     this.res.status(201).json({
-      massage: "success",
+      message: "success",
       data,
     });
     return data;
   }
 
   //   get only one
-  async getOne(massage) {
+  async getOne(message) {
     const data = await this.module.findById(this.req.params.id);
-    if (!data) this.next(new ErrorHandler(404, massage + "not found"));
+    if (!data) this.next(new ErrorHandler(404, message + "not found"));
     this.data = data;
     this.res.status(201).json({
-      massage: "success",
+      message: "success",
       data,
     });
     return data;
   }
 
-  async chackUnique(item){
-    const data = await this.module.findOne(item)
-    if(!data){
+  async chackUnique(item) {
+    const data = await this.module.findOne(item);
+    if (!data) {
       this.res.status(200).json({
-        massage: "success",
-        unique:true
+        message: "success",
+        unique: true,
       });
-    }else{
+    } else {
       this.res.status(200).json({
-        massage: "this isn't unique",
-        unique:false
+        message: "this isn't unique",
+        unique: false,
       });
     }
   }
 
-  async getAlldata(key, query) {
-    const apifeatures = new Apifeature(this.module.find(), query)
+  async getAlldata(key, query, find) {
+    const apifeatures = new Apifeature(this.module.find({ ...find }), query)
       .search(key, this.req.query.keyword)
       .filter()
       .page();
     const data = await apifeatures.query;
     this.data = data;
-    this.res.status(201).json({ massage: "success", data });
+    this.res.status(201).json({ message: "success", data });
     return data;
   }
 
-  async update(massage) {
+  async update(message) {
+    console.log(this.req.body);
     const data = await this.module.findByIdAndUpdate(
       this.req.params.id,
       this.req.body,
@@ -67,32 +69,22 @@ class Crud {
         useFindAndModify: false,
       }
     );
-    if (!data) this.next(new ErrorHandler(404, massage + "not found"));
+    if (!data) this.next(new ErrorHandler(404, message + "not found"));
     this.data = data;
-    this.res.status(201).json({ massage: "success", data });
+    this.res.status(201).json({ message: "success", data });
 
     return data;
   }
 
-  async delete(massage) {
+  async delete(message) {
     const data = this.module.findById(this.req.params.id);
-    if (!data) this.next(new ErrorHandler(404, massage + "not found"));
+    if (!data) this.next(new ErrorHandler(404, message + "not found"));
     await data.remove();
-    this.res.status(201).json({ massage: "success" });
+    this.res.status(201).json({ message: "success" });
   }
-  
-  async deleteForBin(massage) {
-    const data = this.module.findById(this.req.params.id);
-    if (!data) this.next(new ErrorHandler(404, massage + "not found"));
-    if (data.isActive) {
-      await data.remove();
-      this.res.status(201).json({ massage: "success" });
-      return data;
-    }
-    data.isActive = true;
-    data.save({ validateBeforeSave: false });
-    this.res.status(201).json({ massage: "move to bin" });
-    return data;
+
+  async deleteForBin(message) {
+   
   }
 }
 

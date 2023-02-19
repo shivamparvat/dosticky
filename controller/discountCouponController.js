@@ -20,7 +20,7 @@ exports.getAllCoupon = CatchAsyncError(async (req, res, next) => {
     if (!data) this.next(new ErrorHandler(404, "coupon not found"));
     this.data = data;
     this.res.status(201).json({
-      massage: "success",
+      message: "success",
       data,
     });
     return data;
@@ -55,7 +55,7 @@ exports.getAllDiscount = CatchAsyncError(async (req, res, next) => {
     if (!data) this.next(new ErrorHandler(404, "discount not found"));
     this.data = data;
     this.res.status(201).json({
-      massage: "success",
+      message: "success",
       data,
     });
     return data;

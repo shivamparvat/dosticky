@@ -83,7 +83,7 @@ exports.updateUser = CatchAsyncError(async (req, res, next) => {
     useFindAndModify: false,
   });
   if (!data) next(new ErrorHandler(404, "user not found"));
-  res.status(201).json({ massage: "success", data });
+  res.status(201).json({ message: "success", data });
 });
 
 // // account delete
@@ -106,7 +106,7 @@ exports.deleteUser = CatchAsyncError(async (req, res, next) => {
     );
 
   user.remove();
-  res.status(201).json({ massage: "success" });
+  res.status(201).json({ message: "success" });
 });
 
 exports.logOut = CatchAsyncError(async (req, res, next) => {
@@ -119,7 +119,7 @@ exports.logOut = CatchAsyncError(async (req, res, next) => {
     })
     .json({
       success: true,
-      massage: "logout successfully",
+      message: "logout successfully",
     });
 });
 exports.updateUserRole = CatchAsyncError(async (req, res, next) => {
@@ -133,7 +133,7 @@ exports.updateUserRole = CatchAsyncError(async (req, res, next) => {
     }
   );
   if (!data) next(new ErrorHandler(404, "user not found"));
-  res.status(201).json({ massage: "success", data });
+  res.status(201).json({ message: "success", data });
 });
 
 exports.forgetPassword = CatchAsyncError(async (req, res, next) => {
@@ -141,28 +141,28 @@ exports.forgetPassword = CatchAsyncError(async (req, res, next) => {
   if (!user) return next(new ErrorHandler(404, "user not found"));
   // get token and save
   const token = await user.passwordResettoken();
-  await user.save({ validateBeforeSave: false });
+  await user.save();
   // create msg
   const resetUrl = `${req.protocol}://${req.get(
     "host"
   )}/api/password/reset/${token}`;
-  const massage = `user password reset token is :-\n\n\n ${resetUrl}\n\n `;
+  const message = `user password reset token is :-\n\n\n ${resetUrl}\n\n `;
 
   try {
     sendMail({
       email: user.email,
       subject: "password recovery",
-      massage,
+      message,
     });
     res.status(200).json({
       success: true,
-      massage: `email sand to ${user.email} successfully`,
+      message: `email sand to ${user.email} successfully`,
     });
   } catch (e) {
     user.passwordResettoken = undefined;
     user.resetPassExport = undefined;
-    await user.save({ validateBeforeSave: false });
-    next(new ErrorHandler(500, e.massage));
+    await user.save();
+    next(new ErrorHandler(500, e.message));
   }
 });
 

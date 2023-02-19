@@ -4,20 +4,40 @@ const {
   Product,
   getProduct,
   updateProduct,
-  categorySearch,
+  SearchUser,
+  Search,
   moveToBin,
   deleteProduct,
   chackSku,
+  categorySearchUser,
+  likeProduct,
 } = require("../controller/productController");
 const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
-const { singleUpload, multipleUpload } = require("../middleware/multer");
+const { multipleUpload } = require("../middleware/multer");
 
-productRouter.route("/new").post( Product);
-productRouter.route("/:id").get(isAuthUser, getProduct);
-productRouter.route("/update/:id").patch(isAuthUser,isRoleIsValid("admin"), updateProduct);
-productRouter.route("/producs").get(isAuthUser, categorySearch);
-productRouter.route("/deactivate/:id").get(isAuthUser,isRoleIsValid("admin"), moveToBin);
-productRouter.route("/delete/:id").delete(isAuthUser,isRoleIsValid("admin"), deleteProduct);
-productRouter.route("/chack/:id").get(chackSku);
+// new product
+productRouter.route("/new").post(multipleUpload,isAuthUser,isRoleIsValid("admin", "editor", "coeditor"), Product); //done
+
+// admin search
+productRouter.route("/producs/admin").get(isAuthUser, isRoleIsValid("admin", "editor", "coeditor"), Search);//done
+
+
+// get one product / update product / delate product 
+productRouter.route("/:id")
+.get(getProduct)
+.patch(multipleUpload,isAuthUser, isRoleIsValid("admin", "editor", "coeditor"), updateProduct)
+.delete(isAuthUser, isRoleIsValid("admin", "editor"), deleteProduct);//done
+
+// serach in normal pertion
+productRouter.route("/").get(SearchUser);//done
+
+productRouter.route("/like/:id").post(isAuthUser,likeProduct);//done
+
+// move to bin 
+productRouter.route("/deactivate/:id").delete(isAuthUser, isRoleIsValid("admin", "editor"), moveToBin);//done
+
+// chack duplicate
+productRouter.route("/chack").post(isAuthUser, isRoleIsValid("admin", "editor", "coeditor"), chackSku);//done
 
 module.exports = productRouter;
+

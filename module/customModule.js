@@ -17,7 +17,7 @@ const customSchema = new Schema({
   material_type:{
     type:String,
     enum: ['vinyl','radium'],
-    defaultValue:'vinyl'
+    default:'vinyl'
   },
   price:{
     type:Number,
@@ -26,7 +26,7 @@ const customSchema = new Schema({
   quantity:{
     type:Number,
     required: [true, "quantity is require"],
-    defaultValue: 1,
+    default: 1,
   },
   status: {
     type: String,

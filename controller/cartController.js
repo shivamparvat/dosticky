@@ -11,7 +11,7 @@ exports.addTocart = CatchAsyncError(async (req, res, next) => {
     const cartDetails = { user_id: req.user, items: [{ products, quantity }] };
     const data = await cartModule.create(cartDetails);
     res.status(201).json({
-      massage: "success",
+      message: "success",
       data,
     });
   } else {
@@ -25,7 +25,7 @@ exports.addTocart = CatchAsyncError(async (req, res, next) => {
     }
     const cartData = await Cart.save();
     res.status(201).json({
-      massage: "success",
+      message: "success",
       cartData,
     });
   }
@@ -45,7 +45,7 @@ exports.getCart = CatchAsyncError(async (req, res, next) => {
   if (!Cart) return next(new ErrorHeandler(404, "cart is empty"));
   
   res.status(200).json({
-    massage: "success",
+    message: "success",
     Cart,
   });
 });
@@ -64,7 +64,7 @@ exports.addCoupon = CatchAsyncError(async (req, res, next) => {
   );
   if (!Cart) this.next(new ErrorHandler(404, "cart not found"));
   
-  res.status(201).json({ massage: "success", Cart });
+  res.status(201).json({ message: "success", Cart });
 });
 
 
@@ -84,7 +84,7 @@ exports.deleteCartItem = CatchAsyncError(async (req, res, next) => {
   await Cart.save();
   
   res.status(201).json({
-    massage: "success deleted",
+    message: "success deleted",
   });
 });
 

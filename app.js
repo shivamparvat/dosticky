@@ -4,7 +4,6 @@ const cors = require("cors");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
-const multer = require("multer");
 const ErrorModdelWare = require("./middleware/error");
 var cookies = require("cookie-parser");
 
@@ -15,6 +14,7 @@ const categoryRouter = require("./routes/categoryRoute");
 const addressRoute = require("./routes/addressRoute");
 const couponRoute = require("./routes/couponRoute");
 const discountRoute = require("./routes/discountRoute");
+const multer = require("multer");
 
 
 dotenv.config();
@@ -29,10 +29,6 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-// error
-
-
-
 // router
 
 app.use("/api/user",userRouter)
@@ -45,6 +41,6 @@ app.use("/api/address",addressRoute)
 app.use("/api/coupon",couponRoute)
 app.use("/api/discount",discountRoute)
 
-app.use(ErrorModdelWare);
+// app.use(ErrorModdelWare);
 
 module.exports = app;

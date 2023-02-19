@@ -7,6 +7,10 @@ const addressSchema = new Schema({
     ref: "user",
     required: true,
   },
+  name: {
+    type: String,
+    require: [true, "name is empty"],
+  },
   number: {
     type: String,
     require: [true, "number is empty"],

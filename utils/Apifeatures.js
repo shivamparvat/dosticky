@@ -8,7 +8,7 @@ class Apifeature {
   //   serach anythink accouring qurey
   search(key,keyword) {
     // create  qurey
-    const query = this.query
+    const query = keyword
       ?{[key]:{
         $regex: keyword,
         $options: "i",
@@ -42,7 +42,6 @@ class Apifeature {
   page() {
     // result pr page
     const postParpage = process.env.POST_PAR_PAGE;
-
     // carrent page
     const currentPage = this.queryStr.page || 1;
 

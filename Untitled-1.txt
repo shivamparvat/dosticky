@@ -1,0 +1,54 @@
+User Management Endpoints:
+Register
+Login
+Logout
+Update Profile
+Delete Profile
+Change Password
+
+Product Management Endpoints:
+Get Products
+Get Product by ID
+Create Product
+Update Product
+Delete Product
+
+Order Management Endpoints:
+Get Orders
+Get Order by ID
+Create Order
+Update Order
+Delete Order
+
+Cart Management Endpoints:
+Get Cart
+Add Item to Cart
+Remove Item from Cart
+Checkout
+
+Payment Endpoints:
+Get Payment Methods
+Get Payment Method by ID
+Add Payment Method
+Delete Payment Method
+
+Review Management Endpoints:
+Get Reviews
+Get Review by ID
+Create Review
+Update Review
+Delete Review
+
+Category Management Endpoints:
+Get Categories
+Get Category by ID
+Create Category
+Update Category
+Delete Category
+
+Admin Management Endpoints:
+Get Admin Users
+Get Admin User by ID
+Create Admin User
+Update Admin User
+Delete Admin User
