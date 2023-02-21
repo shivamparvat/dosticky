@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
 
 const database = async () => {
-  try {
-    mongoose.set("strictQuery", false);
-    await mongoose.connect(
+  mongoose.set("strictQuery", false);
+  mongoose
+    .connect(
       process.env.NODE_ENV == "Development"
         ? process.env.DB_URL_DEV
         : process.env.DB_URL,
@@ -11,11 +11,13 @@ const database = async () => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
       }
-    );
-    console.log("database connected");
-  } catch (e) {
-    console.log(e);
-  }
+    )
+    .then(() => {
+      console.log("database connected");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 module.exports = database;

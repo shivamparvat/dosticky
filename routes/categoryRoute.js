@@ -8,10 +8,13 @@ const {
   deleteCategory,
 } = require("../controller/categoryController");
 const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
+const { singleUpload } = require("../middleware/multer");
 
-categoryRouter.route("/new").post(isAuthUser,isRoleIsValid("admin"), newCategory)
-categoryRouter.route("/:id").get(getCategory)
-categoryRouter.route("/update/:id").patch(isAuthUser,isRoleIsValid("admin"),updateCategory)
-categoryRouter.route("/search/").post(categoryByName)
-categoryRouter.route("/delete/:id").delete(isAuthUser,isRoleIsValid("admin"),deleteCategory)
+categoryRouter.route("/new").post(singleUpload ,isAuthUser,isRoleIsValid("admin", "editor"), newCategory)//done
+categoryRouter.route("/").get(categoryByName)//done
+categoryRouter.route("/:id")
+.get(getCategory)
+.patch(singleUpload,isAuthUser,isRoleIsValid("admin", "editor"),updateCategory)
+.delete(isAuthUser,isRoleIsValid("admin", "editor"),deleteCategory)//done
+
 module.exports = categoryRouter;

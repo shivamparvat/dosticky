@@ -1,90 +1,167 @@
 const { CatchAsyncError } = require("../middleware/catchasyncerror");
 const cartModule = require("../module/cartModule");
+const couponModule = require("../module/couponModule");
 const ErrorHeandler = require("../utils/ErrorHeandler");
+const priceTotel = require("../utils/priceTotal");
 
 // create update
 exports.addTocart = CatchAsyncError(async (req, res, next) => {
-  const Cart = await cartModule.findOne({ user_id: req.user });
-  const products = req.body.product;
-  const quantity = req.body.quantity;
+  // get user id
+  const user = req.user._id;
+  // find cart is exist
+  const Cart = await cartModule.findOne({ user }).populate({
+    path: "items",
+    populate: {
+      path: "product",
+      model: "product",
+    },
+  });
+  // if cart not exist
   if (!Cart) {
-    const cartDetails = { user_id: req.user, items: [{ products, quantity }] };
-    const data = await cartModule.create(cartDetails);
+    const cartDetails = {
+      user: req.user._id,
+      items: [{ ...req.body }],
+    };
+    // createing cart
+    await cartModule.create(cartDetails);
+    // populate data
+    const populateCart = await cartModule.findOne({ user }).populate({
+      path: "items",
+      populate: {
+        path: "product",
+        model: "product",
+      },
+    });
+    // find total price
+    const { totalDiscountePrice, totalPrice } = await priceTotel(populateCart);
+    populateCart.totalPrice = totalPrice;
+    populateCart.discountePrice = totalDiscountePrice;
+    // save total price and discount
+    await populateCart.save();
     res.status(201).json({
       message: "success",
-      data,
+      data: populateCart,
     });
   } else {
-    const cartindex = Cart.items.findIndex((item) => item.products == products);
+    // if cart is exist then finding index of the product
+    const cartindex = Cart.items.findIndex(
+      (item) => item.product._id == req.body.product
+    );
+    // if product added before
     if (cartindex > -1) {
       const productItem = Cart.items[cartindex];
-      productItem.quantity = quantity;
+      // increase quantity
+      if (req.body.quantity) {
+        // if quantity is exist in req body
+        productItem.quantity = req.body.quantity;
+      } else {
+        // if quantity isn't exist in req body
+        productItem.quantity += 1;
+      }
       Cart.items[cartindex] = productItem;
+      // cart save
+      await Cart.save();
     } else {
-      Cart.items.push({ products, quantity });
+      // if cart isn't exist
+
+      Cart.items.push({ ...req.body });
+      await Cart.save();
     }
-    const cartData = await Cart.save();
+    // populate data and return
+    const populateCart = await cartModule.findOne({ user }).populate({
+      path: "items",
+      populate: {
+        path: "product",
+        model: "product",
+      },
+    });
+    // save final amount
+    const { totalDiscountePrice, totalPrice } = await priceTotel(populateCart);
+    populateCart.totalPrice = totalPrice;
+    populateCart.discountePrice = totalDiscountePrice;
+    await populateCart.save();
     res.status(201).json({
       message: "success",
-      cartData,
+      data: populateCart,
     });
   }
 });
 
-
 // get cart
 exports.getCart = CatchAsyncError(async (req, res, next) => {
-  const Cart = cartModule.find({ user_id: req.user }).populate({
+  const Cart = await cartModule.find({ user: req.user._id }).populate({
     path: "items",
     populate: {
-      path: "products",
+      path: "product",
       model: "product",
     },
   });
-  
+
   if (!Cart) return next(new ErrorHeandler(404, "cart is empty"));
-  
+  const { totalDiscountePrice, totalPrice } = await priceTotel(Cart);
+  Cart.totalPrice = totalPrice;
+  Cart.discountePrice = totalDiscountePrice;
+  await Cart.save();
   res.status(200).json({
     message: "success",
-    Cart,
+    data: Cart,
   });
 });
 
-
 exports.addCoupon = CatchAsyncError(async (req, res, next) => {
   const coupon = req.body.coupon;
-  const Cart = await cartModule.findByIdAndUpdate(
-    req.user,
+  if (coupon == undefined) next(new ErrorHeandler(400, "coupon is not found"));
+
+  // find coupon code
+  const currentDate = new Date();
+  const couponData = await couponModule.findOne({
     coupon,
+    isActive: true,
+    expireDate: { $lt: currentDate },
+  });
+  // coupon is not found
+  if (!couponData) return next(new ErrorHeandler(404, "invalid coupon code"));
+
+  const Cart = await cartModule.findOneAndUpdate(
+    { user: req.user._id },
+    { coupon },
     {
       new: true,
       runValidators: true,
       useFindAndModify: false,
     }
   );
-  if (!Cart) this.next(new ErrorHandler(404, "cart not found"));
-  
-  res.status(201).json({ message: "success", Cart });
+  // cart is not found
+  if (!Cart) return next(new ErrorHeandler(404, "cart not found"));
+
+  res.status(201).json({ message: "success" });
 });
 
 
 // delete item
 exports.deleteCartItem = CatchAsyncError(async (req, res, next) => {
-  const products = req.body.product;
-  
-  const Cart = await cartModule.findOne({ user_id: req.user });
+  const product = req.params.id;
+  const Cart = await cartModule.findOne({ user: req.user._id }).populate({
+    path: "items",
+    populate: {
+      path: "product",
+      model: "product",
+    },
+  });
   
   if (!Cart) return next(new ErrorHeandler(404, "cart is empty"));
   
-  const cartindex = Cart.items.findIndex((item) => item.products == products);
+  const cartindex = Cart.items.findIndex((item) => item.product._id == product);
   if (cartindex > -1) {
     Cart.items.splice(cartindex, 1);
   }
-  
+  const { totalDiscountePrice, totalPrice } = await priceTotel(Cart);
+  Cart.totalPrice = totalPrice;
+  Cart.discountePrice = totalDiscountePrice;
   await Cart.save();
-  
+
   res.status(201).json({
     message: "success deleted",
+    data: Cart,
   });
 });
-

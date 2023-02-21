@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
+const currentDate = new Date();
 const couponSchema = new Schema({
-  code: {
+  coupon: {
     type: String,
     require: true,
     unique: true,
@@ -11,9 +11,9 @@ const couponSchema = new Schema({
   expireDate: {
     type: Date,
     require: true,
-    default: () => Date.now() + 7 * 24 * 60 * 60 * 1000,
+    default: () => currentDate + 7 * 24 * 60 * 60 * 1000,
   },
-  Discount:{
+  discount:{
     type:Number,
     require: true,
     default:50,

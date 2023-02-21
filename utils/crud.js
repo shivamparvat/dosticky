@@ -1,4 +1,4 @@
-const ErrorHandler = require("../utils/ErrorHeandler");
+const ErrorHeandler = require("../utils/ErrorHeandler");
 const Apifeature = require("./Apifeatures");
 
 class Crud {
@@ -12,7 +12,6 @@ class Crud {
   async create() {
     const data = await this.module.create(this.req.body);
     this.data = data;
-    console.log(this.data)
     this.res.status(201).json({
       message: "success",
       data,
@@ -21,9 +20,11 @@ class Crud {
   }
 
   //   get only one
-  async getOne(message) {
+  async getOne(message = "") {
     const data = await this.module.findById(this.req.params.id);
-    if (!data) this.next(new ErrorHandler(404, message + "not found"));
+    if (!data) {
+      return this.next(new ErrorHeandler(404, message + "not found"));
+    }
     this.data = data;
     this.res.status(201).json({
       message: "success",
@@ -59,7 +60,6 @@ class Crud {
   }
 
   async update(message) {
-    console.log(this.req.body);
     const data = await this.module.findByIdAndUpdate(
       this.req.params.id,
       this.req.body,
@@ -69,7 +69,7 @@ class Crud {
         useFindAndModify: false,
       }
     );
-    if (!data) this.next(new ErrorHandler(404, message + "not found"));
+    if (!data) this.next(new ErrorHeandler(404, message + "not found"));
     this.data = data;
     this.res.status(201).json({ message: "success", data });
 
@@ -77,15 +77,13 @@ class Crud {
   }
 
   async delete(message) {
-    const data = this.module.findById(this.req.params.id);
-    if (!data) this.next(new ErrorHandler(404, message + "not found"));
+    const data = await this.module.findById(this.req.params.id);
+    if (!data) this.next(new ErrorHeandler(404, message + "not found"));
     await data.remove();
     this.res.status(201).json({ message: "success" });
   }
 
-  async deleteForBin(message) {
-   
-  }
+  async deleteForBin(message) {}
 }
 
 module.exports = Crud;

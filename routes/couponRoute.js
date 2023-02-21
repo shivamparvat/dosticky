@@ -9,11 +9,12 @@ const {
 } = require("../controller/discountCouponController");
 const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
 
-
-couponRoute.route("/new").post(isAuthUser,isRoleIsValid("admin"),newCoupon);
-couponRoute.route("/:id").get(isAuthUser,getCoupon);
-couponRoute.route("/all").get(isAuthUser,isRoleIsValid("admin"),getAllCoupon);
-couponRoute.route("/update/:id").patch(isAuthUser,isRoleIsValid("admin"),updateCoupon);
-couponRoute.route("/delete/:id").delete(isAuthUser,isRoleIsValid("admin"),deleteCoupon);
+couponRoute.route("/new").post(isAuthUser, isRoleIsValid("admin", "editor", "coeditor"), newCoupon);
+couponRoute.route("/").get(isAuthUser, isRoleIsValid("admin", "editor", "coeditor"), getAllCoupon);
+couponRoute
+  .route("/:id")
+  .get(isAuthUser, getCoupon)
+  .patch(isAuthUser,isRoleIsValid("admin", "editor", "coeditor"), updateCoupon)
+  .delete(isAuthUser, isRoleIsValid("admin", "editor", "coeditor"), deleteCoupon);
 
 module.exports = couponRoute;

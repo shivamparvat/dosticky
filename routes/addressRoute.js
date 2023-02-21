@@ -11,10 +11,10 @@ const { isAuthUser } = require("../middleware/auth");
 
 
 addressRoute.route("/new").post(isAuthUser,newAddress);
-addressRoute.route("/:id").get(isAuthUser,getAddress);
-addressRoute.route("/all").get(isAuthUser,getAllAddress);
-addressRoute.route("/update/:id").patch(isAuthUser,updateAddress);
-addressRoute.route("/delete/:id").delete(isAuthUser,deleteAddress);
+addressRoute.route("/").get(isAuthUser,getAllAddress);
+addressRoute.route("/:id").get(isAuthUser,getAddress)
+.patch(isAuthUser,updateAddress)
+.delete(isAuthUser,deleteAddress);
 
 module.exports = addressRoute;
 

@@ -1,12 +1,15 @@
 const mongoose = require("mongoose");
-const schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-const cetagorySchema = new schema({
+const cetagorySchema = new Schema({
   cetagory: {
     type: String,
     require: [true, "category name is empty"],
   },
-  images: [{ image_id: String, image_url: String }],
+  images: {
+    image_id: String,
+    image_url: String,
+  },
   description: {
     type: String,
     required: [true, "description is require"],

@@ -14,7 +14,7 @@ const categoryRouter = require("./routes/categoryRoute");
 const addressRoute = require("./routes/addressRoute");
 const couponRoute = require("./routes/couponRoute");
 const discountRoute = require("./routes/discountRoute");
-const multer = require("multer");
+const cartRoute = require("./routes/cartRoute");
 
 
 dotenv.config();
@@ -32,15 +32,16 @@ app.use(cors());
 // router
 
 app.use("/api/user",userRouter)
-app.get('/', (req, res) => {
-  res.send('hello world')
-})
+// app.get('/', (req, res) => {
+//   res.send('hello world')
+// })
 app.use("/api/product",productRoute)
-app.use("/api/category",categoryRouter)
+app.use("/api/cart",cartRoute)
 app.use("/api/address",addressRoute)
+app.use("/api/category",categoryRouter)
 app.use("/api/coupon",couponRoute)
 app.use("/api/discount",discountRoute)
 
-// app.use(ErrorModdelWare);
+app.use(ErrorModdelWare);
 
 module.exports = app;

@@ -31,7 +31,7 @@ exports.Product = CatchAsyncError(async (req, res, next) => {
   // responce
   res.status(201).json({
     success: true,
-    product,
+    data:product,
   });
 });
 
@@ -132,7 +132,7 @@ exports.moveToBin = CatchAsyncError(async (req, res, next) => {
   await product.save();
   res.status(200).json({
     message: "success",
-    product,
+    data:product,
   });
 });
 
