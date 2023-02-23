@@ -75,6 +75,7 @@ exports.addTocart = CatchAsyncError(async (req, res, next) => {
         model: "product",
       },
     });
+    if (!populateCart) return next(new ErrorHeandler(404, "cart is empty"));
     // save final amount
     const { totalDiscountePrice, totalPrice } = await priceTotel(populateCart);
     populateCart.totalPrice = totalPrice;
@@ -89,7 +90,7 @@ exports.addTocart = CatchAsyncError(async (req, res, next) => {
 
 // get cart
 exports.getCart = CatchAsyncError(async (req, res, next) => {
-  const Cart = await cartModule.find({ user: req.user._id }).populate({
+  const Cart = await cartModule.findOne({ user: req.user._id }).populate({
     path: "items",
     populate: {
       path: "product",

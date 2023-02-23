@@ -18,13 +18,18 @@ const cartSchema = new Schema(
           ref: "product",
         },
         quantity: { type: Number, default: 1, require: true },
+        // delivery:{
+        //   type:Number,
+        //   default:40
+        // }
       },
     ],
     totalItem: Number,
     totalPrice: Number,
     discountePrice: Number,
+    tax: Number,
     coupon: {
-      type: String
+      type: String,
     },
   },
   {
@@ -34,6 +39,10 @@ const cartSchema = new Schema(
 
 cartSchema.pre(["validate", "save"], function (next) {
   this.totalItem = this.items.length;
+  next();
+});
+cartSchema.pre("save", function (next) {
+  this.tax = this.discountePrice * parseFloat(process.env.TAX);
   next();
 });
 

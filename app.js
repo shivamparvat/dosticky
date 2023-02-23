@@ -1,5 +1,4 @@
 const express = require("express");
-const dotenv = require("dotenv");
 const cors = require("cors");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
@@ -15,9 +14,10 @@ const addressRoute = require("./routes/addressRoute");
 const couponRoute = require("./routes/couponRoute");
 const discountRoute = require("./routes/discountRoute");
 const cartRoute = require("./routes/cartRoute");
+const orderRoute = require("./routes/orderRoute");
+const paymentRoute = require("./routes/paymentRoute");
 
 
-dotenv.config();
 
 const app = express();
 app.use(cookies());
@@ -29,14 +29,18 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-// router
+
+
+
 
 app.use("/api/user",userRouter)
 // app.get('/', (req, res) => {
-//   res.send('hello world')
-// })
+    //   res.send('hello world')
+    // })
 app.use("/api/product",productRoute)
 app.use("/api/cart",cartRoute)
+app.use("/api/order",orderRoute)
+app.use("/api/payment",paymentRoute)
 app.use("/api/address",addressRoute)
 app.use("/api/category",categoryRouter)
 app.use("/api/coupon",couponRoute)

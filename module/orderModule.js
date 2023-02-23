@@ -7,19 +7,20 @@ const ordreSchema = new Schema(
       ref: "user",
       required: [true, "user id  is require"],
     },
-    product_id: {
-      type: Schema.Types.ObjectId,
-      ref: "product",
-      required: [true, "product id  is require"],
-    },
+    items: [
+      {
+        product: {
+          type: Schema.Types.ObjectId,
+          ref: "product",
+          require: true,
+        },
+        quantity: { type: Number, default: 1, require: true },
+      },
+    ],
     address: {
       type: Schema.Types.ObjectId,
       ref: "address",
       required: [true, "address is require"],
-    },
-    quantity: {
-      type: Number,
-      defaultValue: 1,
     },
     price: {
       type: Number,
@@ -33,7 +34,6 @@ const ordreSchema = new Schema(
     },
     delivery_time: {
       type: Date,
-      default: null,
     },
   },
   { timeseries: true }
