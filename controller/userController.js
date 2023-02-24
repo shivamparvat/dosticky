@@ -7,7 +7,6 @@ const responseToken = require("../utils/responseToken");
 const Crud = require("../utils/crud");
 const sendMail = require("../utils/sendMail");
 const dataUri = require("../utils/dataUri");
-// const sendMail = require("../utils/sendMail");
 
 // user creation
 exports.newUser = CatchAsyncError(async (req, res, next) => {
@@ -33,12 +32,13 @@ exports.newUser = CatchAsyncError(async (req, res, next) => {
     );
   }
   // send response
-  responseToken(updatedData, 201, res);
+  responseToken(updatedData==undefined?user:updatedData, 201, res);
 });
 
 // // login
 exports.login = CatchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
+  console.log(email)
   // qurey
   const user = await userModule.findOne({ email }).select("password");
   // if uer not found

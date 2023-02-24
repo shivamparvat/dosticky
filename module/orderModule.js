@@ -35,6 +35,10 @@ const ordreSchema = new Schema(
     delivery_time: {
       type: Date,
     },
+    payment:{
+      type: Schema.Types.ObjectId,
+      ref: "payment",
+    }
   },
   { timeseries: true }
 );
