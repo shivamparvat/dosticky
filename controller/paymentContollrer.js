@@ -1,6 +1,7 @@
 const { CatchAsyncError } = require("../middleware/catchasyncerror");
 const Razorpay = require("razorpay");
 const paymentModule = require("../module/paymentModule");
+const crypto = require("crypto");
 
 // create order
 exports.createPaymentOrder = CatchAsyncError(async (req, res, next) => {
@@ -31,19 +32,23 @@ exports.getkey = CatchAsyncError(async (req, res, next) =>
     .json({ message: "success", data: { key: process.env.RKEY_ID } })
 );
 
-paymentVerification = async (req, res) => {
+exports.paymentVerification = async (req, res) => {
   const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
     req.body;
-
-  const body = razorpay_order_id + "|" + razorpay_payment_id;
-
-  const expectedSignature = crypto
-    .createHmac("sha256", process.env.RAZORPAY_APT_SECRET)
+    
+    const body = razorpay_order_id + "|" + razorpay_payment_id;
+    console.log(body)
+    
+    const expectedSignature = crypto
+    .createHmac("sha256", process.env.RKEY_SECRET)
     .update(body.toString())
     .digest("hex");
-
-  const isAuthentic = expectedSignature === razorpay_signature;
-
+    
+    
+    console.log(expectedSignature)
+    const isAuthentic = expectedSignature === razorpay_signature;
+    
+    console.log(isAuthentic)
   if (isAuthentic) {
     // Database comes here
 
