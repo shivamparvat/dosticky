@@ -1,0 +1,620 @@
+{
+	"info": {
+		"_postman_id": "c1a4b84a-3653-4f4b-9bc5-834db54981b9",
+		"name": "product",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20871544"
+	},
+	"item": [
+		{
+			"name": "new product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "pochu",
+							"type": "text"
+						},
+						{
+							"key": "sku",
+							"value": "11121",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "files",
+							"type": "file",
+							"src": "/C:/Users/shiva/Downloads/aa16ae3f-b3e8-4954-a539-2474a270d787_auto_x2_colored.jpg"
+						},
+						{
+							"key": "description",
+							"value": "puchu is a love birds",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "love birds",
+							"type": "text"
+						},
+						{
+							"key": "likes[0]",
+							"value": "ytjhgh",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/product/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"product",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "chack",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/product/chack?sku=11111",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"product",
+						"chack"
+					],
+					"query": [
+						{
+							"key": "sku",
+							"value": "11111"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get product",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "gomu",
+							"type": "text"
+						},
+						{
+							"key": "SKU",
+							"value": "13235",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "50",
+							"type": "text"
+						},
+						{
+							"key": "files",
+							"type": "file",
+							"src": [
+								"/C:/Users/shiva/OneDrive/Pictures/Screenshots/1.png",
+								"/C:/Users/shiva/OneDrive/Pictures/Screenshots/2.png",
+								"/C:/Users/shiva/OneDrive/Pictures/Screenshots/3.png"
+							]
+						},
+						{
+							"key": "description",
+							"value": "goma is a love birds",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "love birds",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/product/63f1d5849351d283694c18f8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"product",
+						"63f1d5849351d283694c18f8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "mocha",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "SKU",
+							"value": "13235",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "50",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "quantity",
+							"value": "50",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "files",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "goma is a love birds",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "love birds",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "imageid[0]",
+							"value": "mikcbvgsj3wossc2f2uq",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/product/63f1d5849351d283694c18f8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"product",
+						"63f1d5849351d283694c18f8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "move to bin",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "puchui",
+							"type": "text"
+						},
+						{
+							"key": "SKU",
+							"value": "13236",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "50",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "quantity",
+							"value": "50",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "images",
+							"value": "[{\n                \"image_id\": \"m\",\n                \"image_url\": \"https://res.cloudina\",\n            }]",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "goma is a agri birds",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "agri bird",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "imageid[0]",
+							"value": "fgflawbjbrgptn9ymfln",
+							"type": "text"
+						},
+						{
+							"key": "imageid[1]",
+							"value": "xbwfjjf22mzliub9roao",
+							"type": "text"
+						},
+						{
+							"key": "files",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/product/deactivate/63ef5a88e3d4334cabba32d5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"product",
+						"deactivate",
+						"63ef5a88e3d4334cabba32d5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All product",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "puchui",
+							"type": "text"
+						},
+						{
+							"key": "SKU",
+							"value": "13236",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "50",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "quantity",
+							"value": "50",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "images",
+							"value": "[{\n                \"image_id\": \"m\",\n                \"image_url\": \"https://res.cloudina\",\n            }]",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "goma is a agri birds",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "agri bird",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "imageid[0]",
+							"value": "fgflawbjbrgptn9ymfln",
+							"type": "text"
+						},
+						{
+							"key": "imageid[1]",
+							"value": "xbwfjjf22mzliub9roao",
+							"type": "text"
+						},
+						{
+							"key": "files",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/product/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"product",
+						""
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "price[gt]",
+							"value": "20",
+							"disabled": true
+						},
+						{
+							"key": "price[lt]",
+							"value": "60",
+							"disabled": true
+						},
+						{
+							"key": "sku",
+							"value": "1238",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "puchui",
+							"type": "text"
+						},
+						{
+							"key": "SKU",
+							"value": "13236",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "50",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "quantity",
+							"value": "50",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "images",
+							"value": "[{\n                \"image_id\": \"m\",\n                \"image_url\": \"https://res.cloudina\",\n            }]",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "goma is a agri birds",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "agri bird",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "imageid[0]",
+							"value": "fgflawbjbrgptn9ymfln",
+							"type": "text"
+						},
+						{
+							"key": "imageid[1]",
+							"value": "xbwfjjf22mzliub9roao",
+							"type": "text"
+						},
+						{
+							"key": "files",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/product/63f1d5269351d283694c18e9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"product",
+						"63f1d5269351d283694c18e9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "like",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "puchui",
+							"type": "text"
+						},
+						{
+							"key": "SKU",
+							"value": "13236",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "50",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "quantity",
+							"value": "50",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "images",
+							"value": "[{\n                \"image_id\": \"m\",\n                \"image_url\": \"https://res.cloudina\",\n            }]",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "goma is a agri birds",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "agri bird",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "imageid[0]",
+							"value": "fgflawbjbrgptn9ymfln",
+							"type": "text"
+						},
+						{
+							"key": "imageid[1]",
+							"value": "xbwfjjf22mzliub9roao",
+							"type": "text"
+						},
+						{
+							"key": "files",
+							"type": "file",
+							"src": [],
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/product/like",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"product",
+						"like"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -113,6 +113,7 @@ exports.Search = CatchAsyncError(async (req, res, next) => {
     { isActive: bin }
   );
 });
+
 exports.SearchUser = CatchAsyncError(async (req, res, next) => {
   const query = req.query;
   await new Crud(productModule, req, res, next).getAlldata(

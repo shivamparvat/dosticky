@@ -2,9 +2,11 @@ const { CatchAsyncError } = require("../middleware/catchasyncerror");
 const Razorpay = require("razorpay");
 const paymentModule = require("../module/paymentModule");
 const crypto = require("crypto");
+const ErrorHeandler = require("../utils/errorHeandler");
 
 // create order
 exports.createPaymentOrder = CatchAsyncError(async (req, res, next) => {
+  if(req.body.price== undefined) return next(new ErrorHeandler(400,"price is empty"))
   const instance = new Razorpay({
     key_id: process.env.RKEY_ID,
     key_secret: process.env.RKEY_SECRET,
@@ -14,8 +16,8 @@ exports.createPaymentOrder = CatchAsyncError(async (req, res, next) => {
     currency: "INR",
   };
   const order = await instance.orders.create(options);
-  await paymentModule({
-    order_id: order.id,
+  await paymentModule.create({
+    razorpay_order_id: order.id,
     price: req.body.price,
     user: req.user._id,
   });
@@ -45,18 +47,15 @@ exports.paymentVerification = async (req, res) => {
     .digest("hex");
     
     
-    console.log(expectedSignature)
     const isAuthentic = expectedSignature === razorpay_signature;
     
-    console.log(isAuthentic)
   if (isAuthentic) {
     // Database comes here
 
-    await paymentModule.findOneAndUpdate(
-      { id: razorpay_order_id },
+    const data = await paymentModule.findOneAndUpdate(
+      { razorpay_order_id },
       {
         status: "paid",
-        razorpay_order_id,
         razorpay_payment_id,
         razorpay_signature,
       },
@@ -66,7 +65,6 @@ exports.paymentVerification = async (req, res) => {
         useFindAndModify: false,
       }
     );
-
     res.redirect(
       `${req.get("host")}paymentsuccess?reference=${razorpay_payment_id}`
     );

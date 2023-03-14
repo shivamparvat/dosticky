@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "57bd8ce7-d3be-4152-b52a-a90c05da3c83",
+		"name": "address",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20871544"
+	},
+	"item": [
+		{
+			"name": "get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cetagory",
+							"value": "cartton",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "hhdk ghkj ghkljdfh gkljd hgkjgdhh",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/shiva/Downloads/0882684001673979862IMG20230117140643.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/address/63f28f366e3d94f3c2283b9c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"address",
+						"63f28f366e3d94f3c2283b9c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"shivam\",\r\n    \"number\": \"6261282518\",\r\n    \"alternate_number\": \"7509752616\",\r\n    \"Street\": \"9 manoramagaj palasiya\",\r\n    \"city\": \"indore\",\r\n    \"state\": \"mp\",\r\n    \"landmark\": \"gita bhaban tempal\",\r\n    \"zip\": \"142001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/address/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"address",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"shivam\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/address/63f28f366e3d94f3c2283b9c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"address",
+						"63f28f366e3d94f3c2283b9c"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

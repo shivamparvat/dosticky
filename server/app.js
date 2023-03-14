@@ -16,6 +16,7 @@ const discountRoute = require("./routes/discountRoute");
 const cartRoute = require("./routes/cartRoute");
 const orderRoute = require("./routes/orderRoute");
 const paymentRoute = require("./routes/paymentRoute");
+const path = require("path");
 
 
 
@@ -29,14 +30,16 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
+  });
+  
 
 
 app.use("/api/user",userRouter)
-// app.get('/', (req, res) => {
-    //   res.send('hello world')
-    // })
 app.use("/api/product",productRoute)
 app.use("/api/cart",cartRoute)
 app.use("/api/order",orderRoute)

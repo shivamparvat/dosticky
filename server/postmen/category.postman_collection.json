@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "1650f9c2-5dd2-4a33-b151-bc1a4465c351",
+		"name": "category",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20871544"
+	},
+	"item": [
+		{
+			"name": "new",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cetagory",
+							"value": "cartton",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "fdghjhgjkjk tg jgjk jh jk j j ",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/shiva/Downloads/IMG_20221231_153236.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/category/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"category",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cetagory",
+							"value": "cartton",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "hhdk ghkj ghkljdfh gkljd hgkjgdhh",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/shiva/Downloads/0882684001673979862IMG20230117140643.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/category/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"category",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cetagory",
+							"value": "cartton",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "hhdk ghkj ghkljdfh gkljd hgkjgdhh",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/shiva/Downloads/0882684001673979862IMG20230117140643.jpg",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/category/63f27122f22e0bd028b0eea2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"category",
+						"63f27122f22e0bd028b0eea2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cetagory",
+							"value": "marvel",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "hhdk ghkj ghkljdfh gkljd hgkjgdhh",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/shiva/Downloads/IMG20230210092109.jpg",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/category/63f27122f22e0bd028b0eea2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"category",
+						"63f27122f22e0bd028b0eea2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/category/?page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"category",
+						""
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "mar",
+							"disabled": true
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

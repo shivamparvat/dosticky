@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "2892bfaf-45b2-4c53-8093-cf80e5dfeae1",
+		"name": "order",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20871544"
+	},
+	"item": [
+		{
+			"name": "new",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"products\":[{\r\n        \"product\":\"63f1fcc4b6fd07e0bb745e7f\",\r\n        \"quantity\":10\r\n    },{\r\n        \"product\":\"63f1fd1708c7fff2625a10ab\",\r\n        \"quantity\":10\r\n    },{\r\n        \"product\":\"63f1fd1708c7fff2625a10ab\",\r\n        \"quantity\":10\r\n    }],\r\n\"address\":\"63f28f366e3d94f3c2283b9c\",\r\n\"price\":\"10000\",\r\n\"payment\":\"63fa6fafdb59a5aa2cd0265f\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/order/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get order admin",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"products\":[{\r\n        \"product\":\"63f1fcc4b6fd07e0bb745e7f\",\r\n        \"quantity\":10\r\n    },{\r\n        \"product\":\"63f1fd1708c7fff2625a10ab\",\r\n        \"quantity\":10\r\n    }],\r\n\"address\":\"63f28f366e3d94f3c2283b9c\",\r\n\"price\":\"10000\",\r\n\"payment\":\"63fa6fafdb59a5aa2cd0265f\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/order/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get order user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/order/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get one order admin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/order/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get one order user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/order/admin/63fb3372d942a584dfd27a96",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order",
+						"admin",
+						"63fb3372d942a584dfd27a96"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update status",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\":\"Confirmed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/order/status/63fb3372d942a584dfd27a96",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order",
+						"status",
+						"63fb3372d942a584dfd27a96"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update  status admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\":\"Packaging\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/order/status/63fb3372d942a584dfd27a96",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order",
+						"status",
+						"63fb3372d942a584dfd27a96"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update address",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"address\":\"63f28f366e3d94f3c2283b9c\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/order/adress/63fb3372d942a584dfd27a96",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"order",
+						"adress",
+						"63fb3372d942a584dfd27a96"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

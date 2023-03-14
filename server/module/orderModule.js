@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ordreSchema = new Schema(
   {
-    user_id: {
+    user: {
       type: Schema.Types.ObjectId,
       ref: "user",
       required: [true, "user id  is require"],
@@ -26,13 +26,12 @@ const ordreSchema = new Schema(
       type: Number,
       required: [true, "price is require"],
     },
-    tax: Number,
     status: {
       type: String,
-      enum: ["order confirmed", "packaging", "shipping", "delivered"],
-      default: "order confirmed",
+      enum: ["Confirmed", "Packaging", "Shipping", "Delivered"],
+      default: "Confirmed",
     },
-    delivery_time: {
+    deliveredAt: {
       type: Date,
     },
     payment:{
@@ -40,7 +39,7 @@ const ordreSchema = new Schema(
       ref: "payment",
     }
   },
-  { timeseries: true }
+  { timestamps: true }
 );
 
-module.exports = mongoose.model("ordre", ordreSchema);
+module.exports = mongoose.model("order", ordreSchema);
