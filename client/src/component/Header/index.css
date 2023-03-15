@@ -1,6 +1,10 @@
 .header {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 1;
   margin: 0;
-  padding: 10px 10px;
+  padding: 10px 10px 0 10px;
   box-sizing: border-box;
   background-color: var(--white);
 }
@@ -100,13 +104,16 @@
 }
 
 /* image search */
+
+
 .serachContainer{
   position: absolute;
   top: 0;
   display: none;
-  width: 100vw;
+  width: 99%;
   height: 100vw;
   background-color: var(--blcak_light);
+  z-index: 9999;
 }
 .serachBox {
   position: relative;

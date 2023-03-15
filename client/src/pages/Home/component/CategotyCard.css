@@ -1,0 +1,44 @@
+.home .category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+}
+.home .cartegoryImageContaimner {
+  border-radius: 10px;
+  margin-top: 10px;
+  width: 150px;
+  height: 150px;
+}
+.home .cartegoryImageContaimner img {
+  object-fit: cover;
+  transition: 0.2s all;
+}
+.home .categoryCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 200px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 4px var(--shadow);
+  margin: 0 10px;
+}
+.home .categoryCard > div > span {
+  text-transform: capitalize;
+  display: block;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 10px;
+}
+
+.categoryCard:hover .cartegoryImageContaimner img {
+  margin-top: -20px;
+  box-shadow: 2px 2px 8px var(--shadow);
+  border-radius: 10px;
+}
+
+.categoryCard:hover{
+    background-color: var(--primary_light);
+}

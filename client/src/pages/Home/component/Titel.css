@@ -1,0 +1,37 @@
+.home .Title{
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 71.5px;
+    z-index: 1;
+    margin-top: 50px;
+    margin-left: 20px;
+    background-color: var(--white);
+    margin-bottom: 50px;
+}
+.home .Title h2{
+    font-size: 18px;
+    text-transform: capitalize;
+    margin-bottom: -2px;
+}
+.allProduct span{
+    text-decoration: none;
+    display: inline-block;
+    color: var(--black);
+    font-size: 15px;
+}
+.home .Title .allProduct{
+    display: flex;
+}
+
+.home .Title .allProduct div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    margin-left: 5px;
+    margin-top: 2px;
+}

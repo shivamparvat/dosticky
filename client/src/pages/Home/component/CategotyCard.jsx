@@ -1,10 +1,10 @@
 import React from "react";
-import logo from "../../assets/logo.jpg";
-import "./index.css";
+import "./CategotyCard.css";
+import logo from "../../../assets/sticker.webp";
 
-function index() {
+function CategotyCard() {
   return (
-    <div className="home">
+    <div className="categoruMaincontainer">
       <div className="category">
         <div className="categoryCard">
           <div className="cartegoryImageContaimner">
@@ -59,4 +59,4 @@ function index() {
   );
 }
 
-export default index;
+export default CategotyCard;
