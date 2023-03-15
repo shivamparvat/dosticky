@@ -1,9 +1,9 @@
 import React from 'react'
 
-function index() {
+function Banner() {
   return (
     <div></div>
   )
 }
 
-export default index
+export default Banner
