@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bilbo+Swash+Caps&display=swap');
 :root{
   --primary:#ff6300;
   --primary_light:#ff62001e;
@@ -68,4 +69,16 @@ main>div{
 hr{
   border: 1px solid #ccc;
   margin: 0 !important;
+}
+
+h2{
+  text-transform: capitalize;
+}
+.primary-color{
+  color: var(--primary);
+  font-weight: 700;
+}
+del{
+  color: #ccc;
+  margin-right: 2px;
 }

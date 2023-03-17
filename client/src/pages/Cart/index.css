@@ -1,0 +1,129 @@
+.cartconteiner {
+  width: 100%;
+  position: -webkit-sticky; 
+  position: sticky;
+  top: 10px;
+}
+.cartconteiner .titel div,
+.cartconteiner .cartProducts {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  justify-content: center;
+}
+.cartconteiner .cartProducts {
+  margin-top: 50px;
+}
+.cartconteiner .titel div h2 {
+  font-size: 20px;
+}
+.cartProducts > div.cartlist {
+  min-height: 70vh;
+  /* border: 1px solid; */
+  padding: 0 20px;
+}
+
+/* price detail */
+
+.cartconteiner .priceDetail {
+  position: -webkit-sticky; 
+  position: sticky;
+  /* display: grid; */
+  /* display: flex;
+    flex-direction: column;
+    justify-content: center;  */
+}
+.cartconteiner .offers {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  height: 70px;
+  width: 90%;
+  grid-template-columns: 70% 30%;
+  border: 1px solid var(--blcak_light);
+  border-radius: 10px;
+}
+.cartconteiner .offers .percentage {
+  background-color: #24fc24;
+  font-size: 20px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+}
+.cartconteiner .offers .heading {
+  display: flex;
+  justify-content: center;
+  height: 20px;
+  margin-top: 5px;
+}
+.cartconteiner .offers .heading > div {
+  padding: 5px 5px;
+}
+.cartconteiner .offers .heading > div:last-child {
+  margin-top: -3px;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+.cartconteiner .offers .discountMsg {
+  font-size: 13px;
+  font-weight: 500;
+}
+.cartconteiner .offers .offerTaxtCart {
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  font-size: 15px;
+}
+
+.totalCartContainer {
+  width: 90%;
+  margin-top: 10px;
+  /* padding: 20px; */
+  border: 1px solid var(--blcak_light);
+  border-radius: 10px;
+  height: 320px;
+}
+.continueButtonContainer,
+.subTotalBox {
+  padding: 10px;
+}
+
+.continueButtonContainer {
+    padding-top: 30px;
+  text-align: center;
+  border-top: 1px dotted;
+}
+.continueButton {
+  padding: 10px 50px;
+  border-radius: 8px;
+  background-color: var(--primary);
+}
+
+.totalCartContainer .subTotalBox {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  justify-items: center;
+}
+.totalCartContainer .subTotalBox > div > p {
+  margin: 0;
+  text-transform: capitalize;
+  font-size: 15px;
+}
+.totalCartContainer .subTotalBox > div {
+  margin: 15px 0;
+}
+
+.totalCartContainer .totalPrice {
+    padding-top: 20px;
+  border-top: 1px dotted;
+}
+.totalCartContainer .totalPrice > div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.totalCartContainer .saveTaxt {
+  border-top: 1px dotted;
+  text-align: center;
+  color: #16f916;
+  font-weight: 600;
+}

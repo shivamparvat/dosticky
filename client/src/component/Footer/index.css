@@ -1,8 +1,111 @@
-.mainFooterContainer{
-    background-color: rgb(4, 5, 69);
-    color: aliceblue;
+.mainFooterContainer {
+  background-color: rgb(4, 5, 69);
+  color: aliceblue;
+  padding: 50px 0;
 }
-.logoFooterContainer{
+
+.mainFooterContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 33%);
+  justify-content: center;
+}
+footer .About {
+  width: 100%;
+  margin-left: 10%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+.About .AboutDistrition {
+    width: 70%;
+    margin-top: 20px;
+}
+.About > .logoFooterContainer {
     width: 100px;
     height: 60px;
+}
+
+footer .links ul {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+footer .links ul li {
+    list-style: none;
+}
+footer .links ul li a {
+    text-decoration: none;
+    text-transform: capitalize;
+    padding: 5px;
+    display: block;
+    color: white;
+    font-size: 17px;
+}
+.copyRight {
+    background-color: rgb(91, 27, 201);
+    height: 30px;
+}
+.socialMedia ul {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+}
+.socialMedia ul li {
+    list-style: none;
+    margin: 10px;
+}
+.socialMedia ul li a {
+    color: white;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: var(--primary);
+    transition: all 0.5s;
+}
+.socialMedia ul li a:hover {
+    width: 30px;
+    height: 30px;
+}
+
+footer .contactForm {
+    padding: 10px 0;
+}
+footer .contactForm input {
+    height: 30px;
+    width: 60%;
+    border-radius: 10px;
+    margin: 10px 0;
+    font-size: 15px;
+    padding: 5px;
+    text-transform: capitalize;
+    color: white;
+    background-color: rgb(4, 5, 69);
+}
+footer .contactForm input::placeholder{
+    color: white;
+}
+footer .contactForm textarea::placeholder{
+    color: white;
+}
+footer .contactForm input[type="submit"] {
+    width: 65%;
+    height: 40px;
+    background-color: var(--primary);
+    color: white;
+}
+footer .contactForm textarea {
+    padding: 10px;
+    resize: none;
+    height: 60px;
+    background-color: rgb(4, 5, 69);
+    width: 60%;
+  font-size: 15px;
+  text-transform: capitalize;
+  border-radius: 10px;
+}
+
+.contactForm h2{
+    font-size: 17px;
 }

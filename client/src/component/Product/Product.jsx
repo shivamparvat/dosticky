@@ -34,10 +34,10 @@ function Product() {
           <span>Lorem ipsum dolor sit amet.</span>
         </div>
         <div className="priceCardContainer">
-          <span>price 39₹</span>
+          <span>price ₹39</span>
           <br />
           <span className="delPrice">
-            <del>49₹</del>
+            <del>₹49</del>
           </span>
           <span className="decount"> 10% Off</span>
         </div>

@@ -97,3 +97,8 @@
   border-top-right-radius: 5px;
   border-left: 1px solid var(--primary);
 }
+
+.saveAmount{
+  color: #03d903;
+  font-weight: bold;
+}
