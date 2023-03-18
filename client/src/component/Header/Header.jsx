@@ -33,7 +33,7 @@ function index() {
         <div className="headerToolber">
           {/* cetagory */}
           <div>
-            <NavLink className="profile icon" to="/catagory">
+            <NavLink className="profile icon" to="/category">
               <BiCategoryAlt size={20} />
               <span>cetagory</span>
             </NavLink>

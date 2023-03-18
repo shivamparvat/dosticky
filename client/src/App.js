@@ -12,6 +12,7 @@ import Order from "./pages/Order/Order";
 import Profile from "./pages/Profile/Profile";
 import Product from "./pages/Product/Product";
 import Checkout from "./pages/Checkout/Checkout";
+import Category from "./pages/Category/Category";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route index element={<Home/>} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/order" element={<Order />} />
+      <Route path="/category" element={<Category />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/product" element={<Product />} />
       <Route path="/checkout" element={<Checkout />} />

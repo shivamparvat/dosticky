@@ -12,7 +12,7 @@ function Home() {
     <div className="home">
       <Carousel/>
       <CategotyCard/>
-      <Titel titel="Random Sticker"/>
+      <Titel title="Random Sticker"/>
       <div className="productGrid">
       <Product/>
       <Product/>
@@ -23,7 +23,7 @@ function Home() {
       <Product/>
       <Product/>
       </div>
-      <Titel titel="marvel"/>
+      <Titel title="marvel"/>
       <div className="productGrid">
       <Product/>
       <Product/>
@@ -34,7 +34,7 @@ function Home() {
       <Product/>
       <Product/>
       </div>
-      <Titel titel="text"/>
+      <Titel title="text"/>
       <div className="productGrid">
       <Product/>
       <Product/>
@@ -45,7 +45,7 @@ function Home() {
       <Product/>
       <Product/>
       </div>
-      <Titel titel="Dc sticker"/>
+      <Titel title="Dc sticker"/>
       <div className="productGrid">
       <Product/>
       <Product/>

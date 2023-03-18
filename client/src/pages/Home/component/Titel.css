@@ -1,4 +1,4 @@
-.home .Title{
+.Title{
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 71.5px;
@@ -8,7 +8,7 @@
     background-color: var(--white);
     margin-bottom: 50px;
 }
-.home .Title h2{
+.Title h2{
     font-size: 18px;
     text-transform: capitalize;
     margin-bottom: -2px;
@@ -19,11 +19,11 @@
     color: var(--black);
     font-size: 15px;
 }
-.home .Title .allProduct{
+.Title .allProduct{
     display: flex;
 }
 
-.home .Title .allProduct div{
+.Title .allProduct div{
     display: flex;
     justify-content: center;
     align-items: center;

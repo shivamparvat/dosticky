@@ -1,13 +1,14 @@
 import React from "react";
 import Product from "../../component/Product/Product";
 import CartProduct from "./componenrt/CartProduct";
+import Title from "../Home/component/Titel";
 import { TbDiscount } from "react-icons/tb";
 import { FiChevronRight } from "react-icons/fi";
 import "./index.css";
 function Cart() {
   return (
     <div className="cartconteiner">
-      <div className="titel">
+      <div className="title">
         <div>
           <h2>
             cart item <span className="primary-color">6</span>
@@ -16,13 +17,36 @@ function Cart() {
             total <span className="primary-color">₹360</span>
           </h2>
         </div>
+        <hr />
       </div>
-      <hr />
       <div className="cartProducts">
-        <div className="cartlist" a>
-          <CartProduct />
-          <CartProduct />
-          <CartProduct />
+        <div className="cartlist">
+          <div>
+            <CartProduct />
+            <CartProduct />
+            <CartProduct />
+            <CartProduct />
+            <CartProduct />
+            <CartProduct />
+            <CartProduct />
+            <CartProduct />
+            <CartProduct />
+            <CartProduct />
+            <CartProduct />
+            <CartProduct />
+          </div>
+          {/* products */}
+          <div className="randomProduct">
+            <Title title="redom product" />
+            <div className="productCartRandom">
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+              <Product />
+            </div>
+          </div>
         </div>
         <div className="priceDetail">
           <div className="offers">
@@ -63,7 +87,9 @@ function Cart() {
             <div className="totalPrice">
               <div>
                 <p>Total Amount</p>
-                <p><b>₹30,900</b></p>
+                <p>
+                  <b>₹30,900</b>
+                </p>
               </div>
             </div>
             <div className="continueButtonContainer">
@@ -74,16 +100,6 @@ function Cart() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* products */}
-      <div className="randomProduct">
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
       </div>
     </div>
   );
