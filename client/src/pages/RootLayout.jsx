@@ -12,7 +12,14 @@ function RootLayout() {
           <Outlet />
         </div>
       </main>
-      <Footer/>
+      <Footer />
+    </>
+  );
+}
+export function Auth() {
+  return (
+    <>
+      <Outlet />
     </>
   );
 }

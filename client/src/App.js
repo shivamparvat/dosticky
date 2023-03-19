@@ -13,6 +13,10 @@ import Profile from "./pages/Profile/Profile";
 import Product from "./pages/Product/Product";
 import Checkout from "./pages/Checkout/Checkout";
 import Category from "./pages/Category/Category";
+import AllCategoryPro from "./pages/Category/AllCategoryPro";
+import Singup from "./pages/Auth/Singup";
+import Login from "./pages/Auth/Login";
+import RecoveryPass from "./pages/Auth/RecoveryPass";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,9 +25,13 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<Cart />} />
       <Route path="/order" element={<Order />} />
       <Route path="/category" element={<Category />} />
+      <Route path="/category/all" element={<AllCategoryPro />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/product" element={<Product />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/singup" element={<Singup />} />
+      <Route path="/login" element={<Login/>} />
+      <Route path="/recovery" element={<RecoveryPass/>} />
     </Route>
   )
 );

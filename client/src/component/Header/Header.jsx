@@ -25,7 +25,7 @@ function index() {
             name="search"
             id="search"
           />
-          <div className="searchIconcontainer" tabindex="3">
+          <div className="searchIconcontainer" tabIndex="3">
             <BiSearch size={25} className="searchIcone" />
           </div>
         </div>
@@ -48,14 +48,14 @@ function index() {
           {/* user */}
           <div>
             <div>
-              <NavLink className="profile icon" to="/profile">
+              <NavLink className="profile icon" to="/login">
                 <AiOutlineUser size={20} />
                 <span>account</span>
               </NavLink>
             </div>
           </div>
         </div>
-      </nav>{" "}
+      </nav>
       {/* links */}
       <hr />
       <div className="serachContainer">
@@ -78,21 +78,3 @@ function index() {
 }
 
 export default index;
-
-// <div className="webnev">
-//   <ul>
-//     <li>
-//       <NavLink className="nevLinks" to="/">home</NavLink>
-//     </li>
-//     <li>
-//       <NavLink className="nevLinks" to="/category">category</NavLink>
-//     </li>
-//     <li>
-//       <NavLink className="nevLinks" to="/cart">marvel
-//       </NavLink>
-//     </li>
-//     <li>
-//       <NavLink className="nevLinks" to="/">more</NavLink>
-//     </li>
-//   </ul>
-// </div>

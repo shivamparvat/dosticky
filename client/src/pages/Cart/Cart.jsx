@@ -4,6 +4,7 @@ import CartProduct from "./componenrt/CartProduct";
 import Title from "../Home/component/Titel";
 import { TbDiscount } from "react-icons/tb";
 import { FiChevronRight } from "react-icons/fi";
+import {Link} from "react-router-dom"
 import "./index.css";
 function Cart() {
   return (
@@ -93,7 +94,7 @@ function Cart() {
               </div>
             </div>
             <div className="continueButtonContainer">
-              <div className="continueButton">Continue</div>
+              <div><Link to="/checkout" className="continueButton">Continue</Link></div>
             </div>
             <div className="saveTaxt">
               <p>You will save ₹3,000 on this order</p>

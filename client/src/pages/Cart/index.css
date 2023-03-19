@@ -6,7 +6,7 @@
   width: 100%;
   height: 100%;
 }
-.cartconteiner .titel {
+.cartconteiner .title {
   position: -webkit-sticky;
   position: sticky;
   top: 71.5px;
@@ -14,7 +14,7 @@
   height: 66px;
   background-color: var(--white);
 }
-.cartconteiner .titel div,
+.cartconteiner .title div,
 .cartconteiner .cartProducts {
   display: grid;
   grid-template-columns: 70% 30%;
@@ -23,7 +23,7 @@
 .cartconteiner .cartProducts {
   margin-top: 20px;
 }
-.cartconteiner .titel div h2 {
+.cartconteiner .title div h2 {
   font-size: 20px;
 }
 .cartProducts > div.cartlist {
@@ -49,7 +49,7 @@
   height: 70px;
   width: 90%;
   grid-template-columns: 70% 30%;
-  border: 1px solid var(--blcak_light);
+  border: 1px solid var(--black_light);
   border-radius: 10px;
 }
 .cartconteiner .offers .percentage {
@@ -88,7 +88,7 @@
   width: 90%;
   margin-top: 10px;
   /* padding: 20px; */
-  border: 1px solid var(--blcak_light);
+  border: 1px solid var(--black_light);
   border-radius: 10px;
   height: 320px;
 }
@@ -99,11 +99,13 @@
 
 .continueButtonContainer {
   padding-top: 30px;
+  padding-bottom: 30px;
   text-align: center;
-  border-top: 1px dotted var(--blcak_light);
+  border-top: 1px dotted var(--black_light);
 }
 .continueButton {
-  padding: 10px 50px;
+  padding: 10px 100px;
+  margin-bottom: 10px;
   border-radius: 8px;
   background-color: var(--primary);
 }
@@ -124,7 +126,7 @@
 
 .totalCartContainer .totalPrice {
   padding-top: 20px;
-  border-top: 1px dotted var(--blcak_light);
+  border-top: 1px dotted var(--black_light);
 }
 .totalCartContainer .totalPrice > div {
   display: flex;
@@ -151,4 +153,10 @@
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 137.5px;
+}
+
+.continueButton
+{
+  text-decoration: none;
+  color: white;
 }

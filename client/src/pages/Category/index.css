@@ -1,0 +1,40 @@
+.CategoryCaonponent .imgContainer {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.CategoryCaonponent .imgContainer img {
+  object-fit: cover;
+}
+.categoryCardCaontainer{
+display: grid;
+grid-template-columns: repeat(5, 250px);
+justify-content: center;
+row-gap: 30px;
+width: 100%;
+}
+.categoryCardCaontainer .card{
+    width: 200px;
+    height: 240px;
+    padding: 10px;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    border-radius: 10px;
+    box-shadow: 1px 1px 2px var(--black_light);
+}
+
+.categoryCardCaontainer .card h2{
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--black);
+}
+.categoryCardCaontainer a{
+  text-decoration: none;
+}
+/* hover */
+.categoryCardCaontainer .card:hover{
+    background-color: var(--primary_light);
+}
