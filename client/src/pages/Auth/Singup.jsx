@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./auth.css";
 function Singup() {
   const [name, setName] = useState("");
@@ -8,6 +9,22 @@ function Singup() {
   const [number, setNumber] = useState("");
   const [password, setPassword] = useState("");
   const [conformPassword, setConformPassword] = useState("");
+
+ const getHello=()=>{
+  axios.get('/hello')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+ }
+
+  useEffect(() => {
+    getHello()
+  }, [])
+  
 
   return (
     <div className="singupmainContainer">

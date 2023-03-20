@@ -9,16 +9,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Name is Empty"],
     },
-    lname: {
-      type: String,
-      required: [true, "Lname is Empty"],
-    },
     gender: {
       type: String,
       enum: ["Male", "Female", "other", "male", "female"],
-    },
-    age: {
-      type: Number,
     },
     number: {
       type: Number,
@@ -33,7 +26,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is Empty"],
     },
-    images: { image_id: String, image_url: String },
     role: {
       type: String,
       default: "user",
@@ -75,7 +67,7 @@ userSchema.methods.passwordResettoken = async function () {
   // expaire time
   this.resetPassExport =
     Date.now() + parseInt(process.env.PASS_TOKEN_EXPIRE) * 60 * 60 * 1000;
-    console.log(this.resetPassExport);
+  console.log(this.resetPassExport);
   return token;
 };
 

@@ -1,9 +1,61 @@
-import React from 'react'
-
-function index() {
+import React, { useState } from "react";
+// import OrderCard from "./conponent/OrderCard";
+import NewAddress from "../Checkout/component/NewAddress";
+import AddressCard from "../Checkout/component/AddressCard";
+import { AiOutlinePlus } from "react-icons/ai";
+import "./profile.css";
+function Profile() {
+  const [newaddress, setNewaddress] = useState(false)
   return (
-    <div>index</div>
-  )
+    <div className="profile">
+      <div className="heading">
+        <div>
+          <p className="name">Shivam goswami</p>
+          <p className="email">Shivamgoswami2711@gmail.com</p>
+        </div>
+      </div>
+      <hr />
+      <div className="content">
+        <div className="nevmeans">
+          <ul>
+            <li>orders</li>
+            <li>address</li>
+            <li>personal</li>
+            <li>refere</li>
+            <li>notification</li>
+          </ul>
+        </div>
+        <div className="details">
+          {/* <OrderCard /> */}
+          <div className="addreses">
+            <div className="oldAddress">
+              <div>
+                <div className="headding">
+                  <h2>Delivery Address</h2>
+                  {newaddress ? (
+                   <>
+                    <NewAddress />
+                    <p className="AddAddressButton" onClick={()=>newaddress?setNewaddress(false):setNewaddress(true)}>
+                        cancel
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="AddAddressButton" onClick={()=>newaddress?setNewaddress(false):setNewaddress(true)}>
+                        <AiOutlinePlus className="AddIcone" />
+                        Add New address
+                      </p>
+                    </>
+                  )}
+                </div>
+              </div>
+              <AddressCard />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default index
+export default Profile;

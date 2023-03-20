@@ -5,7 +5,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BsBag } from "react-icons/bs";
 import { BiCategoryAlt } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/logo.jpg";
+import logo from "../../assets/newLogo.png";
 
 function index() {
   return (
@@ -48,7 +48,7 @@ function index() {
           {/* user */}
           <div>
             <div>
-              <NavLink className="profile icon" to="/login">
+              <NavLink className="profile icon" to="/profile">
                 <AiOutlineUser size={20} />
                 <span>account</span>
               </NavLink>

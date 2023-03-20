@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bilbo+Swash+Caps&display=swap');
 :root{
-  --primary:#ff6300;
-  --primary_light:#ff62001e;
+  --primary:#de2a16;
+  /* --primary:#ff6300; */
+  --primary_light:#de2a161e;
   --black:#000;
   --white:#fff;
   --white_light:#efeeee;

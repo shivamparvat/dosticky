@@ -13,7 +13,7 @@ function Titel({ title }) {
             <span>View all</span>
           </Link>
           <div>
-            <GrNext size={12} />
+            <GrNext className="titelColor" size={12} />
           </div>
         </div>
       </div>

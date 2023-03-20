@@ -4,7 +4,7 @@ import CartProduct from "./componenrt/CartProduct";
 import Title from "../Home/component/Titel";
 import { TbDiscount } from "react-icons/tb";
 import { FiChevronRight } from "react-icons/fi";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom"   
 import "./index.css";
 function Cart() {
   return (

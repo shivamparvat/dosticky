@@ -20,6 +20,7 @@ const path = require("path");
 
 
 
+
 const app = express();
 app.use(cookies());
 app.use(express.json());
@@ -30,14 +31,9 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, "../client/build")));
-
-
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
-  });
-  
-
+app.get('/hello', (req, res) => {
+  res.send('hello world')
+})
 
 app.use("/api/user",userRouter)
 app.use("/api/product",productRoute)
@@ -48,6 +44,14 @@ app.use("/api/address",addressRoute)
 app.use("/api/category",categoryRouter)
 app.use("/api/coupon",couponRoute)
 app.use("/api/discount",discountRoute)
+
+app.use(express.static(path.join(__dirname, "../client/build")));
+
+
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../client/build/index.html"));
+  });
+  
 
 app.use(ErrorModdelWare);
 

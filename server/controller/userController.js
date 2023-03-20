@@ -15,27 +15,8 @@ exports.newUser = CatchAsyncError(async (req, res, next) => {
   req.body.email = email.toLowerCase();
   const user = await userModule.create(req.body);
   req.user = user;
-  let updatedData;
-  if (req.file != undefined) {
-    // create data uri for file buffer
-    const fileUri = dataUri(req.file);
-    // upload file
-    const dataURL = await cloudinary.v2.uploader.upload(fileUri.content);
-    // add url
-    updatedData = await userModule.findByIdAndUpdate(
-      user._id,
-      {
-        images: { image_id: dataURL.asset_id, image_url: dataURL.secure_url },
-      },
-      {
-        new: true,
-        runValidators: true,
-        useFindAndModify: false,
-      }
-    );
-  }
   // send response
-  responseToken(updatedData == undefined ? user : updatedData, 201, res);
+  responseToken(user, 201, res);
 });
 
 // // login

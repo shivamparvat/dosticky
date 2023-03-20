@@ -1,0 +1,49 @@
+.listAddreass label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px ;
+    text-transform: capitalize;
+}
+
+.listAddreass label input{
+    margin-right: 20px;
+}
+
+.listAddreass label .name{
+    font-weight: 600;
+}
+.listAddreass .nameNumberContainer{
+    display: flex;
+    width: 250px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.listAddreass .pincode{
+    font-weight: 600;
+}
+
+.listAddreass label:hover{
+    background-color: var(--primary_light);
+}
+.AddAddressButton{
+    display: flex;
+    justify-content: center;
+}
+
+.AddAddressButton .AddIcone{
+    margin-top: 3px;
+    margin-right: 5px;
+}
+
+.AddAddressButton{
+    padding: 10px;
+    height: 25px;
+    border-radius: 8px;
+    background-color: #cccccc73;
+    cursor:  pointer;
+}

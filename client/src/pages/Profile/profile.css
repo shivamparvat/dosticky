@@ -1,0 +1,45 @@
+.profile .content {
+  display: grid;
+  grid-template-columns: 20% 70%;
+  column-gap: 20px;
+}
+
+
+
+.profile .details{
+    margin: 20px 10px;
+}
+
+.profile .nevmeans{
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+}
+.profile .nevmeans ul{
+    margin: 0;
+}
+.profile .nevmeans ul li{
+    list-style: none;
+    padding: 10px 30px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.profile .nevmeans ul li:hover{
+    background-color: var(--primary_light);
+}
+ 
+.profile .heading>div{
+    margin: 20px 0;
+}
+.heading>div>p{
+    text-align: end;
+    text-transform: capitalize;
+    margin: 0;
+    font-weight: 600;
+}
+.heading>div>p.email{
+    font-weight: 500;
+    font-size: 14px;
+}

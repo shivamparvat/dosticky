@@ -21,8 +21,11 @@ footer .About {
     margin-top: 20px;
 }
 .About > .logoFooterContainer {
-    width: 100px;
+    width: 150px;
     height: 60px;
+}
+.About > .logoFooterContainer img{
+    object-fit: contain;
 }
 
 footer .links ul {
