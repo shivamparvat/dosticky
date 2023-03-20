@@ -13,9 +13,8 @@ const {
   changePassword,
 } = require("../controller/userController");
 const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
-const { singleUpload } = require("../middleware/multer");
 
-loginRouter.route("/new").post(singleUpload, newUser);
+loginRouter.route("/new").post( newUser);
 loginRouter.route("/login").post(login);
 loginRouter.route("/:id").get(isAuthUser, getUser);
 loginRouter.route("/update/:id").patch(isAuthUser, updateUser);

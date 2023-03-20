@@ -1,30 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import "./auth.css";
 function Singup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  //   const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("");
   const [number, setNumber] = useState("");
   const [password, setPassword] = useState("");
   const [conformPassword, setConformPassword] = useState("");
-
- const getHello=()=>{
-  axios.get('/hello')
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-  })
- }
-
-  useEffect(() => {
-    getHello()
-  }, [])
-  
 
   return (
     <div className="singupmainContainer">
@@ -44,22 +28,23 @@ function Singup() {
                 placeholder="Fullname"
               />
             </div>
-            <div className="errorMsg">
-              {/* <p>Lorem, ipsum dolor.</p> */}
-            </div>
+            <div className="errorMsg">{/* <p>Lorem, ipsum dolor.</p> */}</div>
           </div>
           <div className="genderCaontainer">
             <div>
               <label htmlFor="gender">gender</label>
-              <select name="gender" id="gender">
+              <select
+                name="gender"
+                id="gender"
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
+              >
                 <option value="male">male</option>
                 <option value="female">female</option>
                 <option value="other">other</option>
               </select>
             </div>
-            <div className="errorMsg">
-              {/* <p>Lorem, ipsum dolor.</p> */}
-            </div>
+            <div className="errorMsg">{/* <p>Lorem, ipsum dolor.</p> */}</div>
           </div>
         </div>
         <div className="emailnumber">
@@ -72,9 +57,7 @@ function Singup() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="email"
             />
-            <div className="errorMsg">
-              {/* <p>Lorem, ipsum dolor.</p> */}
-            </div>
+            <div className="errorMsg">{/* <p>Lorem, ipsum dolor.</p> */}</div>
           </div>
 
           <div className="mobileNumberCaontainer">
@@ -88,9 +71,7 @@ function Singup() {
               onChange={(e) => setNumber(e.target.value)}
               placeholder="Number"
             />
-            <div className="errorMsg">
-              {/* <p>Lorem, ipsum dolor.</p> */}
-            </div>
+            <div className="errorMsg">{/* <p>Lorem, ipsum dolor.</p> */}</div>
           </div>
         </div>
         <div className="passwordContainer">
@@ -112,9 +93,7 @@ function Singup() {
               onChange={(e) => setConformPassword(e.target.value)}
               placeholder="confirm password"
             />
-            <div className="errorMsg">
-              {/* <p>Lorem, ipsum dolor.</p> */}
-            </div>
+            <div className="errorMsg">{/* <p>Lorem, ipsum dolor.</p> */}</div>
           </div>
         </div>
         <div className="liknksCaontaier">
