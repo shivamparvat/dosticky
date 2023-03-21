@@ -107,7 +107,6 @@ exports.Search = CatchAsyncError(async (req, res, next) => {
   const query = req.query;
   await new Crud(productModule, req, res, next).getAlldata(
     {
-      user_id: req.user.id,
       ...query,
     },
     { isActive: bin }
@@ -161,7 +160,6 @@ exports.deleteProduct = CatchAsyncError(async (req, res, next) => {
 });
 
 // like 
-
 exports.likeProduct = CatchAsyncError(async (req, res, next) => {
   const product = await productModule.updateOne(
     { _id: req.params.id },

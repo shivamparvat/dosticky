@@ -3,40 +3,36 @@ import { createReducer } from "@reduxjs/toolkit";
 export const useReducer = createReducer(
   {},
   {
-    loginRequest: (state) => {
+    categoryAllProductsRequest: (state) => {
       state.loading = true;
     },
-    loginSuccess: (state, action) => {
+    categoryAllProductsSuccess: (state, action) => {
       state.loading = false;
-      state.isAuthenticated = true;
-      state.user = action.payload;
+      state.products = action.payload;
       state.message = action.payload;
     },
-    loginFail: (state, action) => {
+    categoryAllProductsFail: (state, action) => {
       state.loading = false;
-      state.isAuthenticated = false;
-      state.user = action.payload.user;
+      state.products = action.payload.user;
       state.error = action.payload.success;
     },
 
     // loaduser if user reload application
-    loadUserRequest: (state) => {
+    oneProductRequest: (state) => {
       state.loading = true;
     },
-    loadUserSuccess: (state, action) => {
+    oneProductSuccess: (state, action) => {
       state.loading = false;
       state.isAuthenticated = true;
       state.user = action.payload;
       state.message = action.payload;
     },
-    loadUserFail: (state, action) => {
+    oneProductFail: (state, action) => {
       state.loading = false;
       state.isAuthenticated = false;
       state.user = action.payload.user;
       state.error = action.payload.success;
     },
-
-
 
     // singup user
     singupUserRequest: (state) => {
@@ -54,8 +50,6 @@ export const useReducer = createReducer(
       state.user = action.payload.user;
       state.error = action.payload.success;
     },
-
-
 
     clearError: (state) => {
       state.error = null;

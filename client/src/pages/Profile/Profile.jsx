@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import OrderCard from "./conponent/OrderCard";
 import NewAddress from "../Checkout/component/NewAddress";
 import AddressCard from "../Checkout/component/AddressCard";
 import { AiOutlinePlus } from "react-icons/ai";
 import "./profile.css";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 function Profile() {
-  const [newaddress, setNewaddress] = useState(false)
+  const [newaddress, setNewaddress] = useState(false);
+
+
+  
+  const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    const isAuth = isAuthenticated || false;
+    if (!isAuth) {
+      navigate("/login");
+    }
+  }, [isAuthenticated]);
+
+
   return (
     <div className="profile">
       <div className="heading">
@@ -23,6 +39,7 @@ function Profile() {
             <li>personal</li>
             <li>refere</li>
             <li>notification</li>
+            <li>logout</li>
           </ul>
         </div>
         <div className="details">
@@ -33,15 +50,29 @@ function Profile() {
                 <div className="headding">
                   <h2>Delivery Address</h2>
                   {newaddress ? (
-                   <>
-                    <NewAddress />
-                    <p className="AddAddressButton" onClick={()=>newaddress?setNewaddress(false):setNewaddress(true)}>
+                    <>
+                      <NewAddress />
+                      <p
+                        className="AddAddressButton"
+                        onClick={() =>
+                          newaddress
+                            ? setNewaddress(false)
+                            : setNewaddress(true)
+                        }
+                      >
                         cancel
                       </p>
                     </>
                   ) : (
                     <>
-                      <p className="AddAddressButton" onClick={()=>newaddress?setNewaddress(false):setNewaddress(true)}>
+                      <p
+                        className="AddAddressButton"
+                        onClick={() =>
+                          newaddress
+                            ? setNewaddress(false)
+                            : setNewaddress(true)
+                        }
+                      >
                         <AiOutlinePlus className="AddIcone" />
                         Add New address
                       </p>

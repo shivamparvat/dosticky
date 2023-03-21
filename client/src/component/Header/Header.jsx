@@ -7,7 +7,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/newLogo.png";
 
-function index() {
+function Header({isAuthenticated=false}) {
   return (
     <header className="header">
       <nav>
@@ -48,7 +48,7 @@ function index() {
           {/* user */}
           <div>
             <div>
-              <NavLink className="profile icon" to="/profile">
+              <NavLink className="profile icon" to={isAuthenticated?"/profile":"/login"}>
                 <AiOutlineUser size={20} />
                 <span>account</span>
               </NavLink>
@@ -77,4 +77,4 @@ function index() {
   );
 }
 
-export default index;
+export default Header;

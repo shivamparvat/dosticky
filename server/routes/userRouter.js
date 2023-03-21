@@ -11,12 +11,14 @@ const {
   updateUserRole,
   resetPassword,
   changePassword,
+  getMe,
 } = require("../controller/userController");
 const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
 
 loginRouter.route("/new").post( newUser);
 loginRouter.route("/login").post(login);
 loginRouter.route("/:id").get(isAuthUser, getUser);
+loginRouter.route("/").get(isAuthUser, getMe);
 loginRouter.route("/update/:id").patch(isAuthUser, updateUser);
 loginRouter
   .route("/update/role/:id")

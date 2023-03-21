@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { RxCross1 } from "react-icons/rx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/actions/user";
 
 function Login() {
@@ -9,12 +9,21 @@ function Login() {
   const [password, setPassword] = useState("");
   const [forgotpassword, setForgotpassword] = useState(false);
 
-  const dispatch = useDispatch;
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.user);
 
   function SubmitHeadler(e) {
     e.preventDefault();
-    dispatch(login(email,password))
+    dispatch(login(email, password));
   }
+  useEffect(() => {
+    const isAuth = isAuthenticated || false;
+    if (isAuth) {
+      navigate("/profile");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div className="loginmainContainer">

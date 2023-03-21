@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "./redux/store";
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "http://localhost:3000/api";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

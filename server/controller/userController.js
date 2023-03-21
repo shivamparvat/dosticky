@@ -12,6 +12,8 @@ const ErrorHeandler = require("../utils/ErrorHeandler");
 // user creation
 exports.newUser = CatchAsyncError(async (req, res, next) => {
   const email = req.body.email;
+  const gender = req.body.gender;
+  console.log(gender)
   req.body.email = email.toLowerCase();
   const user = await userModule.create(req.body);
   req.user = user;
@@ -68,6 +70,11 @@ exports.updateUser = CatchAsyncError(async (req, res, next) => {
     useFindAndModify: false,
   });
   if (!data) next(new ErrorHandler(404, "user not found"));
+  responseToken(user, 200, res);
+});
+
+exports.getMe = CatchAsyncError(async (req, res, next) => {
+  const user = req.user
   responseToken(user, 200, res);
 });
 
@@ -192,16 +199,16 @@ exports.changePassword = CatchAsyncError(async (req, res, next) => {
   if (oldPaassword == password)
     return next(new ErrorHeandler(400, "old and new password is same"));
 
-  // password compering  
+  // password compering
   const ifPsswordMatch = await req.user.comperePassword(oldPaassword);
 
   // if password match
   if (ifPsswordMatch && password == confirmPassword) {
-    req.user.password = password
-    await req.user.save()
+    req.user.password = password;
+    await req.user.save();
     responseToken(req.user, 200, res);
   }
-  res.status(400).json({message:"password is wrong"})
+  res.status(400).json({ message: "password is wrong" });
 });
 
 // upload file update 1234
