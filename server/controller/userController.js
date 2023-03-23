@@ -102,6 +102,7 @@ exports.deleteUser = CatchAsyncError(async (req, res, next) => {
 });
 
 exports.logOut = CatchAsyncError(async (req, res, next) => {
+  console.log("hekki")
   req.user = {};
   res
     .status(200)

@@ -31,7 +31,21 @@ exports.Product = CatchAsyncError(async (req, res, next) => {
   // responce
   res.status(201).json({
     success: true,
-    data:product,
+    data: product,
+  });
+});
+
+exports.productByCategory = CatchAsyncError(async (req, res, next) => {
+  console.log();
+  const productByCategory = await productModule
+    .find({
+      category: req.query.category,
+    })
+    .sort({ createdAt: -1 })
+    .limit(4);
+  res.status(201).json({
+    success: true,
+    data: productByCategory,
   });
 });
 
@@ -132,7 +146,7 @@ exports.moveToBin = CatchAsyncError(async (req, res, next) => {
   await product.save();
   res.status(200).json({
     message: "success",
-    data:product,
+    data: product,
   });
 });
 
@@ -144,10 +158,10 @@ exports.deleteProduct = CatchAsyncError(async (req, res, next) => {
   if (!data.isActive) {
     for (let i = 0; i < data.images.length; i++) {
       const element = data.images[i];
-      console.log(element.image_id)
+      console.log(element.image_id);
       const result = await cloudinary.uploader.destroy(element.image_id);
       if (result.result === "ok") {
-        await data.remove();      
+        await data.remove();
       }
     }
     res.status(201).json({ message: "success" });
@@ -159,12 +173,12 @@ exports.deleteProduct = CatchAsyncError(async (req, res, next) => {
   }
 });
 
-// like 
+// like
 exports.likeProduct = CatchAsyncError(async (req, res, next) => {
   const product = await productModule.updateOne(
     { _id: req.params.id },
     { $addToSet: { likes: req.user._id } }
- ); 
+  );
   if (!product) next(new ErrorHandler(404, "product not found"));
   res.status(200).json({ message: "success" });
-})
+});

@@ -6,13 +6,13 @@ import { AiOutlinePlus } from "react-icons/ai";
 import "./profile.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../../redux/actions/user";
 function Profile() {
   const [newaddress, setNewaddress] = useState(false);
 
-
-  
   const navigate = useNavigate();
-  const { isAuthenticated } = useSelector((state) => state.user);
+  const dispatch =useDispatch()
+  const { isAuthenticated, user } = useSelector((state) => state.user);
 
   useEffect(() => {
     const isAuth = isAuthenticated || false;
@@ -21,13 +21,16 @@ function Profile() {
     }
   }, [isAuthenticated]);
 
+function logoutButton() {
+    dispatch(logOut())
+  }
 
   return (
     <div className="profile">
       <div className="heading">
         <div>
-          <p className="name">Shivam goswami</p>
-          <p className="email">Shivamgoswami2711@gmail.com</p>
+          <p className="name">{user && user.user.name}</p>
+          <p className="email">{user && user.user.email}</p>
         </div>
       </div>
       <hr />
@@ -39,7 +42,7 @@ function Profile() {
             <li>personal</li>
             <li>refere</li>
             <li>notification</li>
-            <li>logout</li>
+            <li onClick={()=>logoutButton()}>logout</li>
           </ul>
         </div>
         <div className="details">

@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-export const useReducer = createReducer(
+export const productReducer = createReducer(
   {},
   {
     categoryAllProductsRequest: (state) => {
@@ -8,12 +8,12 @@ export const useReducer = createReducer(
     },
     categoryAllProductsSuccess: (state, action) => {
       state.loading = false;
-      state.products = action.payload;
+      state.products = {...state.products,...action.payload};
       state.message = action.payload;
     },
     categoryAllProductsFail: (state, action) => {
       state.loading = false;
-      state.products = action.payload.user;
+      state.products = action.payload;
       state.error = action.payload.success;
     },
 

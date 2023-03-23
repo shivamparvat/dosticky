@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Product from "../../component/Product/Product";
 import CartProduct from "./componenrt/CartProduct";
 import Title from "../Home/component/Titel";
 import { TbDiscount } from "react-icons/tb";
 import { FiChevronRight } from "react-icons/fi";
-import {Link} from "react-router-dom"   
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import "./index.css";
+import { AllProductCategory } from "../../redux/actions/product";
 function Cart() {
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.product.products);
+
+  useEffect(() => {
+    dispatch(AllProductCategory("marvel"))
+  }, [dispatch]);
+
   return (
     <div className="cartconteiner">
       <div className="title">
@@ -40,12 +49,9 @@ function Cart() {
           <div className="randomProduct">
             <Title title="redom product" />
             <div className="productCartRandom">
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
-              <Product />
+              {product && product["marvel"].data.map((item, index) => (
+                <Product product={item} />
+              ))}
             </div>
           </div>
         </div>
@@ -94,7 +100,11 @@ function Cart() {
               </div>
             </div>
             <div className="continueButtonContainer">
-              <div><Link to="/checkout" className="continueButton">Continue</Link></div>
+              <div>
+                <Link to="/checkout" className="continueButton">
+                  Continue
+                </Link>
+              </div>
             </div>
             <div className="saveTaxt">
               <p>You will save ₹3,000 on this order</p>

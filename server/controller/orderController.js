@@ -53,6 +53,8 @@ exports.getAllOrders = CatchAsyncError(async (req, res, next) => {
   return data;
 });
 
+
+
 exports.getAllUserOrders = CatchAsyncError(async (req, res, next) => {
   const query = {
     ...req.query,

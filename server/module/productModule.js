@@ -25,7 +25,7 @@ const productSchema = new Schema(
       type: String,
       required: [true, "description is require"],
     },
-    category: [{ type: String, required: [true, "store id require"] }],
+    category: [{ type: String, default:"rendom" }],
     customizable: {
       type: Boolean,
       default: false,

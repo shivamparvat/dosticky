@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import MultipleImage from "../../utils/MultipleImage" 
 import "./index.css";
-import sticker from "../../assets/sticker.webp";
 import {
   AiOutlineMinus,
   AiOutlinePlus,
@@ -8,16 +8,15 @@ import {
   AiFillHeart,
 } from "react-icons/ai";
 
-function Product() {
-
+function Product({product}) {
   const [like, setLike] = useState(false);
-  // useState
-
+  
+  
   return (
-    <div className="productCardcontainer">
+    <div key={product._id} className="productCardcontainer">
       <div className="card">
         <div className="productImagecontainer">
-          <img src={sticker} alt="" />
+          <MultipleImage images={product.images}/>
           <div className="ProductLikeCardContener">
             {like ? (
               <div className="like" onClick={()=>setLike(false)}>
@@ -31,13 +30,13 @@ function Product() {
           </div>
         </div>
         <div className="productNmae">
-          <span>Lorem ipsum dolor sit amet.</span>
+          <span>{product.title}</span>
         </div>
         <div className="priceCardContainer">
           <span>price ₹39</span>
           <br />
           <span className="delPrice">
-            <del>₹49</del>
+            <del>₹{product.price}</del>
           </span>
           <span className="decount"> 10% Off</span>
         </div>

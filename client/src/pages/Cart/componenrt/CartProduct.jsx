@@ -1,13 +1,13 @@
 import React from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import img from "../../../assets/sticker.webp";
+// import img from "../../../assets/sticker.webp";
 import "./CartProduct.css";
 
 function CartProduct() {
   return (
     <div className="cartMainContainer">
       <div className="cartImgContainer">
-        <img src={img} alt="" />
+        {/* <img src={img} alt="" /> */}
       </div>
       <div>
         <div className="productNmae">

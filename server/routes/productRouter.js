@@ -11,6 +11,7 @@ const {
   chackSku,
   categorySearchUser,
   likeProduct,
+  productByCategory,
 } = require("../controller/productController");
 const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
 const { multipleUpload } = require("../middleware/multer");
@@ -21,7 +22,7 @@ productRouter.route("/new").post(multipleUpload,isAuthUser,isRoleIsValid("admin"
 // admin search
 productRouter.route("/producs/admin").get(isAuthUser, isRoleIsValid("admin", "editor", "coeditor"), Search);//done
 
-
+productRouter.route("/category").get(productByCategory)
 // get one product / update product / delate product 
 productRouter.route("/:id")
 .get(getProduct)
