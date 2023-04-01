@@ -14,3 +14,23 @@ export const AllProductCategory = (category) => async (dispatch) => {
     });
   }
 };
+
+export const AddProductCategory = (data) => async (dispatch) => {
+  try {
+    dispatch({ type: "addProductRequest" });
+    const { getdata } = await axios.post(
+      `/product/new`,
+      data ,
+      {
+        headers: { "Content-Type":'multipart/form-data' },
+        withCredentials: true,
+      }
+    );
+    dispatch({ type: "addProductSuccess", payload: getdata });
+  } catch (error) {
+    dispatch({
+      type: "addProductFail",
+      payload: error.response.data.message,
+    });
+  }
+};

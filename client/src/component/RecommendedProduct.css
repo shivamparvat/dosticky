@@ -1,0 +1,30 @@
+.RecommendedProductCantainer{
+    width: 200px;
+    height: 180px;
+    box-shadow: 2px 2px 4px var(--black_light), -2px -2px 4px var(--black_light);
+  padding: 10px;
+  border-radius: 10px;
+
+}
+.RecommendedProductCantainer>div:first-child{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.RecommendedProductCantainer .RecommendedProductImg img{
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+}
+.RecommendedProductCantainer>div:first-child .addtocard{
+    height: 30px;
+    width: 50px;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.RecommendedProductCantainer>div:first-child .addtocard span{
+    color: #fff;
+}

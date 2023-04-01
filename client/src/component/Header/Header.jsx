@@ -13,9 +13,10 @@ function Header({isAuthenticated=false}) {
       <nav>
         {/* logo */}
         <div className="mainLogo">
-          <Link to="/">
-            <img src={logo} alt="dosticky" />
-          </Link>
+          <NavLink className="hedetext" to="/">
+            {/* <img src={logo} alt="dosticky" /> */}
+            <h2 >E-commerce</h2>
+          </NavLink >
         </div>
         {/* search */}
         <div className="mainSearchCaintainer">

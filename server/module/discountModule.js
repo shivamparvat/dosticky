@@ -4,8 +4,7 @@ const discountSchema = new Schema(
   {
     quantity: {
       type: Number,
-      required: [true, "quantity is require"],
-      unique:[true,"disconut quantity already available"]
+      required: [true, "quantity is require"]
     },
     discount: {
       type: Number,

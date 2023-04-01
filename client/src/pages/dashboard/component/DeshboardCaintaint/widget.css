@@ -1,0 +1,56 @@
+.WidgetContainer {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin: 20px;
+}
+.WidgetContainer .wrapper {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10px;
+  flex: 1;
+  box-shadow: 2px 2px 4px var(--black_light),-2px -2px 4px var(--black_light);
+  padding: 5px 15px;
+}
+
+.WidgetContainer .wrapper>.left{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.WidgetContainer .wrapper>.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.WidgetContainer .wrapper>.right .icon{
+    padding: 5px;
+    background-color: var(--primary_light);
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+.WidgetContainer .wrapper>.right>div{
+    display: flex;  
+    align-items: center;
+}
+
+.WidgetContainer .wrapper>.left>.title{
+    font-size: 18px;
+    color: rgb(100, 100, 100);
+    text-transform: capitalize;
+    margin: 5px;
+}
+.WidgetContainer .wrapper>.left>.value{
+    font-size: 30px;
+    margin: 10px;
+}
+.WidgetContainer .wrapper>.left>span{
+    border-bottom: 1px solid #ccc;
+    text-transform: capitalize;
+    font-size: 15px;
+    color: rgb(21, 21, 147);
+}

@@ -12,7 +12,7 @@ import {CategoryAll } from "../../redux/actions/category";
 function Home() {
   const dispatch = useDispatch();
   const category = useSelector((state) => state.category.category);
-  const product = useSelector((state) => state.product.products);
+  const product = useSelector((state) => state.product.category);
   const categoryList = ["rendom", "marvel", "anime", "love birds"];
   useEffect(() => {
     dispatch(CategoryAll())
@@ -23,6 +23,7 @@ function Home() {
     <div className="home">
       <Carousel />
       <CategotyCard category={category}/>
+      {console.log(product)}
       {product &&
         Object.keys(product).map((item, index) => (
           <div key={index}>

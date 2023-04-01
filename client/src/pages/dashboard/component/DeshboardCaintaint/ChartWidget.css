@@ -1,0 +1,18 @@
+.ChartWidget {
+    box-shadow: 2px 2px 4px var(--black_light),-2px -2px 4px var(--black_light);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0 20px;
+}
+.ChartWidget select {
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.chartTitle {
+  font-size: 18px;
+  text-transform: capitalize;
+  margin-left: 10px;
+}

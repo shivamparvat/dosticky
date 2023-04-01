@@ -1,0 +1,35 @@
+.PaginationCainatiner{
+    width: 100%;
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.Pagination{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    padding: 5px;
+    margin: 20px 0;
+}
+
+.Pagination>div{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    color: black;
+    box-shadow: 2px 2px 3px var(--black_light),-2px -2px 3px var(--black_light);
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+}
+
+.Pagination>div:first-child,
+.Pagination>div:last-child{
+    background-color: var(--primary_light);
+}
+.Pagination>div:active{
+    box-shadow: inset 2px 2px 3px var(--black_light),inset -2px -2px 3px var(--black_light);
+}

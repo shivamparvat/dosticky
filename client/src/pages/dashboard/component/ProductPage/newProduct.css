@@ -1,0 +1,60 @@
+.addnewCategoryPage,
+.newPostmainCantainer{
+    margin: 2px;
+    width: 100%;
+    box-shadow: 2px 2px 4px var(--black_light), -2px -2px 4px var(--black_light);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.newtitle,
+.newPostmainCantainer>p{
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.inputCantainer,
+.titleCantainer,
+.skuCantainer,
+.priceCantainer,
+.quantityCantainer,
+.categoryCantainer,
+.imagesCantainer,
+.descriptionCantainer,
+.tagsCantainer,
+.discountCantainer{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.customizableCantainer{
+    display: flex;
+    flex: 0.5;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.customizable.tags,
+.quantity.category,
+.sku.price{
+    display: flex;
+    column-gap: 20px;
+    flex: 1;
+}
+
+.newButton input[type="submit"]{
+    width: 150px;
+    height: 40px;
+    background-color: var(--primary);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.msg>p{
+    color: red;
+    margin: 0;
+    font-size: 12px;
+}

@@ -8,12 +8,12 @@ export const productReducer = createReducer(
     },
     categoryAllProductsSuccess: (state, action) => {
       state.loading = false;
-      state.products = {...state.products,...action.payload};
-      state.message = action.payload;
+      state.category = {...state.category,...action.payload};
+      state.message = action.payload.message;
     },
     categoryAllProductsFail: (state, action) => {
       state.loading = false;
-      state.products = action.payload;
+      state.category = action.payload;
       state.error = action.payload.success;
     },
 
@@ -25,7 +25,7 @@ export const productReducer = createReducer(
       state.loading = false;
       state.isAuthenticated = true;
       state.user = action.payload;
-      state.message = action.payload;
+      state.message = action.payload.message;
     },
     oneProductFail: (state, action) => {
       state.loading = false;
@@ -35,19 +35,17 @@ export const productReducer = createReducer(
     },
 
     // singup user
-    singupUserRequest: (state) => {
+    addProductRequest: (state) => {
       state.loading = true;
     },
-    singupUserSuccess: (state, action) => {
+    addProductSuccess: (state, action) => {
       state.loading = false;
-      state.isAuthenticated = true;
-      state.user = action.payload;
-      state.message = action.payload;
+      state.product = action.payload;
+      state.message = action.payload.message;
     },
-    singupUserFail: (state, action) => {
+    addProductFail: (state, action) => {
       state.loading = false;
-      state.isAuthenticated = false;
-      state.user = action.payload.user;
+      state.product = action.payload.user;
       state.error = action.payload.success;
     },
 

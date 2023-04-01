@@ -4,7 +4,7 @@ import NewAddress from "../Checkout/component/NewAddress";
 import AddressCard from "../Checkout/component/AddressCard";
 import { AiOutlinePlus } from "react-icons/ai";
 import "./profile.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/actions/user";
 function Profile() {
@@ -42,6 +42,7 @@ function logoutButton() {
             <li>personal</li>
             <li>refere</li>
             <li>notification</li>
+            <Link to="/dashboard"><li>dashboard</li></Link>
             <li onClick={()=>logoutButton()}>logout</li>
           </ul>
         </div>

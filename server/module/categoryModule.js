@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const cetagorySchema = new Schema({
-  cetegory: {
+  category: {
     type: String,
     require: [true, "category name is empty"],
   },

@@ -49,6 +49,8 @@ app.use("/api/category",categoryRouter)
 app.use("/api/coupon",couponRoute)
 app.use("/api/discount",discountRoute)
 
+app.use(ErrorModdelWare);
+
 app.use(express.static(path.join(__dirname, "../client/build")));
 
 
@@ -57,6 +59,5 @@ app.get("*", (req, res) => {
   });
   
 
-app.use(ErrorModdelWare);
 
 module.exports = app;

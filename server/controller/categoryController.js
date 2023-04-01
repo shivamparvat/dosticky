@@ -14,7 +14,7 @@ exports.newCategory = CatchAsyncError(async (req, res, next) => {
     const dataURL = await cloudinary.v2.uploader.upload(fileUri.content);
     // add url
     updatedData = await categoryModule.findByIdAndUpdate(
-      req.params.id,
+      category._id,
       {
         images: { image_id: dataURL.asset_id, image_url: dataURL.secure_url },
       },
@@ -23,8 +23,9 @@ exports.newCategory = CatchAsyncError(async (req, res, next) => {
         runValidators: true,
         useFindAndModify: false,
       }
-    );
-  }
+      );
+    }
+    console.log(updatedData)
 
   res.status(201).json({
     message: "success",

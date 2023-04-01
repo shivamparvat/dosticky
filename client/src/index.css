@@ -38,8 +38,7 @@ main{
   margin-bottom: 100px;
 }
 main>div{
-  width: 90%;
-  
+  width: 95%; 
 }
 
 ::-webkit-scrollbar-track

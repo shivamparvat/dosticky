@@ -1,16 +1,17 @@
 const { CatchAsyncError } = require("../middleware/catchasyncerror");
 const productModule = require("../module/productModule");
 const Crud = require("../utils/crud");
-const ErrorHandler = require("../utils/errorHeandler");
 const getDataUri = require("../utils/dataUri");
 const cloudinary = require("cloudinary");
 const Apifeature = require("../utils/Apifeatures");
+const ErrorHeandler = require("../utils/ErrorHeandler");
 // const { isUnique } = require("../utils/validation");
 
 // product creation
 
 exports.Product = CatchAsyncError(async (req, res, next) => {
   // create product
+
   const product = await productModule.create(req.body);
   const files = req.files;
   let myCloud;
@@ -55,7 +56,7 @@ exports.getProduct = CatchAsyncError(async (req, res, next) => {
 });
 
 exports.chackSku = CatchAsyncError(async (req, res, next) => {
-  if (!req.query.sku) next(new ErrorHandler(400, "sku velue is Empty"));
+  if (!req.query.sku) next(new ErrorHeandler(400, "sku velue is Empty"));
   await new Crud(productModule, req, res, next).chackUnique({
     sku: req.query.sku,
   });
@@ -66,7 +67,7 @@ exports.updateProduct = CatchAsyncError(async (req, res, next) => {
   remove.map((key) => delete req.body[key]);
 
   const product = await productModule.findById(req.params.id);
-  if (!product) next(new ErrorHandler(404, "product not found"));
+  if (!product) next(new ErrorHeandler(404, "product not found"));
   // distroy img
   const index = [];
   const filesid = req.body.imageid;
@@ -141,7 +142,7 @@ exports.SearchUser = CatchAsyncError(async (req, res, next) => {
 // will move product in bin folder
 exports.moveToBin = CatchAsyncError(async (req, res, next) => {
   const product = await productModule.findById(req.params.id);
-  if (!product) next(new ErrorHandler(404, "product not found"));
+  if (!product) next(new ErrorHeandler(404, "product not found"));
   product.isActive = false;
   await product.save();
   res.status(200).json({
@@ -153,7 +154,7 @@ exports.moveToBin = CatchAsyncError(async (req, res, next) => {
 // if product in bin so will delete parmanetly
 exports.deleteProduct = CatchAsyncError(async (req, res, next) => {
   const data = await productModule.findById(req.params.id);
-  if (!data) next(new ErrorHandler(404, "product not found"));
+  if (!data) next(new ErrorHeandler(404, "product not found"));
 
   if (!data.isActive) {
     for (let i = 0; i < data.images.length; i++) {
@@ -179,6 +180,6 @@ exports.likeProduct = CatchAsyncError(async (req, res, next) => {
     { _id: req.params.id },
     { $addToSet: { likes: req.user._id } }
   );
-  if (!product) next(new ErrorHandler(404, "product not found"));
+  if (!product) next(new ErrorHeandler(404, "product not found"));
   res.status(200).json({ message: "success" });
 });

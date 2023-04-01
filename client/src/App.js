@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { loadUser } from "./redux/actions/user";
 import { useDispatch } from "react-redux";
 import Categorypage from "./pages/Category/Category";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
       <Route path="/singup" element={<Singup />} />
       <Route path="/login" element={<Login />} />
       <Route path="/recovery" element={<RecoveryPass />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Route>
   )
 );

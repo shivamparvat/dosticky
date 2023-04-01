@@ -1,0 +1,56 @@
+.UserListTable > div {
+  margin: 20px 20px;
+  box-shadow: 2px 2px 4px var(--black_light), -2px -2px 4px var(--black_light);
+  padding: 10px;
+  border-radius: 10px;
+}
+.UserListTable .title {
+  font-size: 18px;
+  margin-left: 10px;
+  text-transform: capitalize;
+}
+
+.userlistdashboard ul {
+  margin-right: 0px !important;
+  padding: 10px;
+  display: flex;
+  height: 30px;
+  margin: 0 !important;
+  border-bottom: 1px solid #ccc;
+}
+.userlistdashboard ul li {
+  height: 30px;
+  padding: 5px 10px !important;
+  margin: 0 !important;
+  text-transform: capitalize !important;
+}
+
+.userlistdashboard ul li {
+  background-color: white !important;
+}
+
+.userlistdashboard ul li:last-child {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.userlistdashboard ul li > div {
+  padding: 8px;
+}
+.userlistdashboard ul li > div:hover {
+  background-color: var(--primary_light) !important;
+  border-radius: 8px;
+}
+.UserListTable .mobileNumberCaontainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.UserListTable input[type="text"] {
+  width: 350px;
+}
+.UserListTable .singupbutton {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}

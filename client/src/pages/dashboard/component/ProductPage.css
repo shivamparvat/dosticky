@@ -1,0 +1,58 @@
+.ProductPage {
+  margin: 20px;
+}
+.Toolebar.new ul {
+  grid-template-columns: 30% 35% 5% 5% 20%;
+}
+.Toolebar.new #search {
+  width: 250px !important;
+}
+.toolbarContainer {
+  margin-top: 40px;
+  margin: 20px 20px;
+  box-shadow: 2px 2px 4px var(--black_light), -2px -2px 4px var(--black_light);
+  padding: 10px;
+  border-radius: 10px;
+}
+.Toolebar.new {
+  padding: 0 10px 8px 10px;
+  /* border-bottom: 1px solid #ccc; */
+}
+
+.ProductPage .Option,
+.ProductPage .tooles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.ProductPage .tooles > input[type="checkbox"] {
+  width: 14px;
+}
+.ProductPage .Option > div {
+  font-size: 18px;
+  padding: 5px 10px;
+  border-radius: 8px;
+}
+
+.ProductPage .productCardcontainer:hover .productImagecontainer {
+  transform: translateY(0px);
+  box-shadow: none;
+  border-radius: 15px;
+}
+
+.ProductPage > .pre .productCardcontainer:hover .productImagecontainer {
+  transform: translateY(-30px);
+  box-shadow: 2px 2px 4px var(--shadow);
+  border-radius: 15px;
+}
+
+.ProductPage .productCardcontainer:hover {
+  background-color: white;
+}
+.ProductPage .Option > div:hover,
+.ProductPage > .pre .productCardcontainer:hover {
+  background-color: var(--primary_light);
+}

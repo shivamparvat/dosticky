@@ -1,35 +1,38 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-export const categoryReducer = createReducer(
+export const discountReducer = createReducer(
   {},
   {
-    categoryRequest: (state) => {
+    newDiscountRequest: (state) => {
       state.loading = true;
     },
-    categorySuccess: (state, action) => {
+    newDiscountSuccess: (state, action) => {
       state.loading = false;
-      state.category = action.payload;
+      state.discount = action.payload;
       state.message = action.payload.message;
     },
-    categoryFail: (state, action) => {
+    newDiscountFail: (state, action) => {
       state.loading = false;
-      state.category = action.payload;
+      state.discount = action.payload;
       state.error = action.payload.success;
     },
-    
-    AddcategoryRequest: (state) => {
+
+
+    // loaduser if discount reload application
+    getAllDiscountRequest: (state) => {
       state.loading = true;
     },
-    AddcategorySuccess: (state, action) => {
+    getAllDiscountSuccess: (state, action) => {
       state.loading = false;
-      state.category = action.payload;
+      state.discount = action.payload;
       state.message = action.payload.message;
     },
-    AddcategoryFail: (state, action) => {
+    getAllDiscountFail: (state, action) => {
       state.loading = false;
-      state.category = action.payload;
+      state.discount = action.payload;
       state.error = action.payload.success;
     },
+
 
     clearError: (state) => {
       state.error = null;

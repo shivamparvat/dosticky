@@ -1,0 +1,32 @@
+.Toolebar {
+  padding: 0 10px 8px 10px;
+  /* border-bottom: 1px solid #ccc; */
+}
+.Toolebar ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 30% 40% 10% 20%;
+  margin: 0;
+  margin-right: 0 !important;
+  margin-left:10px !important;
+  justify-content: end;
+  justify-items: center;
+  height: 40px;
+  column-gap: 20px;
+}
+.Toolebar ul li {
+    height: 30px;
+}
+.Toolebar ul li:first-child {
+    justify-self: flex-start;
+}
+
+.Toolebar ul li select{
+    width: 100px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.Toolebar ul li #search{
+    width: 350px;
+}

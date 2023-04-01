@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./index.css";
 import { AllProductCategory } from "../../redux/actions/product";
+import RecommendedProduct from "../../component/RecommendedProduct";
 function Cart() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.products);
@@ -21,10 +22,10 @@ function Cart() {
       <div className="title">
         <div>
           <h2>
-            cart item <span className="primary-color">6</span>
+            cart item <span className="primary-color">1</span>
           </h2>
           <h2 className="totalPrice">
-            total <span className="primary-color">₹360</span>
+            total <span className="primary-color">90,000</span>
           </h2>
         </div>
         <hr />
@@ -33,6 +34,7 @@ function Cart() {
         <div className="cartlist">
           <div>
             <CartProduct />
+            {/* <CartProduct />
             <CartProduct />
             <CartProduct />
             <CartProduct />
@@ -42,12 +44,12 @@ function Cart() {
             <CartProduct />
             <CartProduct />
             <CartProduct />
-            <CartProduct />
-            <CartProduct />
+            <CartProduct /> */}
           </div>
           {/* products */}
           <div className="randomProduct">
-            <Title title="redom product" />
+            <Title title="recommendation" />
+            <RecommendedProduct img="https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/610VAbGYPpL._SL1500_.jpg" />
             <div className="productCartRandom">
               {product && product["marvel"].data.map((item, index) => (
                 <Product product={item} />
@@ -65,8 +67,8 @@ function Cart() {
                 <div>offers & discount</div>
               </div>
               <p className="discountMsg">
-                save ₹100 with{" "}
-                <span className="primary-color">DOSTICKYNEW</span>
+                save ₹1500 with{" "}
+                <span className="primary-color">NEWPRO</span>
               </p>
             </div>
             <div className="offerTaxtCart">
@@ -82,8 +84,8 @@ function Cart() {
               </div>
               <div>
                 <p>
-                  <del>₹170</del>
-                  <span>₹150</span>
+                  <del>₹10,0000</del>
+                  <span>₹90,000</span>
                 </p>
                 <p>
                   <del>₹40</del>
@@ -95,7 +97,7 @@ function Cart() {
               <div>
                 <p>Total Amount</p>
                 <p>
-                  <b>₹30,900</b>
+                  <b>₹90,000</b>
                 </p>
               </div>
             </div>
@@ -107,7 +109,7 @@ function Cart() {
               </div>
             </div>
             <div className="saveTaxt">
-              <p>You will save ₹3,000 on this order</p>
+              <p>You will save ₹1,0000 on this order</p>
             </div>
           </div>
         </div>

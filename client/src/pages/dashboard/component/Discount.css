@@ -1,0 +1,7 @@
+.newDiscount{
+    margin-top: 40px;
+  margin: 20px 20px;
+  box-shadow: 2px 2px 4px var(--black_light), -2px -2px 4px var(--black_light);
+  padding: 10px;
+  border-radius: 10px;
+}
