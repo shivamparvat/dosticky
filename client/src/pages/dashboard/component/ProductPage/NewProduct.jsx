@@ -45,7 +45,7 @@ const NewProduct = () => {
 
     const data = new FormData();
     data.append("title", title);
-    // data.append("sku", sku);
+    data.append("SKU", sku);
     data.append("price", price);
     data.append("discountprice", discountprice);
     data.append("quantity", quantity);
@@ -75,7 +75,7 @@ const NewProduct = () => {
     if (skuValue.trim().length >= 1) {
       setTimeout(async () => {
         const { data } = await axios.post(
-          `/product/chack?sku=${skuValue}`,
+          `/product/chack?SKU=${skuValue}`,
           {},
           {
             headers: { "Content-Type": "application/json" },

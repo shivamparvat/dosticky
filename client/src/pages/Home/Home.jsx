@@ -23,7 +23,6 @@ function Home() {
     <div className="home">
       <Carousel />
       <CategotyCard category={category}/>
-      {console.log(product)}
       {product &&
         Object.keys(product).map((item, index) => (
           <div key={index}>

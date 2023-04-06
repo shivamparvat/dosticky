@@ -28,7 +28,8 @@ code {
 img{
   width: 100%;
   height: 100%;
-    
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 main{
@@ -82,4 +83,20 @@ h2{
 del{
   color: #ccc;
   margin-right: 2px;
+}
+
+.button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 40px;
+  border-radius: 10px;
+  background-color: var(--primary_light);
+  text-transform: capitalize;
+  margin-top: 10px;
+}
+
+.button:hover{
+  background-color: var(--primary);
+  color: #fff;
 }

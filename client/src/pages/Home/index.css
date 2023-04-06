@@ -1,5 +1,11 @@
 .productGrid{
-    display: grid;
-    grid-template-columns: repeat(4,25%);
+    display: flex;
+    flex: 1;
     row-gap: 40px;
+}
+
+.msg{
+    color: red;
+    font-size: 15px;
+    margin-top: 10px;
 }
