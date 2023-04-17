@@ -15,18 +15,18 @@ export const AllProductCategory = (category) => async (dispatch) => {
   }
 };
 
-export const AddProductCategory = (data) => async (dispatch) => {
+export const AddProductCategory = (getdata) => async (dispatch) => {
   try {
     dispatch({ type: "addProductRequest" });
-    const { getdata } = await axios.post(
+    const { data } = await axios.post(
       `/product/new`,
-      data ,
+      getdata ,
       {
         headers: { "Content-Type":'multipart/form-data' },
         withCredentials: true,
       }
     );
-    dispatch({ type: "addProductSuccess", payload: getdata });
+    dispatch({ type: "addProductSuccess", payload: data });
   } catch (error) {
     dispatch({
       type: "addProductFail",

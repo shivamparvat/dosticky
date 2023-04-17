@@ -33,7 +33,7 @@
 
 /* add to card */
 .addToCart {
-  width: 130px;
+  width: 70px;
   display: flex;
   align-items: center;
   padding: 5px;
@@ -52,6 +52,19 @@
 .priceCardContainer .decount {
   color: var(--primary);
   margin-left: 10px;
+}
+
+.CartAndAttoToCartButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 14px;
+}
+.CartAndAttoToCartButton .button {
+  height: 30px;
+}
+.button.addToCart{
+  width: 70px;
 }
 
 /* hover */
@@ -115,7 +128,7 @@
   font-weight: bold;
 }
 
-.fullproduct{
+.fullproduct {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -128,7 +141,7 @@
   background-color: #7d7b7b23;
   overflow: hidden;
 }
-.fullproduct .cantainer{
+.fullproduct .cantainer {
   background-color: aliceblue;
   opacity: 1 !important;
   border-radius: 10px;
@@ -137,24 +150,24 @@
   padding-bottom: 30px;
   transition: all 0.5s;
 }
-.fullproduct .cantainer .cencelX{
+.fullproduct .cantainer .cencelX {
   text-align: end;
   position: relative;
   top: 10px;
-  left: -10px;
+  left: 0;
 }
 
-.productImagecontainerfullproduct{
+.productImagecontainerfullproduct {
   height: 300px;
   width: 300px;
   object-fit: cover;
 }
 
-.fullproduct .cantainer .detailContainer{
+.fullproduct .cantainer .detailContainer {
   display: flex;
   column-gap: 50px;
 }
-.fullproduct .addToCartContainer{
+.fullproduct .addToCartContainer {
   display: flex;
   justify-content: space-between;
   column-gap: 50px;
@@ -165,33 +178,32 @@
   user-select: none; /* Standard syntax */
 }
 
-.fullproduct .cantainer p{
+.fullproduct .cantainer p {
   margin: 0;
 }
 .fullproduct .cantainer .Minus:active,
-.fullproduct .cantainer .plus:active{
+.fullproduct .cantainer .plus:active {
   background-color: var(--primary);
   color: #fff;
 }
 
-
-.fullproduct .cantent{
+.fullproduct .cantent {
   min-width: 250px;
 }
 .fullproduct .cantainer .discription,
-.fullproduct .cantainer .price{
+.fullproduct .cantainer .price {
   margin-top: 10px;
   text-transform: capitalize;
 }
-.fullproduct .cantainer .savePrice{
+.fullproduct .cantainer .savePrice {
   color: #03d903;
   font-size: 15px;
 }
-.fullproduct .cantainer .variant{
+.fullproduct .cantainer .variant {
   margin-top: 20px;
 }
 
-.fullproduct .cantainer .selectsize{
+.fullproduct .cantainer .selectsize {
   height: 40px;
   width: 100%;
   border: 1px solid #ccc;
@@ -199,58 +211,59 @@
   outline: none;
 }
 
-.fullproduct .cantainer .selectsize option{
+.fullproduct .cantainer .selectsize option {
   height: 25px;
   font-size: 15px;
   padding: 0 10px;
 }
-.fullproduct .cantainer .outOfstock{
+.fullproduct .cantainer .outOfstock {
   color: red;
 }
 
-.fullproduct .cantainer .gotocartContainer{
+.fullproduct .cantainer .gotocartContainer {
   display: flex;
   width: 100%;
   justify-content: center;
   margin-top: 20px;
 }
 
-
-.gotocard.button{
+.gotocard.button {
   width: 200px !important;
 }
 .gotocard a {
   color: #000;
   text-decoration: none;
 }
-.fullproduct .addToCart{
+.fullproduct .addToCart {
   width: 150px;
   height: 40px;
   border: 1px solid #ccc;
   background-color: var(--primary_light);
 }
 
-
-.fullproduct .sticker-sizeContainer{
+.fullproduct .sticker-sizeContainer {
   display: flex;
   column-gap: 16px;
   flex-direction: row;
 }
-.fullproduct .inputContainer input[type="email"]{
+.fullproduct .inputContainer input[type="email"] {
   width: 100%;
 }
 
-.sticker-size{
-  padding: 10px;
+.sticker-size {
   border-radius: 5px;
   border: 1px solid #ccc;
+}
+.sticker-size label{
+  display: block;
+  padding: 10px;
 }
 
 .sticker-size input[type="radio"] {
   display: none !important;
 }
 
-.sticker-size input[type="radio"]{
+.sticker-size input[type="radio"] {
   cursor: pointer;
   display: inline-block;
   border: 1px solid #ccc;

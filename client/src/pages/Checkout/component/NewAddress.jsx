@@ -1,6 +1,19 @@
-import React, { useState } from "react";
-import "./NewAddress.css"
-function NewAddress() {
+import React, { useEffect, useState } from "react";
+import "./NewAddress.css";
+import { useDispatch, useSelector } from "react-redux";
+import { AddNewAddress, GetAllAddress } from "../../../redux/actions/address";
+import { useNavigate } from "react-router-dom";
+function NewAddress({ newaddress }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const address = useSelector((state) => state.address);
+  useEffect(() => {
+    dispatch(GetAllAddress());
+  }, [dispatch]);
+
+  useEffect(() => {}, [address]);
+
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [pincode, setPincode] = useState("");
@@ -9,14 +22,32 @@ function NewAddress() {
   const [state, setState] = useState("");
   const [landmark, setLandmark] = useState("");
   const [alternatePhone, setAlternatePhone] = useState("");
+
+  function newAddressSubmit(e) {
+    e.preventDefault();
+    const data = {
+      name,
+      number,
+      pincode,
+      street,
+      city,
+      state,
+      landmark,
+      alternatePhone,
+    };
+    dispatch(AddNewAddress(data));
+    newaddress(false);
+  }
+
   return (
-    <form className="AddressForm" action="">
+    <form className="AddressForm" action="" onSubmit={newAddressSubmit}>
       <div className="newAddress">
         <div className="nameCaontainer">
+          {console.log(address)}
           <div>
             <label htmlFor="name">full name</label>
             <input
-              type="text" 
+              type="text"
               id="name"
               required
               value={name}

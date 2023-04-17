@@ -12,20 +12,20 @@ export const CategoryAll = () => async (dispatch) => {
     });
   }
 };
-export const AddCategory = (data) => async (dispatch) => {
+export const AddCategory = (getdata) => async (dispatch) => {
   try {
     
     dispatch({ type: "AddcategoryRequest" });
     
-    const { getdata } = await axios.post(
+    const { data } = await axios.post(
       `/category/new`,
-      data ,
+      getdata,
       {
         headers: { "Content-Type":'multipart/form-data' },
         withCredentials: true,
       }
     );
-    dispatch({ type: "AddcategorySuccess", payload: getdata });
+    dispatch({ type: "AddcategorySuccess", payload: data });
   } catch (error) {
     dispatch({
       type: "AddcategoryFail",

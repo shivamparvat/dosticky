@@ -49,10 +49,10 @@ app.use("/api/category",categoryRouter)
 app.use("/api/coupon",couponRoute)
 app.use("/api/discount",discountRoute)
 
-app.use(ErrorModdelWare);
 
 app.use(express.static(path.join(__dirname, "../client/build")));
 
+app.use(ErrorModdelWare);
 
 app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../client/build/index.html"));

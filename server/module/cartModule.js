@@ -18,16 +18,10 @@ const cartSchema = new Schema(
           ref: "product",
         },
         quantity: { type: Number, default: 1, require: true },
-        // delivery:{
-        //   type:Number,
-        //   default:40
-        // }
+        size: { type: String, require: true },
       },
     ],
-    totalItem: Number,
-    totalPrice: Number,
-    discountePrice: Number,
-    tax: Number,
+    totalItem:Number,
     coupon: {
       type: String,
     },

@@ -81,7 +81,7 @@ h2{
   font-weight: 700;
 }
 del{
-  color: #ccc;
+  color: #7d7b7b;
   margin-right: 2px;
 }
 
@@ -99,4 +99,8 @@ del{
 .button:hover{
   background-color: var(--primary);
   color: #fff;
+}
+a{
+  text-decoration: none;
+  color: black;
 }

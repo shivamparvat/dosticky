@@ -90,7 +90,7 @@
   /* padding: 20px; */
   border: 1px solid var(--black_light);
   border-radius: 10px;
-  height: 320px;
+  height: 360px;
 }
 .continueButtonContainer,
 .subTotalBox {
@@ -136,8 +136,7 @@
 .totalCartContainer .saveTaxt {
   border-top: 1px dotted;
   text-align: center;
-  color: #16f916;
-  font-weight: 600;
+  color: #299729;
 }
 .productCartRandom {
   width: 100%;

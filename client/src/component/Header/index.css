@@ -1,9 +1,8 @@
-
-.hedetext{
+.hedetext {
   text-decoration: none;
 }
 
-.hedetext h2{
+.hedetext h2 {
   text-transform: uppercase;
   color: black;
 }
@@ -59,6 +58,21 @@
   outline: none;
 }
 
+a.profile.icon.cart .badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 10px;
+  background-color: var(--primary);
+}
+
+a.profile.icon.cart .badges span{
+  font-size: 12px;
+  text-align: center;
+  color: white;
+}
 .headerToolber {
   display: flex;
   align-items: center;
@@ -91,7 +105,7 @@
   background-color: var(--white_light);
   border-bottom-right-radius: 11px;
   border-top-right-radius: 11px;
-  cursor:pointer;
+  cursor: pointer;
 }
 .searchIcone {
   /* padding: 10px; */
@@ -114,8 +128,7 @@
 
 /* image search */
 
-
-.serachContainer{
+.serachContainer {
   position: absolute;
   top: 0;
   display: none;
@@ -168,15 +181,13 @@
   object-fit: contain;
 }
 
-.header:has(.mainSearchCaintainer:focus-within) .serachContainer  {
+.header:has(.mainSearchCaintainer:focus-within) .serachContainer {
   display: block;
 }
 
-
-
 /* loginScreen */
 
-.loginScreen{
+.loginScreen {
   background-color: #00000025;
   display: flex;
   justify-content: center;

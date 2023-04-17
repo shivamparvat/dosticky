@@ -6,17 +6,19 @@ import { BsBag } from "react-icons/bs";
 import { BiCategoryAlt } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/newLogo.png";
+import { useSelector } from "react-redux";
 
-function Header({isAuthenticated=false}) {
+function Header({ isAuthenticated = false }) {
+  const cart = useSelector((state) => state.cart);
   return (
     <header className="header">
       <nav>
         {/* logo */}
         <div className="mainLogo">
           <NavLink className="hedetext" to="/">
-            {/* <img src={logo} alt="dosticky" /> */}
-            <h2 >E-commerce</h2>
-          </NavLink >
+            <img src={logo} alt="dosticky" />
+            {/* <h2 >E-commerce</h2> */}
+          </NavLink>
         </div>
         {/* search */}
         <div className="mainSearchCaintainer">
@@ -36,20 +38,28 @@ function Header({isAuthenticated=false}) {
           <div>
             <NavLink className="profile icon" to="/category">
               <BiCategoryAlt size={20} />
-              <span>cetagory</span>
+              <span>category</span>
             </NavLink>
           </div>
           {/* cart */}
           <div>
-            <NavLink className="profile icon" to="/cart">
+            <NavLink className="profile icon cart" to="/cart">
               <BsBag size={20} />
               <span>cart</span>
+              {cart && cart.cart && (
+                <div className="badges">
+                  <span>{cart.cart.totalItem}</span>
+                </div>
+              )}
             </NavLink>
           </div>
           {/* user */}
           <div>
             <div>
-              <NavLink className="profile icon" to={isAuthenticated?"/profile":"/login"}>
+              <NavLink
+                className="profile icon"
+                to={isAuthenticated ? "/profile" : "/login"}
+              >
                 <AiOutlineUser size={20} />
                 <span>account</span>
               </NavLink>
@@ -68,7 +78,7 @@ function Header({isAuthenticated=false}) {
               </div>
               <div>
                 <span>sticker</span>
-                <span>catagory</span>
+                <span>category</span>
               </div>
             </div>
           </div>

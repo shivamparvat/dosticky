@@ -25,7 +25,7 @@ module.exports = (err, rep, res, next) => {
   }
 
   res.status(err.statusCode).json({
-    success: false,
+    success: true,
     message: err.message,
   });
 };

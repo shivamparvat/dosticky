@@ -1,48 +1,122 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 // import img from "../../../assets/sticker.webp";
 import "./CartProduct.css";
+import MultipleImage from "../../../utils/MultipleImage";
+import { useDispatch } from "react-redux";
+import { AddTocart, RemoveToCart } from "../../../redux/actions/cart";
 
-function CartProduct() {
+function CartProduct({ product }) {
+  const productData =
+    product &&
+    product.product.variants.filter((variant) => product.size === variant.size);
+
+    const dispatch = useDispatch()
+  const [quantity, setQuantity] = useState(product.quantity);
+  const [valueChane, setValueChane] = useState(false)
+  const [productSize, setProductSize] = useState(product.size)
+     
+
+  const data = {
+    product: product.product._id,
+    quantity,
+    size: productSize,
+  };
+
+  function updateCart(e){
+    e.preventDefault();
+    dispatch(AddTocart(data))
+  }
+  function removeCartProduct(e){
+    e.preventDefault();
+    window.confirm("remove item")
+    dispatch(RemoveToCart(product.product._id))
+  }
+
+  useEffect(() => {
+    if(productSize !== product.size || quantity !== product.quantity){
+      setValueChane(true)
+    }else{
+      setValueChane(false)
+    }
+  }, [quantity,productSize])
+  
   return (
     <div className="cartMainContainer">
       <div className="cartImgContainer">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgqERYAMj5t6KvfBI3iy2zpV5mG128cgZIJTk_y7_P&s" alt="" />
+        <MultipleImage images={product.product.images} />
       </div>
       <div>
         <div className="productNmae">
-          <span>cemera</span>
+          <span>{product.product.title}</span>
         </div>
         <div className="priceCardContainer">
           <div>
-            <span>price ₹90000</span>
+            <span>price ₹{productData[0].discountprice}</span>
             <br />
             <span className="delPrice">
-              <del>₹100000</del>
+              <del>₹{productData[0].price}</del>
             </span>
-            <span className="decount"> 10% Off</span>
+            <span className="decount">
+              {" "}
+              {parseInt(
+                ((parseInt(productData[0].price) -
+                  parseInt(productData[0].discountprice)) /
+                  parseInt(productData[0].price)) *
+                  100
+              )}
+              % Off
+            </span>
           </div>
-          <span className="saveAmount"> saved ₹10000</span>
+          <span className="saveAmount">
+            {" "}
+            saved ₹
+            {parseInt(productData[0].price) -
+              parseInt(productData[0].discountprice)}
+          </span>
         </div>
         <div className="options">
-          {/* <div className="optionContainer">
-            <select id="type">
-              <option value="Mobile">Mobile</option>
-              <option value="Leptop">Laptop</option>
+          <div className="optionContainer">
+            <select id="type" onChange={e=>setProductSize(e.target.value)}>
+              {product.product &&
+                product.product.variants.map((item) => (
+                  <option
+                    selected={item.size === product.size}
+                    value={item.size}
+                    disabled={item.quantity === 0}
+                  >
+                    {item.discretion}
+                  </option>
+                ))}
             </select>
             <div className="quntity">
               <div className="buyButton">
-                <div className="Minus">
+                <div
+                  className="Minus"
+                  onClick={() =>
+                    setQuantity(quantity > 1 ? quantity - 1 : quantity)
+                  }
+                >
                   <AiOutlineMinus />
                 </div>
-                <div className="qunatity">0</div>
-                <div className="plus">
+                <div className="qunatity">{quantity}</div>
+                <div
+                  className="plus"
+                  onClick={() =>
+                    setQuantity(
+                      productData[0].quantity > quantity
+                        ? quantity + 1
+                        : quantity
+                    )
+                  }
+                >
                   <AiOutlinePlus />
                 </div>
               </div>
             </div>
-          </div> */}
-          <div className="removeButoon">Remove</div>
+          </div>
+          <div className="removeButoon" onClick={removeCartProduct}>Remove</div>
+          {valueChane && <div className="button" onClick={updateCart}>update</div>}
         </div>
       </div>
     </div>

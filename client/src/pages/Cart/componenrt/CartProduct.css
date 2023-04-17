@@ -19,7 +19,7 @@
 .cartMainContainer .options{
     height: 80px;
     display: grid;
-    grid-template-columns: 50% 1fr;
+    grid-template-columns: 50% 1fr 1fr;
     justify-items: end;
     align-items: end;
 }
