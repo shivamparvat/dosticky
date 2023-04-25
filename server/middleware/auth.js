@@ -5,13 +5,15 @@ const { CatchAsyncError } = require("./catchasyncerror");
 
 exports.isAuthUser = CatchAsyncError(async (req, res, next) => {
   const { token } = req.cookies;
-  if (token == "j:null")
+  if (!token)
     return next(new ErrorHandler(401, "Please Login to Access this Resource."));
 
   const decodedData = Jwt.verify(token, process.env.JWT_SECRET);
   const user = await userModule.findById(decodedData.id);
+
   // add
-  // if (!user.isEmailVerified) return next(new ErrorHandler(401, "email not Verified "));
+  if (user?.isEmailVerified === false && !user)
+    return next(new ErrorHandler(401, "email not Verified "));
   req.user = user;
   next();
 });

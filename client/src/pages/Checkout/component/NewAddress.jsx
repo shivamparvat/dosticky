@@ -1,49 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import "./NewAddress.css";
-import { useDispatch, useSelector } from "react-redux";
-import { AddNewAddress, GetAllAddress } from "../../../redux/actions/address";
-import { useNavigate } from "react-router-dom";
-function NewAddress({ newaddress }) {
+import { useDispatch } from "react-redux";
+import {GetAllAddress } from "../../../redux/actions/address";
+function NewAddress({ submitAddress,ButtonText,addressData }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const address = useSelector((state) => state.address);
-  useEffect(() => {
-    dispatch(GetAllAddress());
-  }, [dispatch]);
-
-  useEffect(() => {}, [address]);
-
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
-  const [pincode, setPincode] = useState("");
-  const [street, setStreet] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [landmark, setLandmark] = useState("");
-  const [alternatePhone, setAlternatePhone] = useState("");
-
+  
+  
+  const [name, setName] = useState((addressData && addressData.name) || "");
+  const [number, setNumber] = useState((addressData && addressData.number) || "");
+  const [pincode, setPincode] = useState((addressData && addressData.pincode) || "");
+  const [street, setStreet] = useState((addressData && addressData.street) || "");
+  const [city, setCity] = useState((addressData && addressData.city) || "");
+  const [state, setState] = useState((addressData && addressData.state) || "");
+  const [landmark, setLandmark] = useState((addressData && addressData.landmark) || "");
+  const [alternatePhone, setAlternatePhone] = useState((addressData && addressData.alternatePhone) || "");
+  
   function newAddressSubmit(e) {
     e.preventDefault();
     const data = {
       name,
       number,
-      pincode,
+      zip:pincode,
       street,
       city,
       state,
       landmark,
-      alternatePhone,
+      alternate_number:alternatePhone,
     };
-    dispatch(AddNewAddress(data));
-    newaddress(false);
+    submitAddress(data)
+    dispatch(GetAllAddress());
   }
-
+  
   return (
     <form className="AddressForm" action="" onSubmit={newAddressSubmit}>
       <div className="newAddress">
         <div className="nameCaontainer">
-          {console.log(address)}
           <div>
             <label htmlFor="name">full name</label>
             <input
@@ -170,7 +161,7 @@ function NewAddress({ newaddress }) {
         </div>
         <input
           type="submit"
-          value="Save and Deliver Here"
+          value={ButtonText}
           className="addAddressButton"
         />
       </div>

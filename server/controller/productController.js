@@ -37,7 +37,7 @@ exports.Product = CatchAsyncError(async (req, res, next) => {
 });
 
 exports.productByCategory = CatchAsyncError(async (req, res, next) => {
-  console.log();
+
   const productByCategory = await productModule
     .find({
       category: req.query.category,

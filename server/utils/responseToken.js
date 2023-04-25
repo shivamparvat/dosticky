@@ -1,4 +1,5 @@
 module.exports = responseToken = (user, code, res) => {
+  if(!user) return
   const token = user.getJwtToken();
   const option = {
     expires: new Date(

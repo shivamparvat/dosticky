@@ -1,11 +1,10 @@
-const ErrorHeandler = require("../utils/errorHeandler");
+const ErrorHeandler = require("../utils/ErrorHeandler");
 
 module.exports = (err, rep, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.message = err.message || "internal servar error";
 
   // mongodb error or cast error
-  console.log(err);
   // Wrong Mongodb Id error
   if (err.name === "CastError") {
     const message = `Resource not found. Invalid: ${err.path}`;
@@ -14,7 +13,7 @@ module.exports = (err, rep, res, next) => {
 
   // Mongoose duplicate key error
   if (err.code === 11000) {
-    const message = `Duplicate ${Object.keys(err.keyValue)} Entered`;
+    const message = `${Object.keys(err.keyValue)} Already Exists`;
     err = new ErrorHeandler(400, message);
   }
 

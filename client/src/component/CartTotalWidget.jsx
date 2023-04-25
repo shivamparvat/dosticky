@@ -3,7 +3,7 @@ import { TbDiscount } from "react-icons/tb";
 import { FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-function CartTotleWidget({cart}) {
+function CartTotalWidget({cart,continueButton,ButtonText}) {
   return (
     <div className="priceDetail">
     <div className="offers">
@@ -33,10 +33,10 @@ function CartTotleWidget({cart}) {
         <div>
           <p>
             <del>
-              ₹{cart.cartTotle && cart.cartTotle.totleOriginalPrice}
+              ₹{cart.cartTotal && cart.cartTotal.TotalOriginalPrice}
             </del>
             <span>
-              ₹{cart.cartTotle && cart.cartTotle.totleDiscountedPrice}
+              ₹{cart.cartTotal && cart.cartTotal.TotalDiscountedPrice}
             </span>
           </p>
           <p>
@@ -53,27 +53,27 @@ function CartTotleWidget({cart}) {
           </div>
           <div>
             <p>
-              <span>₹{cart.cartTotle && cart.cartTotle.tax}</span>
+              <span>₹{cart.cartTotal && cart.cartTotal.tax}</span>
             </p>
             <p>
-              <b>₹{cart.cartTotle && cart.cartTotle.totalPrice}</b>
+              <b>₹{cart.cartTotal && cart.cartTotal.totalPrice}</b>
             </p>
           </div>
         </div>
       </div>
       <div className="continueButtonContainer">
-        <div>
-          <Link to="/checkout" className="continueButton">
-            Continue
-          </Link>
+        <div onClick={continueButton}>
+          <p className="continueButton">
+            {ButtonText}
+          </p>
         </div>
       </div>
       <div className="saveTaxt">
         <p>
           You will save ₹
-          {(cart.cartTotle && cart.cartTotle.totleOriginalPrice) -
-            (cart.cartTotle &&
-              cart.cartTotle.totleDiscountedPrice)}{" "}
+          {(cart.cartTotal && cart.cartTotal.TotalOriginalPrice) -
+            (cart.cartTotal &&
+              cart.cartTotal.TotalDiscountedPrice)}{" "}
           on this order
         </p>
       </div>
@@ -82,4 +82,4 @@ function CartTotleWidget({cart}) {
   )
 }
 
-export default CartTotleWidget
+export default CartTotalWidget

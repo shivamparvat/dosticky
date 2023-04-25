@@ -10,22 +10,26 @@ exports.newAddress = CatchAsyncError(async (req, res, next) => {
     message: "success",
     data,
   });
-  await new Crud(addressModule, req, res, next).create();
 });
 
 exports.getAllAddress = CatchAsyncError(async (req, res, next) => {
-  const data = await addressModule.find({ user: req.user._id });
+  const data = await addressModule
+    .find({ user: req.user._id })
+    .sort({ createdAt: -1 });
+
   if (!data) next(new ErrorHandler(404, "address not found"));
-  data = data;
+
   res.status(201).json({
     message: "success",
     data,
   });
-  return data;
 });
 
 exports.getAddress = CatchAsyncError(async (req, res, next) => {
-  const data = await addressModule.findOne({ _id: req.params.id, user: req.user._id });
+  const data = await addressModule.findOne({
+    _id: req.params.id,
+    user: req.user._id,
+  });
   if (!data) {
     return next(new ErrorHeandler(404, "address not found"));
   }
@@ -36,13 +40,32 @@ exports.getAddress = CatchAsyncError(async (req, res, next) => {
 });
 
 exports.updateAddress = CatchAsyncError(async (req, res, next) => {
-  const address = await addressModule.findOne({ _id: req.params.id, user: req.user._id })
-  if (!address) next(new ErrorHeandler(404, "address not found"));
-  await new Crud(addressModule, req, res, next).update();
+
+  const data = await addressModule.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false,
+    }
+  );
+  if (!data) next(new ErrorHeandler(404,"address not found"));
+  const address = await addressModule
+  .find({ user: req.user._id })
+  .sort({ createdAt: -1 });
+  res.status(201).json({ message: "success", data:address });
 });
 
 exports.deleteAddress = CatchAsyncError(async (req, res, next) => {
-  const address = await addressModule.findOne({ _id: req.params.id, user: req.user._id })
+  const address = await addressModule.findOne({
+    _id: req.params.id,
+    user: req.user._id,
+  });
   if (!address) next(new ErrorHeandler(404, "address not found"));
-  await new Crud(addressModule, req, res, next).delete("address");
+  await address.remove();
+  const data = await addressModule
+    .find({ user: req.user._id })
+    .sort({ createdAt: -1 });
+  res.status(201).json({ message: "success", data });
 });

@@ -3,7 +3,7 @@ const Crud = require("../utils/crud");
 const discountModule = require("../module/discountModule");
 const couponModule = require("../module/couponModule");
 const Apifeature = require("../utils/Apifeatures");
-const ErrorHeandler = require("../utils/errorHeandler");
+const ErrorHeandler = require("../utils/ErrorHeandler");
 
 // copoun
 

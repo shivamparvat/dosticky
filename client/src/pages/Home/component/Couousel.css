@@ -59,6 +59,6 @@
   font-size: 40px;
   padding: 0 10px;
 }
-.curoselDot>div:first-child{
+.curoselDot .active{
   color: var(--primary);
 }

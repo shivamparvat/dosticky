@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MultipleImage from "../../utils/MultipleImage";
 import { useDispatch } from "react-redux";
 import { RxCross1 } from "react-icons/rx";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Product.css";
 import {
   AiOutlineMinus,
@@ -12,24 +12,18 @@ import {
 } from "react-icons/ai";
 import { AddTocart } from "../../redux/actions/cart";
 
+
 function Product({ product, cart, loading }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // finding product in cart
   const cartdataProductChackeIndex =
     typeof cart === String
       ? false
       : cart &&
         cart.items.findIndex(
-          (item) => item.product && item.product._id == product._id
+          (item) => item.product && item.product?._id == product._id
         );
-
-  // const CartQuantity =
-  //   cartdataProductChackeIndex === -1 ||
-  //   cartdataProductChackeIndex === undefined
-  //     ? 1
-  //     : typeof cart === String
-  //     ? false
-  //     : cart && cart.items[cartdataProductChackeIndex].quantity;
 
   const [like, setLike] = useState(false);
   const [size, setSize] = useState("");
@@ -53,8 +47,6 @@ function Product({ product, cart, loading }) {
     );
   }, [cart, onsubmitHeadler]);
 
-
-  // setQuantity(CartQuantity);
   // if radio button change
   function onRadiocheacked(e) {
     setMsg("");
@@ -79,44 +71,55 @@ function Product({ product, cart, loading }) {
   // when add to cart press
   function onsubmitHeadler(e) {
     e.preventDefault();
-    if (!productData) {
+    console.log(productData.quantity === 0);
+    if (productData.quantity === 0) {
       setMsg("please select size");
+    } else {
+      const data = {
+        product: product._id,
+        quantity,
+        size: productData.size,
+      };
+      dispatch(AddTocart(data));
+      setAddToCartAtivate(false);
     }
-    const data = {
-      product: product._id,
-      quantity,
-      size: productData.size,
-    };
-    dispatch(AddTocart(data));
-    setAddToCartAtivate(false);
+  }
+  function OnproductClick() {
+    navigate("/product", {
+      state: { id: product._id, category: product.category[0] },
+    });
   }
 
   return (
     <div className="productCardcontainer">
       <div className="card">
         <div className="productImagecontainer">
-          <MultipleImage images={product.images} />
-          {/* product like */}
-          <div className="ProductLikeCardContener">
-            {like ? (
-              <div className="like" onClick={() => setLike(false)}>
-                <AiFillHeart className="LikeIcone" size={20} />
-              </div>
-            ) : (
-              <div className="unlike" onClick={() => setLike(true)}>
-                <AiOutlineHeart size={20} />
-              </div>
-            )}
-          </div>
+          <Link to={`/product?id=${product._id}&category=${product.category[0]}`}>
+            <MultipleImage images={product.images} />
+            {/* product like */}
+            <div className="ProductLikeCardContener">
+              {like ? (
+                <div className="like" onClick={() => setLike(false)}>
+                  <AiFillHeart className="LikeIcone" size={20} />
+                </div>
+              ) : (
+                <div className="unlike" onClick={() => setLike(true)}>
+                  <AiOutlineHeart size={20} />
+                </div>
+              )}
+            </div>
+          </Link>
         </div>
         {/* product details */}
-        <div className="productNmae">
-          <span>
-            <b>{product.title}</b>
-          </span>
-          <br />
-          <span className="description">{product.description}</span>
-        </div>
+        <Link to={`/product?id=${product._id}&category=${product.category[0]}`}>
+          <div onClick={OnproductClick} className="productNmae">
+            <span>
+              <b>{product.title}</b>
+            </span>
+            <br />
+            <span className="description">{product.description}</span>
+          </div>
+        </Link>
 
         {/* price */}
         <div className="priceCardContainer">
@@ -260,7 +263,7 @@ function Product({ product, cart, loading }) {
                       </div>
                     ) : (
                       <>
-                        {size && (
+                        {product.variants[0].size && (
                           <div className="buyButton">
                             <div
                               className="Minus"

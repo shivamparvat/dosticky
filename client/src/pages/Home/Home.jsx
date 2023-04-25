@@ -8,14 +8,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { AllProductCategory } from "../../redux/actions/product";
 import {CategoryAll } from "../../redux/actions/category";
 import { Getcart } from "../../redux/actions/cart";
+import sticker from "../../assets/sticker.webp";
+import cartempty from "../../assets/cartempty.webp";
 
 
 function Home() {
   const dispatch = useDispatch();
   const category = useSelector((state) => state.category);
-  const product = useSelector((state) => state.product.category);
+  const product = useSelector((state) => state.product?.category);
   const cart = useSelector((state) => state.cart);
-  const categoryList = ["rendom", "marvel", "anime", "love birds"];
+  const categoryList = ["random", "marvel", "anime", "love birds"];
   useEffect(() => {
     dispatch(CategoryAll())
     dispatch(Getcart());
@@ -24,7 +26,7 @@ function Home() {
 
   return (
     <div className="home">
-      <Carousel />
+      <Carousel images={[sticker,cartempty]}/>
       
       <CategotyCard category={category && category.category}/>
       {product &&

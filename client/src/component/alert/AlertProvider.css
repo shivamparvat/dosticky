@@ -1,0 +1,40 @@
+.alrtComponent{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 80px;
+    right: 80px;
+    min-width: 180px;
+    height: 50px;
+    color: white;
+    background-color: var(--primary);
+    border-radius: 10px;
+    z-index: 3;
+    animation: scaleAmin .5s cubic-bezier(0.25, 1.56, 0.98, 0.29) 1 ;
+}
+
+
+.alrtComponent p{
+    text-transform: capitalize;
+    padding: 5px 10px;
+}
+
+.alrtComponent.success{
+    background-color: var(--green);
+}
+
+
+
+@keyframes scaleAmin {
+    0%{
+        scale: .2;
+        color: black;
+        background-color: white;
+    }
+    100%{
+        scale: 1;
+        color: white;
+        background-color: #de2a1680;
+    }
+}

@@ -33,3 +33,8 @@ export const AddCategory = (getdata) => async (dispatch) => {
     });
   }
 };
+
+export const clearErrors = () => async (dispatch) => {
+  dispatch({ type: "clearError" });
+  dispatch({ type: "clearMessage" });
+};

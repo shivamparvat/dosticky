@@ -1,4 +1,4 @@
-const ErrorHeandler = require("../utils/ErrorHeandler");
+const ErrorHeandler = require("./ErrorHeandler");
 const Apifeature = require("./Apifeatures");
 
 class Crud {

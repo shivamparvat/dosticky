@@ -9,11 +9,11 @@ export const cartReducer = createReducer(
     addToCartSuccess: (state, action) => {
       state.loading = false;
       state.cart = action.payload.data;
+      state.cartTotal = action.payload.cartTotal;
       state.message = action.payload.message;
     },
     addToCartFail: (state, action) => {
       state.loading = false;
-      state.cart = action.payload;
       state.error = action.payload.success;
     },
 
@@ -25,6 +25,7 @@ export const cartReducer = createReducer(
     getCartSuccess: (state, action) => {
       state.loading = false;
       state.cart = action.payload.data;
+      state.cartTotal = action.payload.cartTotal;
       state.message = action.payload.message;
     },
     getCartFail: (state, action) => {
@@ -46,16 +47,16 @@ export const cartReducer = createReducer(
       state.message = action.payload.message;
       state.error = action.payload.success;
     },
-    
-    CartTotleRequest: (state) => {
+
+    UpdateCartRequest: (state) => {
       state.loading = true;
     },
-    CartTotleSuccess: (state, action) => {
+    UpdateCartSuccess: (state, action) => {
       state.loading = false;
-      state.cartTotle = action.payload.data;
+      state.cart = action.payload.data;
       state.message = action.payload.message;
     },
-    CartTotleFail: (state, action) => {
+    UpdateCartFail: (state, action) => {
       state.loading = false;
       state.message = action.payload.message;
       state.error = action.payload.success;

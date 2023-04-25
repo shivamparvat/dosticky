@@ -1,50 +1,74 @@
 .profile .detailsCantainer {
-    display: grid;
-    align-items: center;
-    justify-items: start;
-    grid-template-columns: 40% 20% 40%;
-  }
-  
-  .OrderCardCantainer {
-    display: grid;
-    grid-template-columns: 15% 65%;
-    column-gap: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 10px;
-    margin-top: 10px;
-  }
-  
-  .profile .productImage {
-    width: 70px;
-    width: 100px;
-  }
-  .profile .productImage img {
-    object-fit: contain;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .titleCantainer > p {
-    font-size: 16px;
-    margin: 5px;
-    text-transform: capitalize;
-  }
-  .titleCantainer > p:last-child {
-    font-size: 12px;
-    font-weight: 600;
-  }
-  .profile .status {
-    text-transform: capitalize;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .StatusIndicater {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: greenyellow;
-    margin-right: 10px;
-  }
+  display: grid;
+  align-items: center;
+  justify-items: start;
+  grid-template-columns: 40% 20% 40%;
+}
+.OrderCardMainCantainer {
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+.OrderCardCantainer {
+  display: grid;
+  grid-template-columns: 15% 80%;
+  column-gap: 20px;
+  padding: 10px;
+  margin-top: 5px;
+}
+
+.profile .productImage {
+  width: 70px;
+  width: 100px;
+}
+.profile .productImage img {
+  object-fit: cover;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.titleCantainer > p {
+  font-size: 16px;
+  margin: 5px;
+  text-transform: capitalize;
+}
+.titleCantainer > p:last-child {
+  font-size: 12px;
+  font-weight: 600;
+}
+.profile .status {
+  text-transform: capitalize;
+  /* display: flex; */
+  font-size: 14px;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.StatusIndicater {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: greenyellow;
+  margin-right: 10px;
+}
+
+.orderCartaddress {
+  font-size: 12px;
+  padding: 10px;
+  width: 500px;
+}
+.orderCartaddress p {
+  margin: 0;
+}
+.addressCencelorder {
+  display: flex;
+  width: 100%;
+  padding-bottom: 10px;
+}
+.cencelOrder .button{
+  padding: 5px 20px;
+}
+
+.editOrderAddress{
+  margin-left: 20px;
+}

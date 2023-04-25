@@ -40,3 +40,49 @@ export const GetAllAddress = () => async (dispatch) => {
     });
   }
 };
+
+
+export const deleteAddress = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: "DeleteAddressRequest" });
+    const { data } = await axios.delete(
+      `/address/${id}`,
+      {
+        headers: { "Content-Type":'application/json' },
+        withCredentials: true,
+      }
+      );
+    dispatch({ type: "DeleteAddressSuccess", payload: data });
+  } catch (error) {
+    dispatch({
+      type: "DeleteAddressFail",
+      payload: error.response.data,
+    });
+  }
+};
+
+export const updateAddress = (id,getdata) => async (dispatch) => {
+  try {
+    dispatch({ type: "UpdateAddressRequest" });
+    const { data } = await axios.patch(
+      `/address/${id}`,
+      getdata,
+      {
+        headers: { "Content-Type":'application/json' },
+        withCredentials: true,
+      }
+      );
+    dispatch({ type: "UpdateAddressSuccess", payload: data });
+  } catch (error) {
+    dispatch({
+      type: "UpdateAddressFail",
+      payload: error.response.data,
+    });
+  }
+};
+
+
+export const clearErrors = () => async (dispatch) => {
+  dispatch({ type: "clearError" });
+  dispatch({ type: "clearMessage" });
+};

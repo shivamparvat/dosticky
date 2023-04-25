@@ -4,6 +4,7 @@ export const AddTocart = (getdata) => async (dispatch) => {
   try {
     dispatch({ type: "addToCartRequest" });
     
+    
     const { data } = await axios.post(
       `/cart/new`,
       getdata ,
@@ -62,22 +63,28 @@ export const RemoveToCart = (id) => async (dispatch) => {
   }
 };
 
-export const getTotleCartPrice = () => async (dispatch) => {
+export const UpdateCart = (getdata) => async (dispatch) => {
   try {
-    dispatch({ type: "CartTotleRequest" });
+    dispatch({ type: "UpdateCartRequest" });
     
-    const cart = await axios.get(
-      `/cart/totle`,
+    const cart = await axios.patch(
+      `/cart/`,
+      getdata,
       {
         headers: { "Content-Type":'application/json' },
         withCredentials: true,
       }
       );
-    dispatch({ type: "CartTotleSuccess", payload: cart.data });
+    dispatch({ type: "UpdateCartSuccess", payload: cart.data });
   } catch (error) {
     dispatch({
-      type: "CartTotleFail",
+      type: "UpdateCartFail",
       payload: error.response.data,
     });
   }
+};
+
+export const clearErrors = () => async (dispatch) => {
+  dispatch({ type: "clearError" });
+  dispatch({ type: "clearMessage" });
 };

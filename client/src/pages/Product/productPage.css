@@ -1,0 +1,147 @@
+.PageproductContainer {
+  display: flex;
+  margin-top: 50px;
+}
+.PageproductContainer > div {
+  padding: 16px;
+}
+.mainImageContainer {
+  width: 400px;
+  height: 400px;
+}
+
+.subImageContainer {
+  width: 400px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+  margin-top: 20px;
+}
+.subImage {
+  width: 100px;
+  height: 100px;
+}
+.productDetailsContainer{
+    margin-right: 50px;
+    width: 50%;
+}
+.productDetailsContainer .category {
+  font-size: 15px;
+  margin: 0;
+  text-transform: capitalize;
+  font-weight: 600;
+  color: #504f4f;
+}
+.productDetailsContainer .ProductTitle {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 35;
+}
+.discountPercentage .discountConteiner {
+  display: flex;
+  align-items: center;
+}
+.productDetailsContainer .discountIcone {
+  color: var(--green);
+}
+.discountConteiner del,
+.discountConteiner h2 {
+  margin-left: 10px;
+}
+
+.productDetailsContainer .stickerSize label {
+  display: inline-block;
+  width: 70px;
+  height: 25px;
+  border: 2px solid #636262;
+  text-align: center;
+  text-transform: capitalize;
+  margin-right: 10px;
+  border-radius: 4px;
+}
+
+.productDetailsContainer .stickerSize label input[type="radio"] {
+  display: none;
+}
+.productDetailsContainer .stickerSize label:has(input[type="radio"]:checked) {
+  border: 2px solid var(--green);
+  color: var(--green);
+}
+.productDetailsContainer .stickerSize label:has(input[type="radio"]:disabled) {
+  border: 2px solid #ccc;
+  color: #ccc;
+}
+.productDetailsContainer .productDiscription {
+  margin: 30px 0;
+}
+
+.shippingDetails .deliveryTime{
+    align-items: center;
+}
+.shippingDetails .deliveryTime p{
+    margin: 10px 0 0 20px;
+}
+
+
+.PageproductContainer .ProductPricingContainer {
+  width: 500px;
+}
+.deliveryShowContainer.flex,
+.quantity.flex,
+.sizeShowContainer.flex {
+  justify-content: space-around;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+.deliveryShowContainer.flex h4,
+.quantity.flex h4,
+.sizeShowContainer.flex h4{
+    margin: 16px 0;
+}
+
+.deliveryShowContainer.flex{
+    margin-bottom: 20px;
+}
+
+.quantity.flex span{
+    font-size: 14px;
+    color: #696969;
+}
+
+.quantity.flex .buyButton,
+.quantity.flex .buyButton > div {
+  height: 26px;
+}
+
+.feature.product.flex {
+  margin-top: 30px;
+}
+
+.feature.product.flex .imageConteiner{
+  width: 80px;
+  height: 80px;
+}
+.priceAndQunatity.flex{
+  margin-top: 20px;
+  justify-content: space-between;
+}
+.priceAndQunatity.flex p:first-child{
+
+  margin-left: 20px;
+}
+.feature.product.flex .ditails.flex{
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.feature.product.flex .ditails.flex h4{
+    margin: 0 5px 0 20px;
+}
+.feature.product.flex .ditails.flex p{
+    text-align: end !important;
+    margin-right: 30px;
+    margin-top: -5px;
+    display: block;
+}

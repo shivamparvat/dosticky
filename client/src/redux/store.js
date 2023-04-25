@@ -5,6 +5,7 @@ import { useReducer } from "./reducers/userReducer";
 import { discountReducer } from "./reducers/discountReducer";
 import { cartReducer } from "./reducers/cartReducer";
 import { addressReducer } from "./reducers/addressReducer";
+import { orderReducer } from "./reducers/orderReducer";
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     category:categoryReducer,
     discount:discountReducer,
     cart:cartReducer,
-    address:addressReducer
+    address:addressReducer,
+    order:orderReducer
   },
 });
 

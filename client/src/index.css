@@ -1,91 +1,92 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Rubik:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bilbo+Swash+Caps&display=swap');
-:root{
-  --primary:#de2a16;
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bilbo+Swash+Caps&display=swap");
+:root {
+  --primary: #de2a16;
   /* --primary:#ff6300; */
-  --primary_light:#de2a161e;
-  --black:#000;
-  --white:#fff;
-  --white_light:#efeeee;
-  --black_light:#00000025;
-  --shadow:#c2c0c0;
+  --primary_light: #de2a161e;
+  --black: #000;
+  --white: #fff;
+  --white_light: #efeeee;
+  --black_light: #00000025;
+  --green: #429563;
+  --light_green: #24fc24;
+  --shadow: #c2c0c0;
 }
 
 body {
   margin: 0;
-  font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-img{
+img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
 }
 
-main{
+main {
   display: flex;
   justify-content: center;
   width: 100%;
   margin-bottom: 100px;
 }
-main>div{
-  width: 95%; 
+main > div {
+  width: 95%;
 }
 
-::-webkit-scrollbar-track
-{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	background-color: #F5F5F5;
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
 }
 
-::-webkit-scrollbar
-{
-	width: 8px;
+::-webkit-scrollbar {
+  width: 8px;
   height: 0px;
-	background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 
-::-webkit-scrollbar-thumb
-{
-	background-color: #F90;	
-	background-image: -webkit-linear-gradient(45deg,
-	                                          rgba(255, 255, 255, .2) 25%,
-											  transparent 25%,
-											  transparent 50%,
-											  rgba(255, 255, 255, .2) 50%,
-											  rgba(255, 255, 255, .2) 75%,
-											  transparent 75%,
-											  transparent)
+::-webkit-scrollbar-thumb {
+  background-color: #f90;
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.2) 75%,
+    transparent 75%,
+    transparent
+  );
 }
 
-hr{
+hr {
   border: 1px solid #ccc;
   margin: 0 !important;
 }
 
-h2{
+h2 {
   text-transform: capitalize;
 }
-.primary-color{
+.primary-color {
   color: var(--primary);
   font-weight: 700;
 }
-del{
+del {
   color: #7d7b7b;
   margin-right: 2px;
 }
 
-.button{
+.button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,13 +95,30 @@ del{
   background-color: var(--primary_light);
   text-transform: capitalize;
   margin-top: 10px;
+  cursor: pointer;
 }
 
-.button:hover{
+.button:hover {
   background-color: var(--primary);
-  color: #fff;
+  color: #fff !important;
 }
-a{
+.button:hover a {
+  color: #fff !important;
+}
+a {
   text-decoration: none;
   color: black;
+}
+
+.flex{
+  display: flex;
+}
+.gray{
+  color: #ccc;
+}
+
+@media print {
+  .button.print {
+    display: none;
+  }
 }

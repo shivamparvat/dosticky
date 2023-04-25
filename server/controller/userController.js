@@ -12,22 +12,39 @@ const ErrorHeandler = require("../utils/ErrorHeandler");
 // user creation
 exports.newUser = CatchAsyncError(async (req, res, next) => {
   const email = req.body.email;
-  const gender = req.body.gender;
-  console.log(gender)
   req.body.email = email.toLowerCase();
   const user = await userModule.create(req.body);
-  req.user = user;
-  // send response
-  responseToken(user, 201, res);
+  // get token and save
+  const token = await user.emailVerifytoken();
+  await user.save();
+
+  const resetUrl = `http://localhost:3001/emailverify/${token}`;
+  const message = `verify email :-\n\n\n ${resetUrl}\n\n `;
+  try {
+    sendMail({
+      email: user.email,
+      subject: "verify email",
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `email sand to ${user.email} successfully`,
+    });
+    req.user = user;
+  } catch (e) {
+    user.passwordResettoken = undefined;
+    user.resetPassExport = undefined;
+    await user.save();
+    next(new ErrorHandler(500, e.message));
+  }
 });
 
 // // login
 exports.login = CatchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
   // qurey
-  const user = await userModule
-    .findOne({ email: email.toLowerCase() })
-    .select("password");
+  const user = await userModule.findOne({ email: email.toLowerCase() });
   // if uer not found
   if (!user) next(new ErrorHandler(404, "user not found"));
   // password pamperetion
@@ -35,9 +52,14 @@ exports.login = CatchAsyncError(async (req, res, next) => {
   // if password is worng
   if (!isPasswordMatch)
     next(new ErrorHeandler(400, "please enter vaild email and password"));
+
+  // if email not verifind
+  if (!user.isEmailVerified)
+    next(new ErrorHandler(400, "email is not verified"));
+
   req.user = user;
   // sending response
-  responseToken(user, 200, res);
+  // responseToken(user, 200, res);
 });
 
 // // find one your
@@ -74,7 +96,7 @@ exports.updateUser = CatchAsyncError(async (req, res, next) => {
 });
 
 exports.getMe = CatchAsyncError(async (req, res, next) => {
-  const user = req.user
+  const user = req.user;
   responseToken(user, 200, res);
 });
 
@@ -102,7 +124,6 @@ exports.deleteUser = CatchAsyncError(async (req, res, next) => {
 });
 
 exports.logOut = CatchAsyncError(async (req, res, next) => {
-  console.log("hekki")
   req.user = {};
   res
     .status(200)
@@ -241,3 +262,21 @@ exports.imageUpdate = CatchAsyncError(async (req, res, next) => {
   }
 });
 // upload file delete 1234
+
+exports.verifyEmail = CatchAsyncError(async (req, res, next) => {
+  const emailVerifyTokan = crypto
+    .createHash("sha256")
+    .update(req.params.token)
+    .digest("hex");
+
+  const user = await userModule.findOne({
+    emailVerifyTokan,
+  });
+  if (!user)
+    next(new ErrorHandler("varify Token is invalid", 400));
+
+  user.isEmailVerified = true;
+  // user.emailVerifyTokan = undefined;
+  await user.save();
+  responseToken(user, 200, res);
+});

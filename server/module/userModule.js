@@ -34,6 +34,7 @@ const userSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    emailVerifyTokan: String,
     resetPassTokan: String,
     resetPassExport: String,
   },
@@ -61,12 +62,20 @@ userSchema.methods.comperePassword = async function (inPassword) {
 };
 
 userSchema.methods.passwordResettoken = async function () {
+
   const token = crypto.randomBytes(20).toString("hex");
   this.resetPassTokan = crypto.createHash("sha256").update(token).digest("hex");
   // expaire time
   this.resetPassExport =
     Date.now() + parseInt(process.env.PASS_TOKEN_EXPIRE) * 60 * 60 * 1000;
-  console.log(this.resetPassExport);
+  return token;
+};
+
+userSchema.methods.emailVerifytoken = async function () {
+
+  const token = crypto.randomBytes(20).toString("hex");
+  this.emailVerifyTokan = crypto.createHash("sha256").update(token).digest("hex");
+  // expaire time
   return token;
 };
 

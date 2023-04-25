@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { singup } from "../../redux/actions/user";
+import { clearErrors, singup } from "../../redux/actions/user";
+
 import "./auth.css";
+import { AlertContext } from "../../component/alert/AlertProvider";
+
 function Singup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,17 +16,37 @@ function Singup() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const Alert = useContext(AlertContext);
 
-  function SubmitHeadler(e){
+  function SubmitHeadler(e) {
     e.preventDefault();
-    dispatch(singup({ name, email, gender, number, password }));
-  };
+    const data = { name, email, gender, number, password };
+    dispatch(singup(data));
+  }
 
-  const { isAuthenticated } = useSelector((state) => state.user);
+  const { isAuthenticated, error, user, message } = useSelector(
+    (state) => state.user
+  );
+  useEffect(() => {
+    if (error) Alert.setError({ error: "fail", msg: error });
+
+    const timeoutId = setTimeout(() => {
+      setTimeout(dispatch(clearErrors()), 2000);
+    }, 5000);
+
+    return () => clearTimeout(timeoutId);
+  }, [error, message]);
+
+  useEffect(() => {
+    if (message) {
+      Alert.setError({ error: "success", msg: "please check you email" });
+      navigate("/login");
+    }
+  }, [message]);
 
   useEffect(() => {
     const isAuth = isAuthenticated || false;
-    if (isAuth) navigate("/profile");
+    if (isAuth && !user) navigate("/");
   }, [isAuthenticated]);
 
   return (
@@ -41,6 +64,7 @@ function Singup() {
                   type="text"
                   id="name"
                   value={name}
+                  required
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Fullname"
                 />
@@ -53,6 +77,7 @@ function Singup() {
                 <select
                   name="gender"
                   id="gender"
+                  required
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
                 >
@@ -71,6 +96,7 @@ function Singup() {
                 type="email"
                 id="email"
                 value={email}
+                required
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="email"
               />
@@ -84,6 +110,7 @@ function Singup() {
               <input
                 type="text"
                 id="number"
+                required
                 value={number}
                 onChange={(e) => setNumber(e.target.value)}
                 placeholder="Number"
@@ -98,6 +125,7 @@ function Singup() {
                 id="password"
                 type="password"
                 value={password}
+                required
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="password"
               />
@@ -107,6 +135,7 @@ function Singup() {
                 id="conformPassword"
                 type="password"
                 value={conformPassword}
+                required
                 onChange={(e) => setConformPassword(e.target.value)}
                 placeholder="confirm password"
               />
@@ -119,7 +148,7 @@ function Singup() {
             </p>
           </div>
           <div className="singupbutton">
-            <input type="submit" value="login" />
+            <input type="submit" value="registrate" />
           </div>
         </form>
       </div>

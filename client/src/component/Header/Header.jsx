@@ -46,7 +46,7 @@ function Header({ isAuthenticated = false }) {
             <NavLink className="profile icon cart" to="/cart">
               <BsBag size={20} />
               <span>cart</span>
-              {cart && cart.cart && (
+              {cart.cart && cart.cart?.totalItem !== 0 && (
                 <div className="badges">
                   <span>{cart.cart.totalItem}</span>
                 </div>

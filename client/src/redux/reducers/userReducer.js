@@ -5,18 +5,18 @@ export const useReducer = createReducer(
   {
     loginRequest: (state) => {
       state.loading = true;
+      state.isAuthenticated = false;
     },
     loginSuccess: (state, action) => {
       state.loading = false;
       state.isAuthenticated = true;
-      state.user = action.payload;
-      state.message = action.payload.message;
+      state.user = action.payload.user;
+      state.message = action.payload.success;
     },
     loginFail: (state, action) => {
       state.loading = false;
       state.isAuthenticated = false;
-      state.user = action.payload.user;
-      state.error = action.payload.success;
+      state.error = action.payload;
     },
 
     // loaduser if user reload application
@@ -26,8 +26,8 @@ export const useReducer = createReducer(
     loadUserSuccess: (state, action) => {
       state.loading = false;
       state.isAuthenticated = true;
-      state.user = action.payload;
-      state.message = action.payload.message;
+      state.user = action.payload.user;
+      state.message = action.payload.success;
     },
     loadUserFail: (state, action) => {
       state.loading = false;
@@ -46,13 +46,12 @@ export const useReducer = createReducer(
       state.loading = false;
       state.isAuthenticated = true;
       state.user = action.payload;
-      state.message = action.payload.message;
+      state.message = action.payload.success;
     },
     singupUserFail: (state, action) => {
       state.loading = false;
       state.isAuthenticated = false;
-      state.user = action.payload.user;
-      state.error = action.payload.success;
+      state.error = action.payload;
     },
     
     // logout user
@@ -62,11 +61,12 @@ export const useReducer = createReducer(
     logoutSuccess: (state, action) => {
       state.loading = false;
       state.isAuthenticated = false;
-      state.user = action.payload;
-      state.message = action.payload.message;
+      state.user = {};
+      state.message = action.payload.success;
     },
-    logoutFail: (state) => {
+    logoutFail: (state,action) => {
       state.loading = false;
+      state.message = action.payload.message;
     },
 
 

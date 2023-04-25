@@ -11,13 +11,13 @@ function Widget() {
       <div className="wrapper">
         <div className="left">
           <p className="title">user</p>
-          <p className="value">50</p>
+          <p className="value">1590</p>
           <span>see all user</span>
         </div>
         <div className="right">
           <div>
             {true ? <BiChevronUp /> : <BiChevronDown />}
-            <p>10</p>
+            <p>5%</p>
           </div>
           <div><FaUserAlt className="icon" /></div>
         </div>
@@ -25,13 +25,13 @@ function Widget() {
       <div className="wrapper">
         <div className="left">
           <p className="title">order</p>
-          <p className="value">10</p>
-          <span>see all user</span>
+          <p className="value">297</p>
+          <span>see all Order</span>
         </div>
         <div className="right">
           <div>
             {true ? <BiChevronUp /> : <BiChevronDown />}
-            <p>1</p>
+            <p>2%</p>
           </div>
           <div><BsCreditCardFill className="icon" /></div>
         </div>
@@ -40,12 +40,12 @@ function Widget() {
         <div className="left">
           <p className="title">refers</p>
           <p className="value">17</p>
-          <span>see all user</span>
+          <span>see all refers</span>
         </div>
         <div className="right">
           <div>
             {true ? <BiChevronUp /> : <BiChevronDown />}
-            <p>0</p>
+            <p>0%</p>
           </div>
           <div><VscReferences className="icon" /></div>
         </div>
@@ -53,13 +53,13 @@ function Widget() {
       <div className="wrapper">
         <div className="left">
           <p className="title">balance</p>
-          <p className="value">1500</p>
-          <span>see all user</span>
+          <p className="value">155920</p>
+          <span>see balance</span>
         </div>
         <div className="right">
           <div>
             {true ? <BiChevronUp /> : <BiChevronDown />}
-            <p>100</p>
+            <p>1%</p>
           </div>
           <div><MdAccountBalanceWallet className="icon" /></div>
         </div>

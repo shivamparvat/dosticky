@@ -18,19 +18,16 @@ export const productReducer = createReducer(
     },
 
     // loaduser if user reload application
-    oneProductRequest: (state) => {
+    GetOneProductRequest: (state) => {
       state.loading = true;
     },
-    oneProductSuccess: (state, action) => {
+    GetOneProductSuccess: (state, action) => {
       state.loading = false;
-      state.isAuthenticated = true;
-      state.user = action.payload;
+      state.product = action.payload.data;
       state.message = action.payload.message;
     },
-    oneProductFail: (state, action) => {
+    GetOneProductFail: (state, action) => {
       state.loading = false;
-      state.isAuthenticated = false;
-      state.user = action.payload.user;
       state.error = action.payload.success;
     },
 

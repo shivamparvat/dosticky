@@ -8,21 +8,7 @@ const productSchema = new Schema(
     },
     sku: {
       type: String,
-      unique: [true, "SKU Number must be unique"],
-      required: [true, "Stock keeping unit or SKU is Required"],
-    },
-    price: {
-      type: Number,
-      required: [true, "price is require"],
-    },
-    discountprice: {
-      type: Number,
-      required: [true, "price is require"],
-    },
-    quantity: {
-      type: Number,
-      required: [true, "quantity is require"],
-      default: 1,
+      unique: [true, "sku Number must be unique"],
     },
     images: [{ image_id: String, image_url: String }],
     description: {
@@ -34,6 +20,28 @@ const productSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    variants:[{
+      size:{
+        type:String,
+        required:[true,"size is empty"]
+      },
+      discretion:{
+        type:String,
+        required:[true,"discretion is empty"]
+      },
+      quantity:{
+        type:Number,
+        required:[true,"quantity is empty"]
+      },
+      discountprice:{
+        type:Number,
+        required:[true,"discountprice is empty"]
+      },
+      price:{
+        type:Number,
+        required:[true,"price is empty"]
+      }
+    }],
     sellCount: Number,
     likes: String,
     tags: [{ type: String }],

@@ -15,16 +15,21 @@ const ordreSchema = new Schema(
           require: true,
         },
         quantity: { type: Number, default: 1, require: true },
+        size: { type: String, require: true },
       },
     ],
+    orderId: {
+      type: String,
+      require: true,
+    },
     address: {
       type: Schema.Types.ObjectId,
       ref: "address",
       required: [true, "address is require"],
     },
-    price: {
+    totalPrice: {
       type: Number,
-      required: [true, "price is require"],
+      required: [true, "totalPrice is require"],
     },
     status: {
       type: String,
@@ -34,10 +39,18 @@ const ordreSchema = new Schema(
     deliveredAt: {
       type: Date,
     },
-    payment:{
+    tax: {
+      type:Number,
+      required:true
+    },
+    price: {
+      type:Number,
+      required: [true, "price is require"],
+    },
+    payment: {
       type: Schema.Types.ObjectId,
       ref: "payment",
-    }
+    },
   },
   { timestamps: true }
 );

@@ -4,43 +4,44 @@ import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import "./CartProduct.css";
 import MultipleImage from "../../../utils/MultipleImage";
 import { useDispatch } from "react-redux";
-import { AddTocart, RemoveToCart } from "../../../redux/actions/cart";
+import { AddTocart, RemoveToCart, UpdateCart } from "../../../redux/actions/cart";
 
 function CartProduct({ product }) {
   const productData =
     product &&
     product.product.variants.filter((variant) => product.size === variant.size);
 
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(product.quantity);
-  const [valueChane, setValueChane] = useState(false)
-  const [productSize, setProductSize] = useState(product.size)
-     
+  const [valueChane, setValueChane] = useState(false);
+  const [productSize, setProductSize] = useState(product.size);
 
   const data = {
-    product: product.product._id,
-    quantity,
+    product_id: product.product._id,
+    quantity: productSize !== product.size ? 1 : quantity,
     size: productSize,
   };
 
-  function updateCart(e){
+  function updateCart(e) {
     e.preventDefault();
-    dispatch(AddTocart(data))
+    dispatch(UpdateCart(data));
   }
-  function removeCartProduct(e){
+  function removeCartProduct(e) {
     e.preventDefault();
-    window.confirm("remove item")
-    dispatch(RemoveToCart(product.product._id))
+    const conform = window.confirm("remove item");
+    if (conform) {
+      dispatch(RemoveToCart(product.product._id));
+    }
   }
 
   useEffect(() => {
-    if(productSize !== product.size || quantity !== product.quantity){
-      setValueChane(true)
-    }else{
-      setValueChane(false)
+    if (productSize !== product.size || quantity !== product.quantity) {
+      setValueChane(true);
+    } else {
+      setValueChane(false);
     }
-  }, [quantity,productSize])
-  
+  }, [quantity, productSize]);
+
   return (
     <div className="cartMainContainer">
       <div className="cartImgContainer">
@@ -77,7 +78,7 @@ function CartProduct({ product }) {
         </div>
         <div className="options">
           <div className="optionContainer">
-            <select id="type" onChange={e=>setProductSize(e.target.value)}>
+            <select id="type" onChange={(e) => setProductSize(e.target.value)}>
               {product.product &&
                 product.product.variants.map((item) => (
                   <option
@@ -115,8 +116,14 @@ function CartProduct({ product }) {
               </div>
             </div>
           </div>
-          <div className="removeButoon" onClick={removeCartProduct}>Remove</div>
-          {valueChane && <div className="button" onClick={updateCart}>update</div>}
+          <div className="removeButoon" onClick={removeCartProduct}>
+            Remove
+          </div>
+          {valueChane && (
+            <div className="button" onClick={updateCart}>
+              update
+            </div>
+          )}
         </div>
       </div>
     </div>

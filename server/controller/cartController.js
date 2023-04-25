@@ -2,7 +2,7 @@ const { CatchAsyncError } = require("../middleware/catchasyncerror");
 const cartModule = require("../module/cartModule");
 const couponModule = require("../module/couponModule");
 const productModule = require("../module/productModule");
-const ErrorHeandler = require("../utils/errorHeandler");
+const ErrorHeandler = require("../utils/ErrorHeandler");
 const priceTotel = require("../utils/priceTotal");
 
 // create update
@@ -23,53 +23,22 @@ exports.addTocart = CatchAsyncError(async (req, res, next) => {
       model: "product",
     },
   });
-  const data1234 = {
-    _id: { $oid: "6433377d4c2418680bca11eb" },
-    title: "sku",
-    SKU: "1234",
-    quantity: 10,
-    description: "sdg yu ertyu dfgh",
-    category: ["marvel"],
-    customizable: false,
-    tags: ["marvel"],
-    isActive: true,
-    images: [
-      {
-        image_id: "mnchvd9uu0eqpq8djxng",
-        image_url:
-          "https://res.cloudinary.com/dcxiqcp5s/image/upload/v1680363708/mnchvd9uu0eqpq8djxng.webp",
-      },
-    ],
-    variants: [
-      {
-        size: "2*2",
-        discretion: "mobile",
-        quantity: 0,
-        discountprice: 29,
-        price: 49,
-      },
-      {
-        size: "4*4",
-        discretion: "laptop",
-        quantity: 30,
-        discountprice: 39,
-        price: 59,
-      },
-    ],
-  };
-  const variant = data1234.variants.filter((item) => item.size === ProductSize);
+
+  const variant = productdata.variants.filter(
+    (item) => item.size === ProductSize
+  );
 
   if (variant.quantity < quantity) {
     res.status(400).json({
-      message: `only ${data1234.variants[variantIndex].quantity} piece available`,
+      message: `only ${productdata.variants[variantIndex].quantity} piece available`,
     });
   }
   // // if cart not exist
   if (!Cart) {
     // checking quntity accoring size
     const filterProductData =
-      data1234.variants &&
-      data1234.variants.filter((item) => item.size === ProductSize);
+      productdata.variants &&
+      productdata.variants.filter((item) => item.size === ProductSize);
 
     if (filterProductData.length === 0) {
       res.status(400).json({
@@ -93,9 +62,11 @@ exports.addTocart = CatchAsyncError(async (req, res, next) => {
             model: "product",
           },
         });
+        const data = await priceTotel(populateCart);
         res.status(201).json({
           message: "success",
           data: populateCart,
+          cartTotal: data,
         });
       } else {
         res.status(400).json({
@@ -130,9 +101,11 @@ exports.addTocart = CatchAsyncError(async (req, res, next) => {
         model: "product",
       },
     });
+    const data = await priceTotel(populateCart);
     res.status(201).json({
       message: "success",
       data: populateCart,
+      cartTotal: data,
     });
   }
 });
@@ -280,9 +253,11 @@ exports.getCart = CatchAsyncError(async (req, res, next) => {
   });
 
   if (!Cart) return next(new ErrorHeandler(400, "cart is empty"));
+  const data = await priceTotel(Cart);
   res.status(200).json({
     message: "success",
     data: Cart,
+    cartTotal: data,
   });
   ``;
 });
@@ -342,7 +317,7 @@ exports.deleteCartItem = CatchAsyncError(async (req, res, next) => {
   });
 });
 
-exports.totlePrice = CatchAsyncError(async (req, res, next) => {
+exports.TotalPrice = CatchAsyncError(async (req, res, next) => {
   const Cart = await cartModule.findOne({ user: req.user._id }).populate({
     path: "items",
     populate: {
@@ -356,5 +331,45 @@ exports.totlePrice = CatchAsyncError(async (req, res, next) => {
   res.status(200).json({
     message: "success",
     data,
+  });
+});
+
+exports.UpdateCart = CatchAsyncError(async (req, res, next) => {
+  const { product_id, quantity, size } = req.body;
+
+  const productdata = await productModule.findById(product_id);
+  if (!productdata) return next(new ErrorHeandler(404, "product not found"));
+
+  const variant = productdata.variants.filter(
+    (item) => item.size === size
+  );
+
+  if (variant.quantity < quantity) {
+    res.status(400).json({
+      message: `only ${productdata.variants[variantIndex].quantity} piece available`,
+    });
+  }
+
+  const Cart = await cartModule.findOne({ user: req.user._id }).populate({
+    path: "items",
+    populate: {
+      path: "product",
+      model: "product",
+    },
+  });
+
+  if (!Cart) return next(new ErrorHeandler(404, "cart is empty"));
+
+
+  for (let i = 0; i < Cart.items.length; i++) {
+    if (Cart.items[i].product._id == product_id) {
+      Cart.items[i].quantity = quantity;
+      Cart.items[i].size = size;
+    }
+  }
+  Cart.save();
+  res.status(200).json({
+    message: "success",
+    data: Cart,
   });
 });

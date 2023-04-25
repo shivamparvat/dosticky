@@ -4,10 +4,9 @@ const discountModule = require("../module/discountModule");
 module.exports = async (Cart) => {
   const dataItem = Cart.items;
   if (dataItem != undefined) {
-    let totleDiscountedPrice = 0,
+    let TotalDiscountedPrice = 0,
       totalPrice = 0,
-      quantity = 0,
-      totleOriginalPrice = 0;
+      TotalOriginalPrice = 0;
     tax = 0;
     for (let i = 0; i < dataItem.length; i++) {
       const productData = { ...dataItem[i].product };
@@ -16,16 +15,17 @@ module.exports = async (Cart) => {
         if (dataItem[i].size === variantsData[j].size) {
           const productPrice = variantsData[j].price;
           const productDiscountprice = variantsData[j].discountprice;
+          let quantity =0
           quantity += dataItem[i].quantity;
-          totleOriginalPrice += quantity * productPrice;
-          totleDiscountedPrice += productDiscountprice * quantity;
+          TotalOriginalPrice += quantity * productPrice;
+          TotalDiscountedPrice += productDiscountprice * quantity;
         }
       }
     }
-    tax = Math.ceil(totleDiscountedPrice * 0.18);
-    totalPrice = tax + totleDiscountedPrice;
+    tax = Math.ceil(TotalDiscountedPrice * 0.18);
+    totalPrice = tax + TotalDiscountedPrice;
 
-    //   totalPrice = totleOriginalPrice;
+    //   totalPrice = TotalOriginalPrice;
     //   // find discount percentage
     //   const discountdata = await discountModule
     //     .find({ quantity: { $lte: quantity } })
@@ -55,6 +55,6 @@ module.exports = async (Cart) => {
     //     }
     //   }
     //   // tax
-    return { totleOriginalPrice, totleDiscountedPrice, tax, totalPrice };
+    return { TotalOriginalPrice, TotalDiscountedPrice, tax, totalPrice };
   }
 };

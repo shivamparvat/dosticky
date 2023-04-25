@@ -23,6 +23,7 @@ const sendEmail = async (options) => {
       console.log("email sended")
     }
   });
+  
 };
 
 module.exports = sendEmail;

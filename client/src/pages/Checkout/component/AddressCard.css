@@ -1,4 +1,4 @@
-.listAddreass label{
+.listAddreass label.radioAddresss{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +18,6 @@
 }
 .listAddreass .nameNumberContainer{
     display: flex;
-    width: 250px;
     justify-content: space-between;
     margin-bottom: 10px;
 }
@@ -27,7 +26,7 @@
     font-weight: 600;
 }
 
-.listAddreass label:hover{
+.listAddreass label.radioAddresss:hover{
     background-color: var(--primary_light);
 }
 .AddAddressButton{
@@ -46,4 +45,8 @@
     border-radius: 8px;
     background-color: #cccccc73;
     cursor:  pointer;
+}
+
+.addressDetail {
+    min-width: 400px;
 }

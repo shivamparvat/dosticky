@@ -18,7 +18,7 @@ const addressSchema = new Schema({
   alternate_number: {
     type: String,
   },
-  Street: {
+  street: {
     type: String,
     require: [true, "Street is empty"],
   },
