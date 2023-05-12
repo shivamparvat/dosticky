@@ -16,7 +16,7 @@ function Login() {
 
   function SubmitHeadler(e) {
     e.preventDefault();
-    const getdata = { email, password };
+    const getdata = { email, password }
     dispatch(login(getdata));
   }
   useEffect(() => {
@@ -38,7 +38,6 @@ function Login() {
             <input
               type="email"
               value={email}
-              required
               onChange={(e) => setEmail(e.target.value)}
               placeholder="email"
             />
@@ -48,7 +47,6 @@ function Login() {
             <label htmlFor="password">Password</label>
             <input
               type="password"
-              required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="password"

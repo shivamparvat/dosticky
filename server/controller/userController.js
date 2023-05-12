@@ -13,8 +13,10 @@ const ErrorHeandler = require("../utils/ErrorHeandler");
 exports.newUser = CatchAsyncError(async (req, res, next) => {
   const email = req.body.email;
   req.body.email = email.toLowerCase();
+  console.log("user");
   const user = await userModule.create(req.body);
   // get token and save
+  console.log("user");
   const token = await user.emailVerifytoken();
   await user.save();
 
@@ -32,6 +34,7 @@ exports.newUser = CatchAsyncError(async (req, res, next) => {
       message: `email sand to ${user.email} successfully`,
     });
     req.user = user;
+    console.log(message);
   } catch (e) {
     user.passwordResettoken = undefined;
     user.resetPassExport = undefined;
@@ -272,8 +275,7 @@ exports.verifyEmail = CatchAsyncError(async (req, res, next) => {
   const user = await userModule.findOne({
     emailVerifyTokan,
   });
-  if (!user)
-    next(new ErrorHandler("varify Token is invalid", 400));
+  if (!user) next(new ErrorHandler("varify Token is invalid", 400));
 
   user.isEmailVerified = true;
   // user.emailVerifyTokan = undefined;
