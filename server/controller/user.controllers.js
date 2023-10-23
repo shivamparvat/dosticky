@@ -1,4 +1,6 @@
-const { CatchAsyncError } = require("../middleware/catchasyncerror");
+const {
+  CatchAsyncError,
+} = require("../middleware/catchasyncerror.middlewares");
 const userModule = require("../module/userModule");
 const cloudinary = require("cloudinary");
 const crypto = require("crypto");
@@ -46,6 +48,7 @@ exports.newUser = CatchAsyncError(async (req, res, next) => {
 // // login
 exports.login = CatchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
+
   // qurey
   const user = await userModule.findOne({ email: email.toLowerCase() });
   // if uer not found
@@ -54,15 +57,15 @@ exports.login = CatchAsyncError(async (req, res, next) => {
   const isPasswordMatch = await user.comperePassword(password);
   // if password is worng
   if (!isPasswordMatch)
-    next(new ErrorHeandler(400, "please enter vaild email and password"));
+  next(new ErrorHeandler(400, "please enter vaild email and password"));
 
-  // if email not verifind
-  if (!user.isEmailVerified)
-    next(new ErrorHandler(400, "email is not verified"));
+// if email not verifind
+if (!user.isEmailVerified)
+next(new ErrorHandler(400, "email is not verified"));
 
-  req.user = user;
+req.user = user;
   // sending response
-  // responseToken(user, 200, res);
+  responseToken(user, 200, res);
 });
 
 // // find one your

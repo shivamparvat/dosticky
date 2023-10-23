@@ -13,6 +13,7 @@ module.exports = (err, rep, res, next) => {
 
   // Mongoose duplicate key error
   if (err.code === 11000) {
+    console.log(err)
     const message = `${Object.keys(err.keyValue)} Already Exists`;
     err = new ErrorHeandler(400, message);
   }

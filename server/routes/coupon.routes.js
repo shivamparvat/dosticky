@@ -6,8 +6,8 @@ const {
   updateCoupon,
   deleteCoupon,
   getAllCoupon,
-} = require("../controller/discountCouponController");
-const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
+} = require("../controller/discountCoupon.controllers");
+const { isAuthUser, isRoleIsValid } = require("../middleware/auth.middlewares");
 
 couponRoute.route("/new").post(isAuthUser, isRoleIsValid("admin", "editor", "coeditor"), newCoupon);
 couponRoute.route("/").get(isAuthUser, isRoleIsValid("admin", "editor", "coeditor"), getAllCoupon);

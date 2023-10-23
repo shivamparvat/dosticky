@@ -16,8 +16,8 @@ function Login() {
 
   function SubmitHeadler(e) {
     e.preventDefault();
-    const getdata = { email, password }
-    dispatch(login(getdata));
+    console.log(email, password); 
+    dispatch(login({ email, password }));
   }
   useEffect(() => {
     const isAuth = isAuthenticated || false;
@@ -34,9 +34,10 @@ function Login() {
         </div>
         <form action="" onSubmit={SubmitHeadler}>
           <div className="emailCaontainer">
-            <label htmlFor="email">Email</label>
+            <label  htmlFor="email">Email</label>
             <input
               type="email"
+              className="emaillogin"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="email"
@@ -47,6 +48,7 @@ function Login() {
             <label htmlFor="password">Password</label>
             <input
               type="password"
+              className="passwordlogin"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="password"
@@ -95,6 +97,7 @@ function Login() {
               </p>
             )}
           </div>
+          {console.log("hk")}
           <div className="loginbutton">
             <input type="submit" value="login" />
           </div>
@@ -105,3 +108,4 @@ function Login() {
 }
 
 export default Login;
+

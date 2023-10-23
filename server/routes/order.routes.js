@@ -8,8 +8,8 @@ const {
   updateOrderAddress,
   updateOrderStatusAdmin,
   getOrderAdmin,
-} = require("../controller/orderController");
-const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
+} = require("../controller/order.controllers");
+const { isAuthUser, isRoleIsValid } = require("../middleware/auth.middlewares");
 const orderRoute = express.Router();
 
 // new order

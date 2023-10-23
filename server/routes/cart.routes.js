@@ -1,7 +1,7 @@
 const express = require("express");
 const cartRoute = express.Router();
-const {addTocart, getCart, addCoupon, deleteCartItem, bulkProductsCart, TotalPrice, UpdateCart} = require("../controller/cartController");
-const { isAuthUser } = require("../middleware/auth");
+const {addTocart, getCart, addCoupon, deleteCartItem, bulkProductsCart, TotalPrice, UpdateCart} = require("../controller/cart.controllers");
+const { isAuthUser } = require("../middleware/auth.middlewares");
 
 
 cartRoute.route("/new").post(isAuthUser,addTocart)

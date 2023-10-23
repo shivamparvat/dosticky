@@ -13,8 +13,8 @@ const {
   changePassword,
   getMe,
   verifyEmail,
-} = require("../controller/userController");
-const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
+} = require("../controller/user.controllers");
+const { isAuthUser, isRoleIsValid } = require("../middleware/auth.middlewares");
 
 loginRouter.route("/new").post(newUser);
 loginRouter.route("/login").post(login);

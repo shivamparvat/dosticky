@@ -6,44 +6,50 @@ const productSchema = new Schema(
       type: String,
       required: [true, "title is Empty"],
     },
-    sku: {
+    skuid: {
       type: String,
-      unique: [true, "sku Number must be unique"],
+      // unique: [true, "sku Number must be unique"],
     },
     images: [{ image_id: String, image_url: String }],
     description: {
       type: String,
       required: [true, "description is require"],
     },
-    category: [{ type: String, default:"rendom" }],
+    category: [{ type: String, default: "rendom" }],
     customizable: {
       type: Boolean,
       default: false,
     },
-    variants:[{
-      size:{
-        type:String,
-        required:[true,"size is empty"]
+    description: {
+      type: String,
+      required: [true, "description is empty"],
+    },
+    variants: [
+      {
+        size: {
+          type: String,
+          required: [true, "size is empty"],
+        },
+        quantity: {
+          type: Number,
+          required: [true, "quantity is empty"],
+        },
+        discountprice: {
+          type: Number,
+          required: [true, "discountprice is empty"],
+        },
+        price: {
+          type: Number,
+          required: [true, "price is empty"],
+        },
       },
-      discretion:{
-        type:String,
-        required:[true,"discretion is empty"]
-      },
-      quantity:{
-        type:Number,
-        required:[true,"quantity is empty"]
-      },
-      discountprice:{
-        type:Number,
-        required:[true,"discountprice is empty"]
-      },
-      price:{
-        type:Number,
-        required:[true,"price is empty"]
-      }
-    }],
+    ],
     sellCount: Number,
     likes: String,
+    totallike: {
+      type: Number,
+      default: 0,
+    },
     tags: [{ type: String }],
     isActive: {
       type: Boolean,

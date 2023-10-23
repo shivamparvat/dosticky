@@ -6,9 +6,9 @@ const {
   updateCategory,
   categoryByName,
   deleteCategory,
-} = require("../controller/categoryController");
-const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
-const { singleUpload } = require("../middleware/multer");
+} = require("../controller/category.controllers");
+const { isAuthUser, isRoleIsValid } = require("../middleware/auth.middlewares");
+const { singleUpload } = require("../middleware/multer.middlewares");
 
 categoryRouter.route("/new").post(singleUpload ,isAuthUser,isRoleIsValid("admin", "editor"), newCategory)//done
 categoryRouter.route("/").get(categoryByName)//done

@@ -1,4 +1,4 @@
-const { CatchAsyncError } = require("../middleware/catchasyncerror");
+const { CatchAsyncError } = require("../middleware/catchasyncerror.middlewares");
 const Razorpay = require("razorpay");
 const paymentModule = require("../module/paymentModule");
 const crypto = require("crypto");

@@ -1,4 +1,4 @@
-const { CatchAsyncError } = require("../middleware/catchasyncerror");
+const { CatchAsyncError } = require("../middleware/catchasyncerror.middlewares");
 const cartModule = require("../module/cartModule");
 const couponModule = require("../module/couponModule");
 const productModule = require("../module/productModule");

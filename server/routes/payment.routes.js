@@ -3,8 +3,8 @@ const {
   createPaymentOrder,
   paymentVerification,
   PaymentSuccess,
-} = require("../controller/paymentContollrer");
-const { isAuthUser } = require("../middleware/auth");
+} = require("../controller/payment.controllers");
+const { isAuthUser } = require("../middleware/auth.middlewares");
 
 const paymentRoute = express.Router();
 paymentRoute.route("/new").post(isAuthUser, createPaymentOrder);

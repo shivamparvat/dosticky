@@ -35,15 +35,15 @@ class Crud {
 
   async chackUnique(item) {
     const data = await this.module.findOne(item);
-    if (!data) {
-      this.res.status(200).json({
-        message: "success",
-        unique: true,
-      });
-    } else {
+    if (data) {
       this.res.status(200).json({
         message: "this isn't unique",
         unique: false,
+      });
+    } else {
+      this.res.status(200).json({
+        message: "success",
+        unique: true,
       });
     }
   }

@@ -6,8 +6,8 @@ const {
   updateAddress,
   deleteAddress,
   getAllAddress,
-} = require("../controller/addressController");
-const { isAuthUser } = require("../middleware/auth");
+} = require("../controller/address.controllers");
+const { isAuthUser } = require("../middleware/auth.middlewares");
 
 
 addressRoute.route("/new").post(isAuthUser,newAddress);

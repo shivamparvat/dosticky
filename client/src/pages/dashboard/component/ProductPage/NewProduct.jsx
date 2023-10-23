@@ -6,17 +6,25 @@ import { CategoryAll } from "../../../../redux/actions/category";
 import { getAllDiscount } from "../../../../redux/actions/discount";
 import { AddProductCategory } from "../../../../redux/actions/product";
 import axios from "axios";
+import { throttle } from "../../../../utils/throttle";
 
 const NewProduct = () => {
   const [category, setCategory] = useState([]);
   const [tags, setTags] = useState([]);
   const [title, setTitle] = useState("");
   const [sku, setSku] = useState("");
-  const [price, setPrice] = useState("");
-  const [discountprice, setDiscountprice] = useState("");
-  const [quantity, setQuantity] = useState(1);
-  const [images, setImages] = useState([]);
+
+  const [variants, setVariants] = useState([
+    {
+      size: "",
+      price: 0,
+      discountprice: 0,
+      quantity: 1,
+    },
+  ]);
+
   const [description, setDescription] = useState("");
+  const [images, setImages] = useState([]);
   const [customizable, setCustomizable] = useState(false);
   const [skuIsUnique, setSkuIsUnique] = useState(false);
   // const [msg, setMsg] = useState("");
@@ -40,21 +48,26 @@ const NewProduct = () => {
   function onsubmitHeadler(e) {
     e.preventDefault();
     if (!skuIsUnique) return;
-    const categoryarray = category.map((item) => item.value);
-    const tagarray = tags.map((item) => item.value);
 
-    const data = new FormData();
-    data.append("title", title);
-    data.append("SKU", sku);
-    data.append("price", price);
-    data.append("discountprice", discountprice);
-    data.append("quantity", quantity);
-    data.append("files[]", images);
-    data.append("description", description);
-    data.append("category[]", categoryarray);
-    data.append("customizable", customizable);
-    data.append("tags[]", tagarray);
-    dispatch(AddProductCategory(data));
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("skuid", sku);
+    variants.forEach((variant, index) => {
+      formData.append(`variants[${index}][size]`, variant.size);
+      formData.append(`variants[${index}][price]`, variant.price);
+      formData.append(
+        `variants[${index}][discountprice]`,
+        variant.discountprice
+      );
+      formData.append(`variants[${index}][quantity]`, variant.quantity);
+    });
+    // variants.forEach((variant) => formData.append("variants", variant));
+    Object.values(images).forEach((image) => formData.append("files", image));
+    formData.append("description", description);
+    formData.append("customizable", customizable);
+    category.forEach((item) => formData.append("category", item.value));
+    tags.forEach((item) => formData.append("tags", item.value));
+    dispatch(AddProductCategory(formData));
   }
   // if (loading) {
   //   setCategory([]);
@@ -71,26 +84,22 @@ const NewProduct = () => {
 
   function skuheadler(e) {
     setSku(e.target.value);
-    const skuValue = e.target.value;
-    if (skuValue.trim().length >= 1) {
-      setTimeout(async () => {
-        const { data } = await axios.post(
-          `/product/chack?SKU=${skuValue}`,
-          {},
-          {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true,
-          }
-        );
-        setSkuIsUnique(data.unique);
-      }, 500);
-    }
+    throttle(async function SkuChecker() {
+      const { data } = await axios.post(
+        `/product/chack?sku=${e.target.value}`,
+        {},
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      setSkuIsUnique(data.unique);
+    }, 300)();
   }
 
   return (
     <div className="newPostmainCantainer">
       <p>new Product</p>
-      {console.log(loading)}
       {loading ? (
         "loading....."
       ) : (
@@ -111,35 +120,6 @@ const NewProduct = () => {
                 <p></p>
               </div>
             </div>
-            <div className="sku price">
-              <div className="priceCantainer">
-                <label htmlFor="price">price</label>
-                <input
-                  type="text"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                  required
-                  placeholder="price"
-                  className="price"
-                  autoComplete="price"
-                />
-                <div className="msg"></div>
-              </div>
-              <div className="priceCantainer">
-                <label htmlFor="discountPrice">discount Price</label>
-                <input
-                  type="text"
-                  value={discountprice}
-                  onChange={(e) => setDiscountprice(e.target.value)}
-                  required
-                  placeholder="discount price"
-                  autoComplete="discountPrice"
-                />
-                <div className="msg">
-                  <p></p>
-                </div>
-              </div>
-            </div>
             <div className="quantity category">
               <div className="skuCantainer">
                 <label htmlFor="sku">sku</label>
@@ -156,17 +136,16 @@ const NewProduct = () => {
                   {!skuIsUnique && <p>please select unique sku id</p>}
                 </div>
               </div>
-              <div className="quantityCantainer">
-                <label htmlFor="quantity">quantity</label>
+              <div className="customizableCantainer">
                 <input
-                  type="number"
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
-                  required
-                  placeholder="quantity"
-                  className="quantity"
-                  autoComplete="quantity"
+                  type="checkbox"
+                  value={customizable}
+                  onChange={(e) => setCustomizable(e.target.value)}
+                  placeholder="customizable"
+                  className="customizable"
+                  autoComplete="customizable"
                 />
+                <label htmlFor="customizable">customizable</label>
                 <div className="msg">
                   <p></p>
                 </div>
@@ -206,22 +185,6 @@ const NewProduct = () => {
             </div>
 
             <div className="customizable tags">
-              <div className="customizableCantainer">
-                <input
-                  type="checkbox"
-                  required
-                  value={customizable}
-                  onChange={(e) => setCustomizable(e.target.value)}
-                  placeholder="customizable"
-                  className="customizable"
-                  autoComplete="customizable"
-                />
-                <label htmlFor="customizable">customizable</label>
-                <div className="msg">
-                  <p></p>
-                </div>
-              </div>
-
               <div className="categoryCantainer">
                 <label htmlFor="category">category</label>
                 <MultiSelect
@@ -248,6 +211,118 @@ const NewProduct = () => {
               </div>
             </div>
           </div>
+
+          <div className="newButton">
+            <input
+              type="button"
+              onClick={() =>
+                setVariants((pre) => {
+                  const variant = [...pre];
+                  variant.push({
+                    size: "",
+                    price: "",
+                    discountprice: "",
+                    quantity: 1,
+                  });
+                  return variant;
+                })
+              }
+              className="Add Variants"
+              value="Add Variants"
+            />
+          </div>
+          {variants.map((data, index) => {
+            return (
+              <div className="variants">
+                <div className="sku price">
+                  <div className="priceCantainer">
+                    <label htmlFor="price">price</label>
+                    <input
+                      type="number"
+                      value={data.price}
+                      onChange={(e) =>
+                        setVariants((pre) => {
+                          const variant = [...pre];
+                          variant[index].price = e.target.value;
+                          return variant;
+                        })
+                      }
+                      required
+                      placeholder="price"
+                      className="price"
+                      autoComplete="price"
+                    />
+                    <div className="msg"></div>
+                  </div>
+                  <div className="priceCantainer">
+                    <label htmlFor="discountPrice">discount Price</label>
+                    <input
+                      type="number"
+                      value={data.discountprice}
+                      onChange={(e) =>
+                        setVariants((pre) => {
+                          const variant = [...pre];
+                          variant[index].discountprice = e.target.value;
+                          return variant;
+                        })
+                      }
+                      required
+                      placeholder="discount price"
+                      autoComplete="discountPrice"
+                    />
+                    <div className="msg">
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+                <div className="sku price size quantity">
+                  <div className="quantityCantainer">
+                    <label htmlFor="quantity">quantity</label>
+                    <input
+                      type="number"
+                      value={data.quantity}
+                      onChange={(e) =>
+                        setVariants((pre) => {
+                          const variant = [...pre];
+                          variant[index].quantity = e.target.value;
+                          return variant;
+                        })
+                      }
+                      required
+                      placeholder="quantity"
+                      className="quantity"
+                      autoComplete="quantity"
+                    />
+                    <div className="msg">
+                      <p></p>
+                    </div>
+                  </div>
+                  <div className="quantityCantainer">
+                    <label htmlFor="quantity">Size</label>
+                    <input
+                      type="text"
+                      value={data.size}
+                      onChange={(e) =>
+                        setVariants((pre) => {
+                          const variant = [...pre];
+                          variant[index].size = e.target.value;
+                          return variant;
+                        })
+                      }
+                      required
+                      placeholder="Size"
+                      className="Size"
+                      autoComplete="Size"
+                    />
+                    <div className="msg">
+                      <p></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+
           <div className="newButton">
             <input type="submit" value="Add" />
           </div>

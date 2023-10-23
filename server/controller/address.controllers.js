@@ -1,4 +1,4 @@
-const { CatchAsyncError } = require("../middleware/catchasyncerror");
+const { CatchAsyncError } = require("../middleware/catchasyncerror.middlewares");
 const Crud = require("../utils/crud");
 const addressModule = require("../module/addressModule");
 const ErrorHeandler = require("../utils/ErrorHeandler");

@@ -2,7 +2,8 @@ import axios from "axios";
 
 export const AddNewAddress = (getdata) => async (dispatch) => {
   try {
-    dispatch({ type: "AddAddressRequest" });
+    
+    
     
     const { data } = await axios.post(
       `/address/new`,

@@ -13,9 +13,9 @@ function ProfileLayout() {
 
   useEffect(() => {
     const isAuth = isAuthenticated || false;
-    if (!isAuth) {
-      navigate("/login");
-    }
+    // if (!isAuth) {
+    //   navigate("/login");
+    // }
   }, [isAuthenticated]);
 
   function logoutButton() {

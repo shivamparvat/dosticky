@@ -1,4 +1,6 @@
-const { CatchAsyncError } = require("../middleware/catchasyncerror");
+const {
+  CatchAsyncError,
+} = require("../middleware/catchasyncerror.middlewares");
 const productModule = require("../module/productModule");
 const Crud = require("../utils/crud");
 const getDataUri = require("../utils/dataUri");
@@ -11,10 +13,12 @@ const ErrorHeandler = require("../utils/ErrorHeandler");
 
 exports.Product = CatchAsyncError(async (req, res, next) => {
   // create product
+  console.log(req.body.variants)
 
   const product = await productModule.create(req.body);
   const files = req.files;
-  let myCloud;
+  // console.log(req.files)
+  // let myCloud;
   const fileUriList = [];
   for (let i = 0; i < files.length; i++) {
     // convert buffer data to datauri
@@ -37,7 +41,6 @@ exports.Product = CatchAsyncError(async (req, res, next) => {
 });
 
 exports.productByCategory = CatchAsyncError(async (req, res, next) => {
-
   const productByCategory = await productModule
     .find({
       category: req.query.category,
@@ -56,9 +59,11 @@ exports.getProduct = CatchAsyncError(async (req, res, next) => {
 });
 
 exports.chackSku = CatchAsyncError(async (req, res, next) => {
-  if (!req.query.sku) next(new ErrorHeandler(400, "sku velue is Empty"));
+  if (!req.query.sku)
+    res.status(200).json({ message: "this isn't unique", unique: false });
+  
   await new Crud(productModule, req, res, next).chackUnique({
-    sku: req.query.sku,
+    skuid: req.query.sku,
   });
 });
 

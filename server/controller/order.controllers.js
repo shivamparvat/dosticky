@@ -1,5 +1,5 @@
 const { query } = require("express");
-const { CatchAsyncError } = require("../middleware/catchasyncerror");
+const { CatchAsyncError } = require("../middleware/catchasyncerror.middlewares");
 const cartModule = require("../module/cartModule");
 const orderModule = require("../module/orderModule");
 const productModule = require("../module/productModule");

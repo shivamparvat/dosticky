@@ -12,9 +12,9 @@ const {
   categorySearchUser,
   likeProduct,
   productByCategory,
-} = require("../controller/productController");
-const { isAuthUser, isRoleIsValid } = require("../middleware/auth");
-const { multipleUpload } = require("../middleware/multer");
+} = require("../controller/product.controllers");
+const { isAuthUser, isRoleIsValid } = require("../middleware/auth.middlewares");
+const { multipleUpload } = require("../middleware/multer.middlewares");
 
 // new product
 productRouter.route("/new").post(multipleUpload,isAuthUser,isRoleIsValid("admin", "editor", "coeditor"), Product); //done
