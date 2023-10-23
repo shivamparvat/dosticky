@@ -1,4 +1,4 @@
-const ErrorHeandler = require("../utils/ErrorHeandler");
+const ErrorHeandler = require("../utils/ErrorHeandler.js");
 
 module.exports = (err, rep, res, next) => {
   err.statusCode = err.statusCode || 500;
