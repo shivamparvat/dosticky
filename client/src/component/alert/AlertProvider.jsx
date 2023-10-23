@@ -14,6 +14,7 @@ function AlertProvider({ children }) {
     return () => clearTimeout(timeoutId);
   }, [error]);
 
+  console.log("dsfhd")
 
   return (
     <div>

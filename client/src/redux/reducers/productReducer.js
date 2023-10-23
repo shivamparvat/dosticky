@@ -1,14 +1,14 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 export const productReducer = createReducer(
-  {},
+  { successProduct: false },
   {
     categoryAllProductsRequest: (state) => {
       state.loading = true;
     },
     categoryAllProductsSuccess: (state, action) => {
       state.loading = false;
-      state.category = {...state.category,...action.payload};
+      state.category = { ...state.category, ...action.payload };
       state.message = action.payload.message;
     },
     categoryAllProductsFail: (state, action) => {
@@ -34,18 +34,21 @@ export const productReducer = createReducer(
     // singup user
     addProductRequest: (state) => {
       state.loading = true;
+      state.successProduct = false;
     },
     addProductSuccess: (state, action) => {
       state.loading = false;
-      state.product = action.payload;
       state.message = action.payload.message;
+      state.successProduct = true;
     },
     addProductFail: (state, action) => {
       state.loading = false;
-      state.product = action.payload.user;
       state.error = action.payload.success;
     },
 
+    clearSuccess: (state) => {
+      state.successProduct = null;
+    },
     clearError: (state) => {
       state.error = null;
     },

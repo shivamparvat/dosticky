@@ -36,7 +36,7 @@ exports.Product = CatchAsyncError(async (req, res, next) => {
   // responce
   res.status(201).json({
     success: true,
-    data: product,
+    message:"product added"
   });
 });
 

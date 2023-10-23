@@ -19,11 +19,11 @@ export const AllProductCategory = (category) => async (dispatch) => {
 export const AddProductCategory = (getdata) => async (dispatch) => {
   try {
     dispatch({ type: "addProductRequest" });
-    const { data } = await axios.post(`/product/new`, getdata, {
+    const { message } = await axios.post(`/product/new`, getdata, {
       headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true,
     });
-    dispatch({ type: "addProductSuccess", payload: data });
+    dispatch({ type: "addProductSuccess", payload: message });
   } catch (error) {
     dispatch({
       type: "addProductFail",

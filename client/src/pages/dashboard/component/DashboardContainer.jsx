@@ -2,7 +2,7 @@ import "../DeshboardCaintaint.css";
 import Widget from "./DeshboardCaintaint/Widget";
 import Chart from "./DeshboardCaintaint/Chart";
 
-function DeshboardCaintaint() {
+function DashboardContainer() {
   return (
     <div className="DeshboardCaintaint">
       <Widget />
@@ -20,4 +20,4 @@ function DeshboardCaintaint() {
   );
 }
 
-export default DeshboardCaintaint;
+export default DashboardContainer;

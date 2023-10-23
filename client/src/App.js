@@ -24,7 +24,12 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Paymentsuccess from "./pages/paymentsuccess/Paymentsuccess";
 import OrderCard from "./pages/Profile/conponent/OrderCard";
 import Address from "./pages/Profile/conponent/Address";
-import Varifyemail from "./pages/Auth/Varifyemail" 
+import Varifyemail from "./pages/Auth/Varifyemail";
+import UserListTable from "./pages/dashboard/component/UserListTable";
+import DashboardContainer from "./pages/dashboard/component/DashboardContainer";
+import ProductPage from "./pages/dashboard/component/ProductPage";
+import CategoryPage from "./pages/dashboard/component/CategoryPage";
+import Discount from "./pages/dashboard/component/Discount";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -37,22 +42,34 @@ const router = createBrowserRouter(
       <Route path="/product" element={<Product />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/singup" element={<Singup />} />
-      <Route path="/emailverify/:token" element={<Varifyemail/>} />
+      <Route path="/emailverify/:token" element={<Varifyemail />} />
       <Route path="/login" element={<Login />} />
       <Route path="/recovery" element={<RecoveryPass />} />
       <Route path="/paymentsuccess" element={<Paymentsuccess />} />
       <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/profile" element={<ProfileLayout/>}>
+      <Route path="/profile" element={<ProfileLayout />}>
         <Route index element={<OrderCard />} />
-        <Route path="address" element={<Address/>} />
+        <Route path="address" element={<Address />} />
         <Route path="personal" element={<>personal</>} />
         <Route path="refere" element={<>refere</>} />
         <Route path="notification" element={<>notification</>} />
       </Route>
+      <Route path="/dashboard" element={<Dashboard />}>
+        <Route index element={<DashboardContainer />} />
+        <Route path="user" element={<UserListTable />} />
+        <Route path="product" element={<ProductPage />} />
+        <Route path="category" element={<CategoryPage />} />
+        <Route path="order" element={<Order />} />
+        <Route path="discount" element={<Discount />} />
+        <Route path="shipped" element={<Address />} />
+        <Route path="message" element={<Address />} />
+        <Route path="settings" element={<Address />} />
+        <Route path="profile" element={<Address />} />
+        <Route path="logout" element={<Address />} />
+      </Route>
     </Route>
   )
 );
-
 
 function App() {
   const dispatch = useDispatch();

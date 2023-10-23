@@ -1,14 +1,16 @@
 import "./newProduct.css";
 import { MultiSelect } from "react-multi-select-component";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CategoryAll } from "../../../../redux/actions/category";
 import { getAllDiscount } from "../../../../redux/actions/discount";
 import { AddProductCategory } from "../../../../redux/actions/product";
 import axios from "axios";
 import { throttle } from "../../../../utils/throttle";
+import { AlertContext } from "../../../../component/alert/AlertProvider";
 
-const NewProduct = () => {
+const NewProduct = ({ setNewProduct }) => {
+  const Alert = useContext(AlertContext);
   const [category, setCategory] = useState([]);
   const [tags, setTags] = useState([]);
   const [title, setTitle] = useState("");
@@ -30,8 +32,12 @@ const NewProduct = () => {
   // const [msg, setMsg] = useState("");
 
   const dispatch = useDispatch();
-  const categoryData = useSelector((state) => state.category.category);
-  const { loading } = useSelector((state) => state.category);
+  const { category: categoryData } = useSelector((state) => state.category);
+  const {
+    loading: uploding,
+    message,
+    successProduct,
+  } = useSelector((state) => state.product);
 
   useEffect(() => {
     dispatch(CategoryAll());
@@ -39,12 +45,11 @@ const NewProduct = () => {
   }, [dispatch]);
 
   const options = [];
+  categoryData.data.map((item) => {
+    options.push({ label: item.category, value: item.category });
+    return;
+  });
 
-  categoryData &&
-    categoryData.data.map((item) => {
-      options.push({ label: item.category, value: item.category });
-      return;
-    });
   function onsubmitHeadler(e) {
     e.preventDefault();
     if (!skuIsUnique) return;
@@ -69,18 +74,26 @@ const NewProduct = () => {
     tags.forEach((item) => formData.append("tags", item.value));
     dispatch(AddProductCategory(formData));
   }
-  // if (loading) {
-  //   setCategory([]);
-  //   setTags([]);
-  //   setTitle("");
-  //   setSku("");
-  //   setPrice("");
-  //   setDiscountprice("");
-  //   setQuantity(1);
-  //   setImages([]);
-  //   setDescription("");
-  //   setCustomizable(false);
-  // }
+
+  useEffect(() => {
+    if (successProduct) {
+      setCategory([]);
+      setTags([]);
+      setTitle("");
+      setSku("");
+      setImages([]);
+      setDescription("");
+      setCustomizable(false);
+      setNewProduct((pre) => !pre);
+      Alert.setError({ error: "success", msg: message });
+      dispatch({ type: "clearError" });
+      dispatch({ type: "clearMessage" });
+    } else {
+      Alert.setError({ error: "fail", msg: message });
+      dispatch({ type: "clearError" });
+      dispatch({ type: "clearMessage" });
+    }
+  }, [successProduct]);
 
   function skuheadler(e) {
     setSku(e.target.value);
@@ -100,8 +113,8 @@ const NewProduct = () => {
   return (
     <div className="newPostmainCantainer">
       <p>new Product</p>
-      {loading ? (
-        "loading....."
+      {uploding ? (
+        "Uploading....."
       ) : (
         <form action="" onSubmit={onsubmitHeadler} method="post">
           <div>
@@ -160,7 +173,7 @@ const NewProduct = () => {
                 onChange={(e) => setImages(e.target.files)}
                 multiple
                 name="files[]"
-                accept=".webp"
+                accept="image/*"
                 placeholder="images"
                 className="images"
                 autoComplete="images"

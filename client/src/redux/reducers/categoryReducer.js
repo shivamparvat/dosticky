@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 export const categoryReducer = createReducer(
-  {},
+  { loading: false, category: { data: [] }, message: "" },
   {
     categoryRequest: (state) => {
       state.loading = true;
@@ -16,7 +16,7 @@ export const categoryReducer = createReducer(
       state.category = action.payload;
       state.error = action.payload.success;
     },
-    
+
     AddcategoryRequest: (state) => {
       state.loading = true;
     },

@@ -16,7 +16,6 @@ function Login() {
 
   function SubmitHeadler(e) {
     e.preventDefault();
-    console.log(email, password); 
     dispatch(login({ email, password }));
   }
   useEffect(() => {

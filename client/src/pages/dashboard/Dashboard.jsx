@@ -7,91 +7,82 @@ import { AiFillMessage, AiFillSetting } from "react-icons/ai";
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { TbDiscount2 } from "react-icons/tb";
 import { ImProfile } from "react-icons/im";
-import DeshboardCaintaint from "./component/DeshboardCaintaint";
-import { useState } from "react";
-import UserListTable from "./component/UserListTable";
-import Productpage from "./component/ProductPage";
-import CategoryPage from "./component/CategoryPage";
-import Discount from "./component/Discount";
-import Order from "./component/Order";
+import { NavLink, Outlet } from "react-router-dom";
 
 function Dashboard() {
-  const [mainDisplay, setMainDisplay] = useState("dashboard");
-  const Display = () => {
-    switch (mainDisplay) {
-      case "user":
-        return <UserListTable/>;
-      case "dashboard":
-        return <DeshboardCaintaint />;
-      case "product":
-        return <Productpage/>;
-      case "category":
-        return <CategoryPage/>;
-      case "discount":
-        return <Discount/>;
-      case "order":
-        return <Order/>;
-      default:
-        break;
-    }
-  };
+
   return (
     <div className="Dashboard">
       <div className="navMenusLeft">
         <ul>
           <p>Dashboard</p>
-          <li onClick={() => setMainDisplay("dashboard")}>
-            <MdDashboard />
-            Dashboard
-          </li>
+          <NavLink className="orders" to="">
+            <li>
+              <MdDashboard />
+              Dashboard
+            </li>
+          </NavLink>
           <p>User</p>
-          <li onClick={() => setMainDisplay("user")}>
-            <FaUserAlt />
-            user
-          </li>
-          <li onClick={() => setMainDisplay("product")}>
-            <BsFillBoxSeamFill />
-            product
-          </li>
+          <NavLink className="orders" to="user">
+            <li>
+              <FaUserAlt />
+              user
+            </li>
+          </NavLink>
+          <NavLink className="orders" to="product">
+            <li>
+              <BsFillBoxSeamFill /> product
+            </li>
+          </NavLink>
+          <NavLink className="orders" to="category">
+            <li>
+              <MdCategory /> category
+            </li>
+          </NavLink>
           <p>List</p>
-          <li onClick={() => setMainDisplay("category")}>
-            <MdCategory />
-            category
-          </li>
-          <li onClick={() => setMainDisplay("order")}>
-            <BsCreditCardFill />
-            Order
-          </li>
-          <li onClick={() => setMainDisplay("discount")}>
-            <TbDiscount2 />
-            discount
-          </li>
-          <li>
-            <FaShippingFast />
-            shipped
-          </li>
-          <li>
-            <AiFillMessage />
-            message
-          </li>
-          <li>
-            <AiFillSetting />
-            settings
-          </li>
+          <NavLink className="Orders" to="order">
+            <li>
+              <BsCreditCardFill /> Order
+            </li>
+          </NavLink>
+          <NavLink className="discount" to="discount">
+            <li>
+              <TbDiscount2 /> discount
+            </li>
+          </NavLink>
+          <NavLink className="shipped" to="shipped">
+            <li>
+              <FaShippingFast /> shipped
+            </li>
+          </NavLink>
+          <NavLink className="message" to="message">
+            <li>
+              <AiFillMessage /> message
+            </li>
+          </NavLink>
+          <NavLink className="settings" to="settings">
+            <li>
+              <AiFillSetting />
+              settings
+            </li>
+          </NavLink>
           <p>User</p>
-          <li>
-            <ImProfile />
-            profile
-          </li>
-          <li>
-            <RiLogoutBoxFill />
-            logout
-          </li>
+          <NavLink className="profile" to="profile">
+            <li>
+              <ImProfile />
+              profile
+            </li>
+          </NavLink>
+          <NavLink className="logout" to="logout">
+            <li>
+              <RiLogoutBoxFill />
+              logout
+            </li>
+          </NavLink>
         </ul>
       </div>
       <div className="mainContainer">
-        <Display />
-        {/* <CategoryPage/> */}
+        <Outlet />
       </div>
     </div>
   );

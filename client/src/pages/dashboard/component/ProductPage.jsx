@@ -70,7 +70,7 @@ function ProductPage() {
         <ToolebarNew setNewProduct={setNewProduct} newProduct={newProduct} />
       </div>
       {/* <NewProduct /> */}
-      {newProduct && <NewProduct />}
+      {newProduct && <NewProduct setNewProduct={setNewProduct}/>}
       <div className="productslist">
         <p>products</p>
         <Product product={productDitail} />

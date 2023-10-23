@@ -28,11 +28,9 @@ export const login = (getdata) => async (dispatch) => {
       },
       withCredentials: true,
     });
-    console.log("data");
     dispatch({ type: "loginSuccess", payload: { data: "df" } });
   } catch (error) {
-    console.log(error);
-    dispatch({ type: "loginFail", payload: "error.response.data.message" });
+    dispatch({ type: "loginFail", payload: error.response.data.message });
   }
 };
 
@@ -42,7 +40,7 @@ export const loadUser = () => async (dispatch) => {
     const { data } = await axios.get("/user/", { withCredentials: true });
     dispatch({ type: "loginSuccess", payload: data });
   } catch (error) {
-    dispatch({ type: "loginFail", payload: "error.response.data.message" });
+    dispatch({ type: "loginFail", payload: error.response.data.message });
   }
 };
 
@@ -55,7 +53,7 @@ export const logOut = () => async (dispatch) => {
     });
     dispatch({ type: "logoutSuccess", payload: data });
   } catch (error) {
-    dispatch({ type: "logoutFail", payload: "error.response.data.message" });
+    dispatch({ type: "logoutFail", payload: error.response.data.message });
   }
 };
 
@@ -68,7 +66,7 @@ export const VarifyEmailAddress = (token) => async (dispatch) => {
     });
     dispatch({ type: "loginSuccess", payload: data });
   } catch (error) {
-    dispatch({ type: "loginFail", payload: "error.response.data.message" });
+    dispatch({ type: "loginFail", payload: error.response.data.message});
   }
 };
 

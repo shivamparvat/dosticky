@@ -20,13 +20,12 @@ const ToolberNew = ({ setNewProduct, newProduct }) => {
         <li>
           <TbMenuOrder />
         </li>
-        <li>
+        <li onClick={() => setNewProduct(newProduct ? false : true)}>
           <AiOutlinePlus
-            onClick={() => setNewProduct(newProduct ? false : true)}
           />
         </li>
         <li>
-          <p>orderBy</p>
+          <p>orderby</p>
           <select name="orderBy" id="orderBy">
             <option value="fhds">GH</option>
             <option value="fhds">GH</option>
