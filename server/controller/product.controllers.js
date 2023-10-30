@@ -5,9 +5,7 @@ const productModule = require("../module/productModule");
 const Crud = require("../utils/crud");
 const getDataUri = require("../utils/dataUri");
 const cloudinary = require("cloudinary");
-const Apifeature = require("../utils/Apifeatures");
 const ErrorHeandler = require("../utils/ErrorHeandler");
-// const { isUnique } = require("../utils/validation");
 
 // product creation
 

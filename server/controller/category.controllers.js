@@ -5,6 +5,7 @@ const dataUri = require("../utils/dataUri");
 const cloudinary = require("cloudinary");
 
 exports.newCategory = CatchAsyncError(async (req, res, next) => {
+  
   const category = await categoryModule.create(req.body);
   let updatedData;
   if (req.file != undefined) {
@@ -25,7 +26,6 @@ exports.newCategory = CatchAsyncError(async (req, res, next) => {
       }
       );
     }
-    console.log(updatedData)
 
   res.status(201).json({
     message: "success",

@@ -4,12 +4,11 @@ const {
 const userModule = require("../module/userModule");
 const cloudinary = require("cloudinary");
 const crypto = require("crypto");
-const ErrorHandler = require("../utils/ErrorHeandler");
 const responseToken = require("../utils/responseToken");
 const Crud = require("../utils/crud");
 const sendMail = require("../utils/sendMail");
 const dataUri = require("../utils/dataUri");
-const ErrorHeandler = require("../utils/ErrorHeandler");
+const ErrorHeandler = require("../utils/drrorHeandler");
 
 // user creation
 exports.newUser = CatchAsyncError(async (req, res, next) => {

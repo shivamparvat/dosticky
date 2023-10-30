@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./profile.css";
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../redux/actions/user";
 

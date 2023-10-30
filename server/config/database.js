@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const database = async () => {
-  mongoose.set('strictQuery', false);
   mongoose
     .connect(
       process.env.NODE_ENV == "Development"
