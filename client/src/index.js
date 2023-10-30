@@ -7,7 +7,7 @@ import axios from "axios";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "./redux/store";
 import AlertProvider from "./component/alert/AlertProvider";
-axios.defaults.baseURL = "http://localhost:3000/api";
+axios.defaults.baseURL = "https://dosticky.onrender.com/v1/api";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

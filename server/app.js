@@ -52,15 +52,15 @@ app.use(cors({
 // });
 
 
-app.use("/api/user",userRouter)
-app.use("/api/product",productRoute)
-app.use("/api/cart",cartRoute)
-app.use("/api/order",orderRoute)
-app.use("/api/payment",paymentRoute)
-app.use("/api/address",addressRoute)
-app.use("/api/category",categoryRouter)
-app.use("/api/coupon",couponRoute)
-app.use("/api/discount",discountRoute)
+app.use("/v1/api/user",userRouter)
+app.use("/v1/api/product",productRoute)
+app.use("/v1/api/cart",cartRoute)
+app.use("/v1/api/order",orderRoute)
+app.use("/v1/api/payment",paymentRoute)
+app.use("/v1/api/address",addressRoute)
+app.use("/v1/api/category",categoryRouter)
+app.use("/v1/api/coupon",couponRoute)
+app.use("/v1/api/discount",discountRoute)
 
 
 app.use(express.static(path.join(__dirname, "../client/build")));
