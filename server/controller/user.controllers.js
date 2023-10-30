@@ -8,7 +8,7 @@ const responseToken = require("../utils/responseToken");
 const Crud = require("../utils/crud");
 const sendMail = require("../utils/sendMail");
 const dataUri = require("../utils/dataUri");
-const ErrorHeandler = require("../utils/drrorHeandler");
+const ErrorHeandler = require("../utils/ErrorHeandler");
 
 // user creation
 exports.newUser = CatchAsyncError(async (req, res, next) => {
